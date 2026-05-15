@@ -145,7 +145,7 @@ ctrl = 0
 anim = 6001
 sprpriority = 2
 
-[State -3]
+[State -3, Spawn Big Bird]
 type = Helper
 trigger1 = time = 55
 helpertype = normal ;player
@@ -157,7 +157,7 @@ postype = p1
 size.xscale = 2
 size.yscale = 2
 
-[State -3]
+[State -3, Spawn Chuck]
 type = Helper
 trigger1 = time = 65
 helpertype = normal ;player
@@ -167,7 +167,7 @@ stateno = 10001
 pos = -120,0
 postype = p1
 
-[State -3]
+[State -3, Spawn Blu]
 type = Projectile
 trigger1 = time = 75
 ProjID = 10001
@@ -217,13 +217,15 @@ palfx.color = 0
 type = PlaySnd
 trigger1 = time = 75
 value = S6001,1
+channel = 1
 
 [State 6001, "Ow!" -Blu]
 type = PlaySnd
 trigger1 = ProjHit10001 = 1
 value = S6001,(2 + (random % 7))
+channel = 2
 
-[State 6001, 1]
+[State 6001, 1 🚩]
 type = Explod
 trigger1 = time = 55
 anim = 701
@@ -257,6 +259,7 @@ type = PlaySnd
 trigger1 = Animelem = 23
 trigger2 = MoveType = H && StateNo != [120,155]
 value = S10,2
+channel = 3
 
 [State 6001, 3]
 type = SuperPause
