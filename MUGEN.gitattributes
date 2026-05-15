@@ -1,0 +1,8 @@
+# .cns files
+*.cns INI
+
+# .def files
+*.def INI
+
+# .air files
+*.air INI
