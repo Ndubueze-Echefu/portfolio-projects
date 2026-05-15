@@ -1,0 +1,55 @@
+39
+Dallas|Chicago|150|120
+Dallas|Orlando|160|150
+Dallas|Tokyo|1200|780
+Dallas|Lagos|950|600
+Dallas|London|1100|540
+Dallas|Nashville, TN|140|95
+Dallas|Indianapolis, IN|145|110
+Dallas|Columbus, OH|150|120
+Dallas|Tulsa, OK|120|60
+Orlando|Dallas|160|150
+Orlando|Chicago|155|160
+Orlando|Tokyo|1250|840
+Orlando|Lagos|970|620
+Orlando|London|1150|560
+Orlando|Nashville, TN|135|95
+Orlando|Indianapolis, IN|140|110
+Orlando|Columbus, OH|145|120
+Orlando|Tulsa, OK|130|120
+Chicago|Dallas|150|120
+Chicago|Orlando|155|160
+Chicago|Tokyo|1180|780
+Chicago|Lagos|940|610
+Chicago|London|1080|480
+Chicago|Nashville, TN|120|90
+Chicago|Indianapolis, IN|110|60
+Chicago|Columbus, OH|115|70
+Chicago|Tulsa, OK|130|120
+Tokyo|Dallas|1200|780
+Tokyo|Orlando|1250|840
+Tokyo|Chicago|1180|780
+Tokyo|Lagos|1300|720
+Tokyo|London|1100|660
+Lagos|Dallas|950|600
+Lagos|Orlando|970|620
+Lagos|Chicago|940|610
+Lagos|Tokyo|1300|720
+Lagos|London|850|420
+London|Dallas|1100|540
+London|Orlando|1150|560
+London|Chicago|1080|480
+London|Tokyo|1100|660
+London|Lagos|850|420
+Nashville|Dallas|140|95
+Nashville|Orlando|135|95
+Nashville|Chicago|120|90
+Indianapolis|Dallas|145|110
+Indianapolis|Orlando|140|110
+Indianapolis|Chicago|110|60
+Columbus|Dallas|150|120
+Columbus|Orlando|145|120
+Columbus|Chicago|115|70
+Tulsa|Dallas|120|60
+Tulsa|Orlando|130|120
+Tulsa|Chicago|130|120

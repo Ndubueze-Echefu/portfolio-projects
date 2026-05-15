@@ -1,0 +1,1069 @@
+;---------------------------------------------------------------------------
+; Society Laser
+[Statedef 6000]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 6000
+sprpriority = 2
+
+[State 6000, 1]
+type = Explod
+trigger1 = time = 54
+anim = 701
+ID = 700
+pos = 0,0
+postype = back
+bindtime = -1
+removetime = -1
+scale = 2,2
+sprpriority = -1
+
+[State 6000, Glass Break]
+type = explod
+trigger1 = Animelem = 27
+trigger2 = stateno = [5000,5170]
+anim = 703
+pos = 0,0
+id = 703
+vfacing = 1
+bindtime = -1
+postype = back
+scale = 2,2
+sprpriority = -5
+removetime = -2
+ownpal = 1
+removeongethit = 1
+
+[State 6000, Glass Break SFX]
+type = PlaySnd
+trigger1 = Animelem = 27
+trigger2 = stateno = [5000,5170]
+value = S10,2
+
+
+
+[State 6000, 3]
+type = SuperPause
+trigger1 = time = 5
+time = 50
+anim = s15000
+sound = S10,0
+pos = 0,-120
+movetime = 50
+poweradd = -1000
+
+[State 6000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 6000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 0, 0, 255
+color = 0
+
+[State 6000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 6000, 4]
+type = PlaySnd
+trigger1 = animelem = 5
+value = S6000,0
+
+[State 6000, 5]
+type = HitDef
+trigger1 = Timemod = 6,0
+attr = S, HA
+damage = 25, 5
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 2, 4
+sparkno = s7018
+sparkxy = -10, -130
+hitsound = s6000, 1
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -9,-1
+airguard.velocity = -5,-3
+air.type = High
+air.velocity = -5,-3
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 7
+fall.envshake.time = 15
+fall.envshake.ampl = -7
+palfx.time = 40
+palfx.add = 0,-200,-200
+palfx.mul = 240,50,0
+palfx.sinadd = -240,50,0
+palfx.color = 0
+
+[State 6000, 6]
+type = StopSnd
+trigger1 = time = 0
+channel = 1
+
+[State 6000, 7]
+type = PlaySnd
+trigger1 = time = 5
+value = S2,9
+channel = 1
+
+[State 6000, 8]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Lantern Hammer
+[Statedef 6001]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 6001
+sprpriority = 2
+
+[State -3]
+type = Helper
+trigger1 = time = 55
+helpertype = normal ;player
+name = "Big Bird"
+ID = 10000
+stateno = 10000
+pos = -640,0
+postype = p1
+size.xscale = 2
+size.yscale = 2
+
+[State -3]
+type = Helper
+trigger1 = time = 65
+helpertype = normal ;player
+name = "Angry Bird"
+ID = 10001
+stateno = 10001
+pos = -120,0
+postype = p1
+
+[State -3]
+type = Projectile
+trigger1 = time = 75
+ProjID = 10001
+projanim = 10002
+projhitanim = 10003
+projremanim = 10003
+projcancelanim = 10003
+projscale = 1,1
+projremove = 1
+projremovetime = -1
+velocity = 17,0
+projpriority = 1
+projsprpriority = 3
+projedgebound = 40
+projstagebound = 40
+offset = 0,-180
+postype = back
+attr = S, HA
+damage = 40, 10
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 2, 4
+sparkno = s7030 + (random % 8)
+sparkxy = -10, -130
+hitsound = s5, 6
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -9,-1
+airguard.velocity = -5,-3
+air.type = High
+air.velocity = -5,-3
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 7
+palfx.time = 40
+palfx.add = 0,256,0
+palfx.mul = 0,256,0
+palfx.sinadd = 0,256,0
+palfx.color = 0
+
+[State 6001, "Wahoo!" -Blu]
+type = PlaySnd
+trigger1 = time = 75
+value = S6001,1
+
+[State 6001, "Ow!" -Blu]
+type = PlaySnd
+trigger1 = ProjHit10001 = 1
+value = S6001,(2 + (random % 7))
+
+[State 6001, 1]
+type = Explod
+trigger1 = time = 55
+anim = 701
+ID = 700
+pos = 0,0
+postype = back
+bindtime = -1
+removetime = -1
+scale = 2,2
+sprpriority = -1
+persistent = 1
+
+[State 6001, Glass Break]
+type = explod
+trigger1 = Animelem = 23
+trigger2 = MoveType = H && StateNo != [120,155]
+anim = 703
+pos = 0,0
+id = 703
+vfacing = 1
+bindtime = -1
+postype = back
+scale = 2,2
+sprpriority = -5
+removetime = -2
+ownpal = 1
+removeongethit = 1
+
+[State 6001, Glass Break SFX]
+type = PlaySnd
+trigger1 = Animelem = 23
+trigger2 = MoveType = H && StateNo != [120,155]
+value = S10,2
+
+[State 6001, 3]
+type = SuperPause
+trigger1 = time = 5
+time = 50
+anim = s15000
+sound = S10,0
+pos = 0,-120
+movetime = 50
+poweradd = -1000
+
+[State 6001, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 6001, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 0, 0, 255
+color = 0
+
+[State 6001, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 6001, 4]
+type = PlaySnd
+trigger1 = animelem = 5
+value = S6000,0
+
+
+[State 6001, 5]
+type = HitDef
+trigger1 = Timemod = 6,0
+attr = S, HA
+damage = 25, 5
+animtype = Heavy
+guardflag = L
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 2, 8
+sparkno = s7018
+sparkxy = -10, -130
+hitsound = s5, 7
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = 3,-10
+airguard.velocity = -5,-3
+air.type = High
+air.velocity = 3,-10
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 15
+palfx.time = 40
+palfx.add = 0,256,0
+palfx.mul = 0,256,0
+palfx.sinadd = 0,256,0
+palfx.color = 0
+
+[State 6001, 6]
+type = StopSnd
+trigger1 = time = 0
+channel = 1
+
+[State 6001, "WOOHOO" -The Crew]
+type = PlaySnd
+trigger1 = time = 0
+value = S6001,0
+channel = 1
+
+[State 6001, 8]
+type = EnvShake
+trigger1 = animelem = 10
+time = 34
+freq = 30
+ampl = -10
+phase = 90
+
+[State 6001, 9]
+type = Explod
+trigger1 = animelem = 10
+anim = f62
+pos = 160,0
+postype = p1
+removetime = 34
+
+[State 6001, 10]
+type = PlaySnd
+trigger1 = animelem = 10
+value = S1000,1
+
+[State 6001, 11]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Lantern Big Bird
+[Statedef 10000]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 25,0
+ctrl = 0
+anim = 10000
+sprpriority = -1
+
+[State 10000, 0]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,5
+
+[State 10000, "Here comes... SuperBird!"]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S6001,14
+
+[State 10000, 1]
+type = HitDef
+trigger1 = Timemod = 6, 0
+attr = S, SA
+damage = 10, 5
+animtype = Heavy
+guardflag = MA
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 12, 14
+sparkno = s7030 + (random % 8)
+sparkxy = -10, -130
+hitsound = s5, 2
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = 0,15
+airguard.velocity = 0,-.8
+air.type = High
+air.velocity = 0,15
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 7
+palfx.time = 40
+palfx.add = 0,256,0
+palfx.mul = 0,256,0
+palfx.sinadd = 0,256,0
+palfx.color = 0
+
+[State 10000, 2]
+type = VelSet
+trigger1 = animelem = 18
+x = 0
+
+[State 10000, 3]
+type = PlaySnd
+trigger1 = animelem = 18
+value = S52,0
+
+[State 10000, 4]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+; Lantern Angry Bird
+[Statedef 10001]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 10001
+sprpriority = -1
+
+[State 10001, Special Boost]
+type = PlaySnd
+trigger1 = animelem = 26
+value = S10001,0
+
+[State 10001, "WAZAAAAAAAHAH!"]
+type = PlaySnd
+trigger1 = Animelem = 26
+value = S6001,(10 + (random % 3))
+channel = 9
+
+[State 10001, Shut Up...]
+type = StopSnd
+trigger1 = Animelem = 32
+channel = 9
+
+
+[State 10001, *menacing laugh*]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S6001,9
+
+[State 10001, Slingshot]
+type = PlaySnd
+trigger1 = Animelem = 10
+value = S6001,13
+
+
+[State 10001, 1]
+type = HitDef
+trigger1 = Timemod = 3, 0
+attr = S, SA
+damage = 20, 10
+animtype = Heavy
+guardflag = MA
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 12, 14
+sparkno = s7030 + (random % 8)
+sparkxy = -10, -130
+hitsound = s5, 5
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = 0,15
+airguard.velocity = 0,-.8
+air.type = High
+air.velocity = 0,15
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 7
+palfx.time = 40
+palfx.add = 0,256,0
+palfx.mul = 0,256,0
+palfx.sinadd = 0,256,0
+palfx.color = 0
+
+[State 10001, 2]
+type = VelSet
+trigger1 = animelem = 26
+x = 20
+
+[State 10001, 3]
+type = VelSet
+trigger1 = animelem = 32
+x = 0
+
+[State 10001, 4]
+type = PlaySnd
+trigger1 = animelem = 18
+value = S52,0
+
+[State 10001, 5]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+; The Power
+[Statedef 6002]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 6002
+sprpriority = 2
+
+[State 6002, 1]
+type = Explod
+trigger1 = time = 55
+anim = 701
+ID = 700
+pos = 0,0
+postype = back
+bindtime = -1
+removetime = -1
+scale = 2,2
+sprpriority = -1
+
+[State 6000, Glass Break]
+type = explod
+trigger1 = Animelem = 40
+anim = 703
+pos = 0,0
+id = 703
+vfacing = 1
+bindtime = -1
+postype = back
+scale = 2,2
+sprpriority = -5
+removetime = -2
+ownpal = 1
+removeongethit = 1
+
+[State 6000, Glass Break SFX]
+type = PlaySnd
+trigger1 = Animelem = 40
+value = S10,2
+
+[State 6002, 3]
+type = SuperPause
+trigger1 = time = 5
+time = 50
+anim = s15001
+sound = S10,1
+pos = 0,-120
+movetime = 50
+poweradd = -2000
+
+[State 6002, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 6002, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 160, 32, 240
+color = 0
+
+[State 6002, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 6002, Stop the Music!]
+type = AssertSpecial
+trigger1 = time = [5, 140]
+flag = nomusic
+
+
+[State 6002, Record Scratch]
+type = PlaySnd
+trigger1 = time = 5
+value = S6002,0
+volume = 0
+
+[State 6002, Epic Keyboard Solo]
+type = PlaySnd
+trigger1 = time = 57
+value = S6002,1
+channel = 6
+
+[State 6002, Aight, stop now...]
+type = StopSnd
+trigger1 = time = 132
+channel = 6
+
+
+[State 6002, Record Scratch at the end]
+type = PlaySnd
+trigger1 = Animelem = 39
+value = S6002,0
+volume = 0
+
+[State 6002, 4]
+type = PlaySnd
+trigger1 = animelem = 5
+value = S6000,0
+
+[State 6002, 5]
+type = HitDef
+trigger1 = Timemod = 4,0
+attr = S, HA
+damage = 16, 5
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 2, 4
+sparkno = s7018
+sparkxy = -10, -130
+hitsound = s5, 7
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -9,-1
+airguard.velocity = -5,-3
+air.type = High
+air.velocity = -5,-3
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 7
+fall.envshake.time = 15
+fall.envshake.ampl = -7
+palfx.time = 40
+palfx.add = 150,256,0
+palfx.sinadd = 10,10,10,5
+palfx.color = 0
+
+[State 6002, 6]
+type = StopSnd
+trigger1 = time = 0
+trigger2 = animelem = 3
+trigger3 = animtime = 0
+channel = 1
+
+[State 6002, "YEAYUH but reverbed"]
+type = PlaySnd
+trigger1 = time = 0
+value = S2,13
+channel = 1
+
+[State 6002, 8]
+type = PlaySnd
+trigger1 = animelem = 3
+value = S2,14
+channel = 1
+
+[State 6002, 9]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Skeet Shot
+[Statedef 6003]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 6003
+sprpriority = 2
+
+[State 6002, Red Background]
+type = Explod
+trigger1 = (movehit = 1)
+anim = 9994
+ID = 9994
+pos = 0,0
+postype = back
+bindtime = -1
+removetime = -1
+scale = 2,2
+sprpriority = -1
+ignorehitpause = 1
+ownpal = 1
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = Animelem = 6
+id = 9994
+
+[State 6000, Glass Break]
+type = explod
+trigger1 = Animelem = 6 && (movehit)
+anim = 703
+pos = 0,0
+id = 703
+vfacing = 1
+bindtime = -1
+postype = back
+scale = 2,2
+sprpriority = -5
+removetime = -2
+ownpal = 1
+removeongethit = 1
+persistent = 0
+
+[State 6000, Glass Break SFX]
+type = PlaySnd
+trigger1 = Animelem = 6 && (movehit)
+value = S10,2
+persistent = 0
+
+[State 6003, 3]
+type = SuperPause
+trigger1 = time = 5
+time = 50
+anim = s15001
+sound = S10,1
+pos = 0,-120
+movetime = 50
+poweradd = -2000
+
+[State 6002, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 6002, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 160, 32, 240
+color = 0
+
+[State 6002, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = time = 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 6003, 4]
+type = PlaySnd
+trigger1 = animelem = 5
+value = S6003,0
+
+[State 6003, 5]
+type = HitDef
+trigger1 = Animelem = 5
+attr = S, HA
+damage = 300, 125
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 60, 60
+sparkno = -1
+sparkxy = -10, -130
+hitsound = s5, 8
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -9,-1
+airguard.velocity = -5,-3
+air.type = High
+air.velocity = -5,-3
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 7
+palfx.time = 60
+palfx.add = 0,0,0
+palfx.mul = 0,0,0
+palfx.sinadd = 56,56,0,10
+palfx.color = 0
+
+[State 6003, Black Siloette]
+type = PalFX
+trigger1 = (movehit = 1)
+time = 50
+add = 0,0,0
+mul = 0,0,0
+sinadd = 56,56,0,10
+invertall = 1
+color = 0
+ignorehitpause = 1
+
+[State 6003, PalFX]
+type = PalFX
+trigger1 = Animelem = 6
+time = 0
+
+
+[State 6003, The one that REALLY hits]
+type = PlaySnd
+trigger1 = movehit = 1
+value = S5,11
+ignorehitpause = 1
+persistent = 0
+
+[State 6003, 6]
+type = StopSnd
+trigger1 = time = 0
+channel = 1
+
+[State 6003, 7]
+type = PlaySnd
+trigger1 = animelem = 4
+value = S2,2
+channel = 1
+
+[State 6003, 8]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; FINISHER
+[Statedef 20000]
+type    = S
+movetype = A
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 20001
+poweradd = -5000
+
+
+
+[State 20000, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 215
+movetime = 215
+anim = s6150
+pos = 0,-100
+
+[State 6000, Lv3 BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 6000, Lv3 BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 149, 53, 83
+color = 0
+
+[State 6000, Lv3 BG Pal]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 20000, 1]
+type = Explod
+trigger1 = time = 0
+anim = 20000
+ID = 20000
+pos = 0,0
+postype = back
+bindtime = -1
+removetime = -2
+scale = 1,1
+supermove = 1
+ontop = 1
+sprpriority = 100
+pausemovetime = -1
+
+[State 20000, 2]
+type = Explod
+trigger1 = time = 0
+anim = 20002
+ID = 20000
+pos = 320,700
+postype = back
+bindtime = -1
+removetime = 98
+scale = 1,1
+supermove = 1
+ontop = 1
+sprpriority = 100
+pausemovetime = -1
+
+[State 0]
+type = modifyexplod
+trigger1 = time <= 10
+trans = addalpha
+alpha = 25*(time-0),256-(25*(time-0))
+id = 20000
+
+[State 0]
+type = modifyexplod
+trigger1 = time >= 31
+trans = addalpha
+alpha = 256-(25*(time-31)),25*(time-31)
+id = 20000
+
+[State 20000, 3]
+type = AllPalFX
+trigger1 = time = 0
+trigger2 = time = 98
+trigger3 = animtime = 0
+time = 5
+add = 256,256,256
+mul = 256,256,256
+sinadd = 0,0,0,1
+invertall = 0
+color = 256
+
+[State 20000, 4]
+type = BGPalFX
+trigger1 = time = 5
+time = 93
+add = 0,0,0
+mul = 120,120,120
+sinadd = 0,0,0,1
+invertall = 0
+color = 0
+
+[State 20000, 4]
+type = BGPalFX
+trigger1 = time = 98
+time = 157
+add = 0,0,0
+mul = 100,50,0
+sinadd = 0,0,0,1
+invertall = 0
+color = 0
+
+[State 20000, 5]
+type = PlaySnd
+trigger1 = time = 0
+value = S20000,0
+
+[State 20000, 6]
+type = PlaySnd
+trigger1 = time = 98
+value = S20000,1
+
+[State 20000, 7]
+type = AssertSpecial
+trigger1 = 1
+flag = nobardisplay
+flag2 = nomusic
+flag3 = unguardable
+ignorehitpause = 1
+persistent = 1
+
+[State 20000, 8]
+type = PlaySnd
+trigger1 = animelem = 13
+value = S192,0
+
+[State 20000, 8]
+type = PlaySnd
+trigger1 = animelem = 13
+value = S20000,2
+
+[State 20000, 9]
+type = AllPalFX
+trigger1 = time = 255
+time = 10
+add = 256,0,0
+mul = 500,0,0
+invertall = 0
+color = 256
+
+[State 20000, 10]
+type = HitDef
+trigger1 = time = 0
+attr = S, NA
+damage = 700, 700
+animtype = Heavy
+guardflag = MA
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 8, 8
+sparkno = 3
+sparkxy = -10, -76
+hitsound = s20000, 3
+guardsound = s6, 0
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -4,-40
+airguard.velocity = -1.9,-.8
+air.type = High
+air.velocity = -4,-40
+air.hittime = 12
+fall = 1
+
+[State 20000, 11]
+type = PlaySnd
+trigger1 = animelem = 13
+value = S20000,4
+
+[State 20000, 12]
+type = EnvShake
+trigger1 = animelem = 13
+time = 20
+freq = 60
+ampl = -40
+phase = 90
+
+[State 20000, 13]
+type = StopSnd
+trigger1 = time = 0
+channel = 1
+
+[State 20000, 14]
+type = PlaySnd
+trigger1 = animtime = 0
+value = S11,0
+channel = 1
+
+[State 20000, 15]
+type = VelSet
+trigger1 = animtime = 0
+y = -40
+
+[State 20000, 16]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 5050
+ctrl = 1

@@ -1,0 +1,37 @@
+[Info]
+name="Mordecai1105"
+displayname="Mordecai"
+versiondate=
+mugenversion=
+author="MOC1105, edited by I Am Cool"
+pal.defaults=
+localcoord = 640,480
+
+[Files]
+;Media Files
+sprite=Media/mordecai1105.sff
+sound=Media/mordecai1105.snd
+anim=Media/mordecai1105.air
+;Coding Files
+cmd=Coding/mordecai1105.cmd
+cns=Coding/mordecai1105.cns
+st=Coding/mordecai1105.cns
+st1=Coding/Specials.cns
+st2=Coding/Supers.cns
+stcommon=Coding/mordecommon.cns
+; Pallete Files
+pal1=Palletes/norm.act
+pal2=Palletes/cardinal.act
+pal3=Palletes/sparrow.act
+pal4=Palletes/thrasher.act
+pal5=Palletes/canary.act
+pal6=Palletes/toon.act
+pal7=Palletes/penguin.act
+pal8=Palletes/warbler.act
+pal9=Palletes/blackhawk.act
+pal10=Palletes/jayhawk.act
+pal11=Palletes/albatross.act
+pal12=Palletes/woodpecker.act
+[Arcade]
+intro.storyboard=
+ending.storyboard=

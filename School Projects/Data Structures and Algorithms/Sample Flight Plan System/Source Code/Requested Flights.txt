@@ -1,0 +1,7 @@
+6
+Dallas|Chicago|C
+Dallas|Tokyo|T
+Orlando|London|C
+Tulsa|Tokyo|T
+Nashville|Lagos|C
+Madrid|Auckland|T

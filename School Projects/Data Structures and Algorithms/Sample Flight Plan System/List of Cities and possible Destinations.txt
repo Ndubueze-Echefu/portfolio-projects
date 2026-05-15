@@ -1,0 +1,84 @@
+Dallas (can go international)
+Orlando (can go international)
+Chicago (can go international)
+Tokyo (can go international)
+Lagos (can go international)
+London (can go international)
+Nashville, TN (only local)
+Indianapolis, IN (only local)
+Columbus, OH (only local)
+Tulsa, OK (only local)
+
+Dallas can go to:
+- Chicago
+- Orlando
+- Tokyo
+- Lagos
+- London
+- Nashville
+- Indianapolis
+- Columbus
+- Tulsa
+
+Orlando can go to:
+- Dallas
+- Chicago
+- Tokyo
+- Lagos
+- London
+- Nashville
+- Indianapolis
+- Columbus
+- Tulsa
+
+Chicago can go to:
+- Dallas
+- Orlando
+- Tokyo
+- Lagos
+- London
+- Nashville
+- Indianapolis
+- Columbus
+- Tulsa
+
+Tokyo can go to:
+- Dallas
+- Orlando
+- Chicago
+- Lagos
+- London
+
+Lagos can go to:
+- Dallas
+- Orlando
+- Chicago
+- Tokyo
+- London
+
+London can go to:
+- Dallas
+- Orlando
+- Chicago
+- Tokyo
+- Lagos
+
+Nashville, TN can go to:
+- Dallas
+- Orlando
+- Chicago
+
+Indianapolis, IN can go to:
+- Dallas
+- Orlando
+- Chicago
+
+Columbus, OH can go to:
+- Dallas
+- Orlando
+- Chicago
+
+Tulsa, OK can go to:
+- Dallas
+- Orlando
+- Chicago

@@ -1,0 +1,24 @@
+Flight 1: Dallas -> Chicago (Cost)
+Path 1: Dallas -> Chicago. Time: 120 Cost: 150
+Path 2: Dallas -> Orlando -> Chicago. Time: 310 Cost: 315
+Path 3: Dallas -> Lagos -> Chicago. Time: 1210 Cost: 1890
+
+Flight 2: Dallas -> Tokyo (Time)
+Path 1: Dallas -> Tokyo. Time: 780 Cost: 1200
+Path 2: Dallas -> Chicago -> Tokyo. Time: 900 Cost: 1330
+Path 3: Dallas -> Orlando -> Tokyo. Time: 990 Cost: 1410
+
+Flight 3: Orlando -> London (Cost)
+Path 1: Orlando -> London. Time: 560 Cost: 1150
+Path 2: Orlando -> Chicago -> London. Time: 640 Cost: 1235
+Path 3: Orlando -> Dallas -> London. Time: 690 Cost: 1260
+
+Flight 4: Tulsa -> Tokyo (Time)
+Error: No available flight plans.
+
+Flight 5: Nashville -> Lagos (Cost)
+Error: No available flight plans.
+
+Flight 6: Madrid -> Auckland (Time)
+Error: No available flight plans.
+

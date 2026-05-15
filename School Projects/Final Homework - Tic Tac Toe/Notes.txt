@@ -1,0 +1,8 @@
+Here you go, the Tic-Tac-Toe game.
+
+It should have the following:
+- Game.h
+- Score.h
+- code.cpp
+
+Have fun!
