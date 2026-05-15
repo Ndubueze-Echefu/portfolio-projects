@@ -225,7 +225,7 @@ trigger1 = ProjHit10001 = 1
 value = S6001,(2 + (random % 7))
 channel = 2
 
-[State 6001, 1 🚩]
+[State 6001, Blue Hyper Background]
 type = Explod
 trigger1 = time = 55
 anim = 701
@@ -261,7 +261,7 @@ trigger2 = MoveType = H && StateNo != [120,155]
 value = S10,2
 channel = 3
 
-[State 6001, 3]
+[State 6001, Level 1 Super Pause]
 type = SuperPause
 trigger1 = time = 5
 time = 50
@@ -293,13 +293,13 @@ time = 1
 mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
 color = floor(51.2 * (time -40))
 
-[State 6001, 4]
+[State 6001, SFX for spawning the green hammer 🔨]
 type = PlaySnd
 trigger1 = animelem = 5
 value = S6000,0
 
 
-[State 6001, 5]
+[State 6001, WHAM!!!]
 type = HitDef
 trigger1 = Timemod = 6,0
 attr = S, HA
