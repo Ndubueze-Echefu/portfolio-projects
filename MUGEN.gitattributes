@@ -2,13 +2,13 @@
 *.sff binary
 
 # MUGEN Animations
-*.air text linguist-language=INI
+*.air linguist-language=INI
 
 # MUGEN Character Definition
-*.def text linguist-language=INI
+*.def linguist-language=INI
 
 # MUGEN Coding
-*.cns text linguist-language=Lisp
+*.cns linguist-language=Lisp
 
 # MUGEN Command
-*.cmd text linguist-language=Lisp
+*.cmd linguist-language=Lisp
