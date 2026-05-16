@@ -2,13 +2,13 @@
 *.sff binary
 
 # MUGEN Animations
-*.air linguist-language=Game Maker Language
+*.air linguist-language=INI
 
 # MUGEN Character Definition
-*.def linguist-language=Game Maker Language
+*.def linguist-language=INI
 
 # MUGEN Coding
-*.cns linguist-language=Game Maker Language
+*.cns linguist-language=INI
 
 # MUGEN Command
-*.cmd linguist-language=Game Maker Language
+*.cmd linguist-language=INI
