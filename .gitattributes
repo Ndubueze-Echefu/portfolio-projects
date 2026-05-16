@@ -8,7 +8,7 @@
 *.def linguist-language=INI
 
 # MUGEN Coding
-*.cns linguist-language=Lisp
+*.cns linguist-language=INI
 
 # MUGEN Command
-*.cmd linguist-language=Lisp
+*.cmd linguist-language=INI
