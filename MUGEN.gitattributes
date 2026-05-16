@@ -1,8 +1,14 @@
-# .cns files
-*.cns INI
+# MUGEN Sprites
+*.sff binary
 
-# .def files
-*.def INI
+# MUGEN Animations
+*.air text linguist-language=INI
 
-# .air files
-*.air INI
+# MUGEN Character Definition
+*.def text linguist-language=INI
+
+# MUGEN Coding
+*.cns text linguist-language=Lisp
+
+# MUGEN Command
+*.cmd text linguist-language=Lisp
