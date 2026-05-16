@@ -2,5 +2,5 @@
 
 
 
-!\[Alt text](Markdown Assets\\IKEMEN.png)
+!\[Alt text](IKEMEN.png)
 
