@@ -1,6 +1,4 @@
 # ABOUT MUGEN/IKEMEN
+<img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/b57e53f7-62e0-49c3-8a02-2f288e176014" />
 
-
-
-!\[description](https://cdn2.steamgriddb.com/icon/05016d42450d2a5aa62105cd48dc8ce3/32/512x512.png)
-
+<img width="512" height="512" alt="image" src="https://github.com/user-attachments/assets/5726c63d-6ae5-4ab9-b245-50a00a2ff4c3" />
