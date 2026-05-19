@@ -1,0 +1,61 @@
+Kid Dracula's Update Log
+
+02/07/2018
+--------------
+-KidDracula_Moderate and KidDracula_Easy defs are now 1.0
+-Updated sounds
+-Updated all the normal attack animations
+-Adjusted the poweradds for all normals and specials
+-Fixed infinite from comboing Standing Light Attacks into Standing Medium Attacks when timed perfectly
+-Fixed infinite from comboing Standing Light Punch into Spin Kick when timed perfectly.
+-Updated the Spin Kick, Fireball, Bat, and Ice Ball specials
+-Updated the Homing Projectile helper where the projectiles can't disappear when the opponent is on liedown
+-Updated the Bat special. It will no longer be a soft knockdown
+-Fixed debug flood "Warning: Fireball Base (66) in State 3504: Parent in Retargeted Trigger Has Been Destroyed"
+
+12/03/2016
+--------------
+-Increased animation time a little bit for all normal medium and strong attacks
+-Fixed infinite for the Standing Medium Punch
+
+11/17/2016
+--------------
+-Random Helpers can now be summoned again instantly right after Kid Dracula's friends are gone from the Vampire Soccer Hyper
+-Updated the Vampire Soccer hyper with updates of Kid Dracula's Friends helper states
+
+11/16/2016
+--------------
+-Added the Combo Condition state to the cmd file for KidDracula and KidDracula/KidDracula_Moderate.def files
+-Added the Shoop da Whoop and Thomas The Dank Engine channel for the TV matchover
+-Added a boss defeated theme when Kid Dracula kicks off any vampire for the Vampire intro
+-Kid Dracula can now be thrown out while doing a Dodge Roll
+-Fixed a bug from a Vampire Soccer hyper where Kid Dracula's friends disappear for a short time while walking away after cheering
+
+11/01/2016
+--------------
+-Small bug fix from a What a Horrible Night to Have a Curse hyper where the Monster's head got layered behind the body when hit the opponent or guarded by the opponent
+
+11/01/2016
+--------------
+-Fixed a bug from a Teleghoul Force hyper where the opponent with 1 hp left can escape from the Teleghoul Force from the last slamdown when using air recovery
+
+11/01/2016
+--------------
+-Fixed a bug from a What a Horrible Night to Have a Curse hyper where Kid Dracula goes back to the idle state after the transformation when hit
+ while the Super Armor got activated
+
+10/31/2016
+--------------
+-Fixed debug error for the Super Jump state
+
+10/31/2016
+--------------
+-First Full Release
+
+07/03/2016
+--------------
+-Second Beta Release
+
+04/01/2016
+--------------
+-First Beta Release

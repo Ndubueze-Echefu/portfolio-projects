@@ -1,0 +1,62 @@
+;---------------------------------------------------------------------------
+; States that are executed when in self's state file (use statedef -3)
+;---------------------------------------------------------------------------
+[Statedef -3]
+
+;This controller plays a sound everytime KFM lands from a jump, or
+;from his back-dash.
+[State -3, Landing Sound]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = stateno = 52 ;Jump land
+trigger2 = stateno = 106 ;Run-back land
+value = 40, 0
+
+[State -3, NotHitBy]
+type = NotHitBy
+trigger1 = var(9)
+trigger1 = stateno != [120,159]
+value = SCA
+time = 1
+
+[State -3, LifeAdd]
+type = LifeAdd
+trigger1 = alive = 1
+trigger1 = var(9)
+trigger1 = Var(8)
+time = 1
+value = -Var(8)
+
+[State -3, LifeAdd]
+type = LifeAdd
+trigger1 = alive = 1
+trigger1 = movetype = H
+trigger1 = stateno != [120,159]
+trigger1 = var(9) && !Var(8)
+value = -floor(GetHitVar(damage) / GetHitVar(HitCount))
+
+[State -3, SelfState]
+type = SelfState
+trigger1 = alive = 1
+trigger1 = movetype = H
+trigger1 = stateno != [120,159]
+trigger1 = statetype != A
+trigger1 = var(9)
+value = 0
+ctrl = 1
+
+[State -3, SelfState]
+type = SelfState
+trigger1 = alive = 1
+trigger1 = movetype = H
+trigger1 = stateno != [120,159]
+trigger1 = statetype = A
+trigger1 = var(9)
+value = 50
+ctrl = 1
+
+[State -3, VarSet]
+type = VarSet
+trigger1 = NumHelper(9000) = 0
+var(9) = 0
+ignorehitpause = 1

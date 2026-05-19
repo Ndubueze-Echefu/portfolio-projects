@@ -1,0 +1,1363 @@
+;---------------------------------------------------------------------------
+;Random Helpers
+[StateDef 2000]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+poweradd = 65
+
+[State 2000, end]
+type = ChangeState
+trigger1 = time = 0
+value = 2001+random%7
+
+;---------------------------------------------------------------------------
+;Assist Simon Belmont
+[StateDef 2001]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2000
+
+[State 2001, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal ;player
+name = "Simon Belmont"
+ID = 2001
+stateno = 2101
+pos = -100,0
+postype = back
+ownpal = 1
+size.xscale = 2.25
+size.yscale = 2.25
+
+[State 2001, end]
+type = ChangeState
+trigger1 = time = 45
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Simon Appears
+[StateDef 2101]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 5,0
+ctrl = 0
+anim = 2100
+
+[State 2101, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+value = S2000,0
+
+[State 2101, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2101, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2104
+time = -1
+
+[State 2101, 3]
+type = ChangeState
+trigger1 = p2dist x < 80
+value = 2102
+
+;---------------------------------------------------------------------------
+;Simon Attacks
+[StateDef 2102]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2101
+
+[State 2102, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+value = S2100,0
+
+[State 2102, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2102, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2104
+time = -1
+
+[State 2102, PlaySnd]
+type = VelSet
+trigger1 = animelem = 2
+x = 5
+ignorehitpause = 1
+
+[State 2102, 1]
+type = HitDef
+trigger1 = time = 0
+attr = S, NA
+damage = 25, 0
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = s10000
+guard.sparkno = s10003
+sparkxy = -25, -25
+hitsound  = S20,0
+guardsound = S8500, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -10
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = -1.4,-3
+air.hittime = 12
+
+[State 2102, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2102, 3]
+type = ChangeState
+trigger1 = animtime = 0
+value = 2103
+
+;---------------------------------------------------------------------------
+;Simon Leaves
+[StateDef 2103]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = -3,0
+ctrl = 0
+anim = 2102
+
+[State 2103, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+value = S2000,0
+
+[State 2103, DestroySelf]
+type = DestroySelf
+trigger1 = time = 100
+
+;---------------------------------------------------------------------------
+;Simon Hit
+[Statedef 2104]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+ctrl = 0
+velset = -5,-20
+sprpriority = 2
+anim = 2103
+
+[State 2104, Angle Draw]
+type = Angledraw
+trigger1 = 1
+scale = 1*(time*.2),1*(time*.2)
+
+[State 2104, Angle Add]
+type = AngleAdd
+trigger1 = 1
+value = 20
+
+[State 2104, 1]
+type = Veladd
+Trigger1 = 1
+y = 1.7
+
+[State 2104, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 2104, end]
+type = Destroyself
+trigger1 = time = 70
+
+;---------------------------------------------------------------------------
+;Assist Frankie
+[StateDef 2002]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2000
+
+[State 2002, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal ;player
+name = "Frankie"
+ID = 2001
+stateno = 2201
+pos = -100,0
+postype = back
+ownpal = 1
+size.xscale = 2.25
+size.yscale = 2.25
+
+[State 2002, end]
+type = ChangeState
+trigger1 = time = 45
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Frankie Appears
+[StateDef 2201]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 5,0
+ctrl = 0
+anim = 2200
+
+[State 2201, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+value = S2000,0
+
+[State 2201, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2201, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2203
+time = -1
+
+[State 2201, 3]
+type = ChangeState
+trigger1 = p2dist x < 150
+value = 2202
+
+;---------------------------------------------------------------------------
+;Frankie Attacks
+[StateDef 2202]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2201
+
+[State 2202, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2202, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2203
+time = -1
+
+[State 2202, PlaySnd]
+type = PlaySnd
+trigger1 = time = 25
+value = S2200,0
+
+[State 2202, PlaySnd]
+type = PlaySnd
+trigger1 = time = 40
+value = S2200,1
+
+[State 2202, PlaySnd]
+type = VelSet
+trigger1 = time = 25
+x = -3
+ignorehitpause = 1
+
+[State 2202, PlaySnd]
+type = VelSet
+trigger1 = time = 40
+x = 15
+ignorehitpause = 1
+
+[State 2202, 1]
+type = HitDef
+trigger1 = time = 40
+attr = S, NA
+damage = 65, 0
+animtype = Hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = s10002
+guard.sparkno = s10003
+sparkxy = -25, -25
+hitsound  = S20,2
+guardsound = S8500, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -7,-18
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = -7,-18
+air.hittime = 12
+fall = 1
+yaccel = 1
+
+[State 2202, 3]
+type = DestroySelf
+trigger1 = time = 100
+
+;---------------------------------------------------------------------------
+;Frankie Hit
+[Statedef 2203]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+ctrl = 0
+velset = -5,-20
+sprpriority = 2
+anim = 2202
+
+[State 2203, Angle Draw]
+type = Angledraw
+trigger1 = 1
+scale = 1*(time*.2),1*(time*.2)
+
+[State 2203, Angle Add]
+type = AngleAdd
+trigger1 = 1
+value = 20
+
+[State 2203, 1]
+type = Veladd
+Trigger1 = 1
+y = 1.7
+
+[State 2203, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 2203, end]
+type = Destroyself
+trigger1 = time = 70
+
+;---------------------------------------------------------------------------
+;Assist Rick
+[StateDef 2003]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2000
+
+[State 2003, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal ;player
+name = "Rick"
+ID = 2001
+stateno = 2301
+pos = -100,0
+postype = back
+ownpal = 1
+size.xscale = 2.25
+size.yscale = 2.25
+
+[State 2003, end]
+type = ChangeState
+trigger1 = time = 45
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Rick Appears
+[StateDef 2301]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 3,0
+ctrl = 0
+anim = 2300
+
+[State 2301, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2300,0
+abspan = 1
+
+[State 2301, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2301, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2304
+time = -1
+
+[State 2301, 3]
+type = ChangeState
+trigger1 = p2dist x < 50
+value = 2302
+
+;---------------------------------------------------------------------------
+;Rick Attacks
+[StateDef 2302]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2301
+
+[State 2302, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2302, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2304
+time = -1
+
+[State 2302, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+trigger2 = animelem = 5
+trigger3 = animelem = 8
+value = S2300,1
+
+[State 2302, PlaySnd]
+type = VelSet
+trigger1 = animelem = 2
+trigger2 = animelem = 5
+trigger3 = animelem = 8
+x = 7
+ignorehitpause = 1
+
+[State 2302, 1]
+type = HitDef
+trigger1 = animelem = 2
+trigger2 = animelem = 5
+trigger3 = animelem = 8
+attr = S, NA
+damage = 45, 0
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = s10001
+guard.sparkno = s10003
+sparkxy = -25, -25
+hitsound  = S2300,2
+guardsound = S8500, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -5
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = -1.4,-3
+air.hittime = 12
+
+[State 2302, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2302, 3]
+type = ChangeState
+trigger1 = animtime = 0
+value = 2303
+
+;---------------------------------------------------------------------------
+;Rick Leaves
+[StateDef 2303]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = -3,0
+ctrl = 0
+anim = 2302
+
+[State 2303, DestroySelf]
+type = DestroySelf
+trigger1 = time = 100
+
+;---------------------------------------------------------------------------
+;Rick Hit
+[Statedef 2304]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+ctrl = 0
+velset = -5,-20
+sprpriority = 2
+anim = 2303
+
+[State 2304, Angle Draw]
+type = Angledraw
+trigger1 = 1
+scale = 1*(time*.2),1*(time*.2)
+
+[State 2304, Angle Add]
+type = AngleAdd
+trigger1 = 1
+value = 20
+
+[State 2304, 1]
+type = Veladd
+Trigger1 = 1
+y = 1.7
+
+[State 2304, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 2304, end]
+type = Destroyself
+trigger1 = time = 70
+
+;---------------------------------------------------------------------------
+;Assist Muffet
+[StateDef 2004]
+type = S
+movetype= I
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2001
+
+[State 2004, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal ;player
+name = "Spider"
+ID = 2001
+stateno = 2401
+pos = 75,-215
+postype = p1
+ownpal = 1
+size.xscale = 2.25
+size.yscale = 2.25
+
+[State 2004, end]
+type = ChangeState
+trigger1 = time = 225
+trigger2 = helper,stateno = 2404
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Spider Appears
+[StateDef 2401]
+type = S
+movetype= I
+physics = N
+juggle  = 1
+velset = 0,1
+ctrl = 0
+anim = 2400
+
+[State 2401, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2400,0
+channel = 1
+
+[State 2401, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2401, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2403
+time = -1
+
+[State 2301, 3]
+type = ChangeState
+trigger1 = time = 210
+trigger2 = root,movetype = H
+value = 2402
+
+;---------------------------------------------------------------------------
+;Spider Leaves
+[Statedef 2402]
+type    = S
+movetype= I
+physics = N
+juggle  = 4
+ctrl = 0
+velset = 0,-15
+sprpriority = 2
+
+[State 2402, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2400,1
+
+[State 2402, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2402, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = -1
+
+[State 2402, end]
+type = Destroyself
+trigger1 = time = 50
+
+;---------------------------------------------------------------------------
+;Spider Hit
+[StateDef 2403]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,2
+ctrl = 0
+anim = 2401
+
+[State 2403, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2400,2
+channel = 1
+
+[State 2403, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+anim = s11111
+time = 40
+Movetime = 40
+sound = s-1
+pos = 0,0
+darken = 0
+p2defmul = 0
+unhittable = 1
+
+[State 2403, 1]
+type = Veladd
+Trigger1 = 1
+y = 1
+
+[State 2403, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2403, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = -1
+
+[State 2403, Helper]
+type = Helper
+trigger1 = time = 25
+helpertype = normal ;player
+name = "Muffet"
+ID = 2404
+stateno = 2404
+pos = 0,100
+postype = p2
+ownpal = 1
+size.xscale = 2.25
+size.yscale = 2.25
+supermovetime = 200
+pausemovetime = 200
+
+[State 2403, AssertSpecial]
+type = AssertSpecial
+trigger1 = pos Y > 0
+flag = noshadow
+
+[State 2403, 3]
+type = Destroyself
+trigger1 = time = 100
+
+;---------------------------------------------------------------------------
+;Muffet
+[StateDef 2404]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,-17
+ctrl = 0
+anim = 2402
+sprpriority = -4
+
+[State 2404, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S2400,3
+
+[State 2404, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2404, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = -1
+
+[State 2404, 1]
+type = Veladd
+Trigger1 = 1
+y = 1
+
+[State 2404, 1]
+type = HitDef
+trigger1 = time = 0
+attr = S, NA
+damage = 65, 0
+animtype = Hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 0, 20
+sparkno = s10001
+guard.sparkno = s10003
+sparkxy = -25, -25
+hitsound  = S800,1
+guardsound = S8500, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = 0
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = 0,-5
+air.hittime = 12
+air.fall = 1
+yaccel = .5
+sprpriority = -4
+
+[State 2404, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 2404, DestroySelf]
+type = DestroySelf
+trigger1 = time = 100
+
+;---------------------------------------------------------------------------
+;Assist Jiangshi
+[StateDef 2005]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2000
+
+[State 2005, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal ;player
+name = "Jiangshi"
+ID = 2001
+stateno = 2501
+pos = -100,-10
+postype = back
+ownpal = 1
+size.xscale = 2.25
+size.yscale = 2.25
+
+[State 2005, end]
+type = ChangeState
+trigger1 = time = 45
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Jiangshi Appears and Attacks
+[StateDef 2501]
+type = A
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2500
+
+[State 1001, Velset]
+type = VelSet
+trigger1 = animelem = 2
+x = 2.5
+y = -5
+
+[State 2501, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .1
+
+[State 1001, PosSet]
+type = PosSet
+trigger1 = Pos Y >= 0 && Vel Y > 0
+y = 0
+
+[State 1001, VelSet]
+type = VelSet
+trigger1 = Pos Y >= 0 && Vel Y > 0
+x = 0
+y = 0
+
+[State 1001, Changeanim]
+type = ChangeAnim
+trigger1 = Pos Y >= 0 && Vel Y > 0
+value = 2500
+elem = 0
+
+[State 2501, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+value = S2500,0
+
+[State 2501, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2501, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2502
+time = -1
+
+[State 2501, 1]
+type = HitDef
+trigger1 = animelem = 2
+trigger2 = animelem = 3
+attr = S, NA
+damage = 25, 0
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = s10000
+guard.sparkno = s10003
+sparkxy = -25, -25
+hitsound  = S20,0
+guardsound = S8500, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -10
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = -1.4,-3
+air.hittime = 12
+
+[State 2501, 3]
+type = Destroyself
+trigger1 = time = 350
+
+;---------------------------------------------------------------------------
+;Jiangshi Hit
+[Statedef 2502]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+ctrl = 0
+velset = -5,-20
+sprpriority = 2
+anim = 2501
+
+[State 2502, Angle Draw]
+type = Angledraw
+trigger1 = 1
+scale = 1*(time*.2),1*(time*.2)
+
+[State 2502, Angle Add]
+type = AngleAdd
+trigger1 = 1
+value = 20
+
+[State 2502, 1]
+type = Veladd
+Trigger1 = 1
+y = 1.7
+
+[State 2502, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 2502, end]
+type = Destroyself
+trigger1 = time = 70
+
+;---------------------------------------------------------------------------
+;Assist Danny
+[StateDef 2006]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2000
+
+[State 2006, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal ;player
+name = "Danny"
+ID = 2001
+stateno = 2601
+pos = -100,0
+postype = back
+ownpal = 1
+size.xscale = 2.25
+size.yscale = 2.25
+
+[State 2006, end]
+type = ChangeState
+trigger1 = time = 45
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Danny Appears
+[StateDef 2601]
+type = A
+movetype= A
+physics = N
+juggle  = 1
+velset = 7,-10
+ctrl = 0
+anim = 2600
+
+[State 2601, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .5
+
+[State 2601, PosSet]
+type = PosSet
+trigger1 = Pos Y >= 0 && Vel Y > 0
+y = 0
+
+[State 2601, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S41,0
+
+[State 2601, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2601, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2604
+time = -1
+
+[State 2601, ChangeState]
+type = ChangeState
+trigger1 = Pos Y >= 0 && Vel Y > 0
+value = 2602
+
+;---------------------------------------------------------------------------
+;Danny Attacks
+[StateDef 2602]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2601
+
+[State 2602, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+value = S2100,0
+
+[State 2602, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2602, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2604
+time = -1
+
+[State 2602, 1]
+type = HitDef
+trigger1 = time = 0
+attr = S, NA
+damage = 65, 0
+animtype = Hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = s10001
+guard.sparkno = s10003
+sparkxy = -25, -25
+hitsound  = S22,0
+guardsound = S8500, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -7,-5
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = -7,-5
+air.hittime = 12
+fall = 1
+
+[State 2602, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 2603
+
+;---------------------------------------------------------------------------
+;Danny Leaves
+[StateDef 2603]
+type = A
+movetype= A
+physics = N
+juggle  = 1
+velset = 8,-12
+ctrl = 0
+anim = 2600
+
+[State 2603, VelAdd]
+type = VelAdd
+trigger1 = 1
+y = .5
+
+[State 2603, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S41,0
+
+[State 2603, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2603, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2604
+time = -1
+
+[State 2603, 3]
+type = Destroyself
+trigger1 = time = 100
+
+;---------------------------------------------------------------------------
+;Danny Hit
+[Statedef 2604]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+ctrl = 0
+velset = -5,-20
+sprpriority = 2
+anim = 2602
+
+[State 2604, Angle Draw]
+type = Angledraw
+trigger1 = 1
+scale = 1*(time*.2),1*(time*.2)
+
+[State 2604, Angle Add]
+type = AngleAdd
+trigger1 = 1
+value = 20
+
+[State 2604, 1]
+type = Veladd
+Trigger1 = 1
+y = 1.7
+
+[State 2604, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 2604, end]
+type = Destroyself
+trigger1 = time = 70
+
+;---------------------------------------------------------------------------
+;Assist Ramses
+[StateDef 2007]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2000
+
+[State 2007, Helper]
+type = Helper
+trigger1 = time = 0
+helpertype = normal ;player
+name = "Ramses"
+ID = 2001
+stateno = 2701
+pos = -100,0
+postype = back
+ownpal = 1
+size.xscale = 2.25
+size.yscale = 2.25
+
+[State 2007, end]
+type = ChangeState
+trigger1 = time = 45
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Ramses Appears
+[StateDef 2701]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 3,0
+ctrl = 0
+anim = 2700
+
+[State 2701, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+trigger2 = animelem = 4
+value = S2000,0
+
+[State 2701, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2701, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2704
+time = -1
+
+[State 2701, 3]
+type = ChangeState
+trigger1 = p2dist x < 60
+value = 2702
+
+;---------------------------------------------------------------------------
+;Ramses Attacks
+[StateDef 2702]
+type = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 2701
+
+[State 2702, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 9
+value = S2700,0
+
+[State 2702, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 10
+value = S2700,1
+
+[State 2702, NotHitBy]
+type = NotHitBy
+trigger1 = time = 0
+value = , NT, ST, HT
+time = -1
+
+[State 2702, HitOverride]
+type = HitOverride
+trigger1 = Time = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+stateno = 2704
+time = -1
+
+[State 2702, 1]
+type = HitDef
+trigger1 = time = 0
+attr = S, NA
+damage = 25, 0
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 5, 5
+sparkno = s10000
+guard.sparkno = s10003
+sparkxy = -25, -25
+hitsound  = S20,0
+guardsound = S8500, 0
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -10
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = -1.4,-3
+air.hittime = 12
+
+[State 2702, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2702, 3]
+type = ChangeState
+trigger1 = animtime = 0
+value = 2703
+
+;---------------------------------------------------------------------------
+;Ramses Leaves
+[StateDef 2703]
+type = S
+movetype= A
+physics = N
+juggle  = 1
+velset = -10,0
+ctrl = 0
+anim = 2702
+
+[State 2703, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = S184,3
+
+[State 2703, DestroySelf]
+type = DestroySelf
+trigger1 = time = 100
+
+;---------------------------------------------------------------------------
+;Ramses Hit
+[StateDef 2704]
+type    = S
+movetype= A
+physics = N
+juggle  = 4
+ctrl = 0
+velset = -5,-20
+sprpriority = 2
+anim = 2703
+
+[State 2704, Angle Draw]
+type = Angledraw
+trigger1 = 1
+scale = 1*(time*.2),1*(time*.2)
+
+[State 2704, Angle Add]
+type = AngleAdd
+trigger1 = 1
+value = 20
+
+[State 2704, 1]
+type = Veladd
+Trigger1 = 1
+y = 1.7
+
+[State 2704, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+
+[State 2704, end]
+type = Destroyself
+trigger1 = time = 70

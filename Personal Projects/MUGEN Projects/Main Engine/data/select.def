@@ -195,6 +195,14 @@
 
 Default Characters/kfmZ/kfmZ.def, stages/kfm.def
 Default Characters/kfm720/kfm720.def, stages/kfm.def, order=0
+
+;; AI Patches Showcase
+
+; Kid Dracula
+AI Patches/Kid Dracula/KidDracula (before AI Patch)/KidDracula.def
+AI Patches/Kid Dracula/KidDracula (after AI Patch)/KidDracula.def
+
+;Edits
 Edits/mordecai1105/mordecai1105.def
 randomselect
 

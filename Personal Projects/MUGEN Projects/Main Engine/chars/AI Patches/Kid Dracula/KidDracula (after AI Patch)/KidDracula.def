@@ -1,0 +1,35 @@
+[Info]
+name="Kid Dracula"
+displayname="Kid Dracula (After AI)"
+versiondate=02/07/2018
+mugenversion=1.0
+author="RoySquadRocks & Fist Dracon"
+pal.defaults=1,2,3,4,5,6,7,8,9,10,11,12
+[Files]
+sprite=KidDracula.sff
+sound=KidDracula.snd
+anim=KidDracula.air
+cmd=KidDracula(AI Patch).cmd
+cns=KidDracula.cns
+st=KidDracula.cns
+stcommon=common1.cns
+pal1=KidDracula.act
+pal2=Frisk.act
+pal3=Madotsuki.act
+pal4=RemiliaScarlet.act
+pal5=Gameboy.act
+pal6=Dracolor.act
+pal7=ParodiusP1.act
+pal8=ParodiusP2.act
+pal9=KidAlucard.act
+pal10=Goemon.act
+pal11=HarryDunne.act
+pal12=BlackandWhite.act
+st1=specials.cns
+st2=helpers.cns
+st3=hypers.cns
+st4=-2.cns
+st5=-3.cns
+[Arcade]
+intro.storyboard=
+ending.storyboard=
