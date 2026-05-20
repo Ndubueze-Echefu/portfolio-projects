@@ -11,3 +11,8 @@ A fan upgrade to the original engine with more features and more ports (the down
 
 # How is this setup
 What I have here is an IKEMEN engine setup and curated to showcase my projects I have done in this community. This is for ease of interactivty and discoverability.
+## A couple of options to run this engine:
+1.  Run the full engine
+-   Windows: Run_on_Windows.exe
+-   MacOS/Linux: Ikemen_GO.command
+2. Go to the "Showcases" folder to find more about my projects!
