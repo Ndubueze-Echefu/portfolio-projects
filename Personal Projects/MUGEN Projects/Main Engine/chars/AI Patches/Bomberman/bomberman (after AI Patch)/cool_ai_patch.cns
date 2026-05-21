@@ -1,0 +1,1489 @@
+; GUARD (start)
+[Statedef 120]
+type = U   ;Leave state type unchanged
+physics = U;Leave physics unchanged
+
+[State 120]
+Type=CtrlSet
+Trigger1=var(59)>0
+value=0
+
+[State 120, 1]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 120 + (statetype = C) + (statetype = A)*2
+
+[State 120, 2]
+type = StateTypeSet
+trigger1 = Time = 0 && statetype = S
+physics = S
+
+[State 120, 3]
+type = StateTypeSet
+trigger1 = Time = 0 && statetype = C
+physics = C
+
+[State 120, 4]
+type = StateTypeSet
+trigger1 = Time = 0 && statetype = A
+physics = A
+
+[State 120, Hi to Lo]
+type = StateTypeSet
+triggerall = statetype = S
+trigger1 = var(59)=0
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = (abs(P2Dist X)>120) || (P2MoveType=H) || (P2StateType=C)
+trigger2 = P2StateType!=A
+trigger2 = AILevel>=3
+statetype = C
+physics = C
+
+[State 120, Lo to Hi]
+type = StateTypeSet
+triggerall = statetype = C
+trigger1 = var(59)=0
+trigger1 = command!= "holddown"
+trigger2 = Var(59) > 0
+trigger2 = p2statetype = A
+trigger2 = abs(P2BodyDist X)=3
+statetype = S
+physics = S
+
+[State 120, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 130 + (statetype = C) + (statetype = A)*2
+
+[State 120, Stop Guarding]
+type = ChangeState
+trigger1 = command!= "holdback"
+trigger1 = var(59)=0
+trigger2 =!inguarddist
+value = 140
+
+;---------------------------------------------------------------------------
+; Stand guard (guarding)
+[Statedef 130]
+type    = S
+physics = S
+
+[State 120]
+Type=CtrlSet
+Trigger1=var(59)>0
+value=0
+
+[State 130, 1]
+type = ChangeAnim
+trigger1 = Anim!= 130
+value = 130
+
+[State 130, Hi to Lo]
+type = ChangeState
+trigger1 = command = "holddown"
+trigger1 = var(59)=0
+trigger2 = var(59)>0
+trigger2 = (abs(P2Dist X)>120) || (P2MoveType=H) || (P2StateType=C)
+trigger2 = P2StateType!=A
+trigger2 = AILevel>=3
+value = 131
+
+[State 130, Stop Guarding]
+type = ChangeState
+trigger1 = var(59)=0
+trigger1 = command!= "holdback"
+trigger2 =!inguarddist
+value = 140
+
+;---------------------------------------------------------------------------
+; Crouch guard (guarding)
+[Statedef 131]
+type    = C
+physics = C
+
+[State 120]
+Type=CtrlSet
+Trigger1=var(59)>0
+value=0
+
+[State 131, 1]
+type = ChangeAnim
+trigger1 = Anim!= 131
+value = 131
+
+[State 131, Lo to Hi]
+type = ChangeState
+trigger1 = command!= "holddown"
+trigger1 = var(59)=0
+trigger2 = Var(59) > 0
+trigger2 = p2statetype = A
+trigger2 = abs(P2BodyDist X)=3
+value = 130
+
+[State 131, Stop Guarding]
+type = ChangeState
+trigger1 = var(59)=0
+trigger1 = command!= "holdback"
+trigger2 =!inguarddist
+value = 140
+
+;---------------------------------------------------------------------------
+; Air guard (guarding)
+[Statedef 132]
+type    = A
+physics = N
+
+[State 120]
+Type=CtrlSet
+Trigger1=var(59)>0
+value=0
+
+[State 132, 1]
+type = ChangeAnim
+trigger1 = Anim!= 132
+value = 132
+
+[State 132, 2]
+type = VelAdd
+trigger1 = 1
+y = Const(movement.yaccel)
+
+[State 132, 3]
+type = VarSet
+trigger1 = 1
+sysvar(0) = (pos y >= 0) && (vel y > 0)
+
+[State 132, 4]
+type = VelSet
+trigger1 = sysvar(0)
+y = 0
+
+[State 132, 5]
+type = PosSet
+trigger1 = sysvar(0)
+y = 0
+
+[State 132, 6]
+type = ChangeState
+trigger1 = sysvar(0)
+trigger1 = command = "holdback" || (var(59)>0)
+trigger1 = inguarddist
+value = 130
+
+[State 132, 7]
+type = ChangeState
+trigger1 = sysvar(0)
+value = 52
+
+[State 132, Stop Guarding]
+type = ChangeState
+trigger1 = var(59)=0
+trigger1 = command!= "holdback"
+trigger2 =!inguarddist
+value = 140
+
+
+;---------------------------------------------------------------------------
+; Stand guard hit (shaking)
+[Statedef 150]
+type    = S
+movetype= H
+physics = N
+velset = 0,0
+
+[State 150, 1]
+type = ChangeAnim
+trigger1 = 1
+value = 150
+
+[State 150, 2]
+type = ChangeState
+trigger1 = HitShakeOver
+value = 151 + 2*(StateType=C)
+
+[State 120, Hi to Lo]
+type = StateTypeSet
+triggerall = statetype = S
+trigger1 = var(59)=0
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = (abs(P2Dist X)>120) || (P2MoveType=H) || (P2StateType=C)
+trigger2 = P2StateType!=A
+trigger2 = AILevel>=3
+statetype = C
+physics = C
+
+[State 120, Lo to Hi]
+type = StateTypeSet
+triggerall = statetype = C
+trigger1 = var(59)=0
+trigger1 = command!= "holddown"
+trigger2 = Var(59) > 0
+trigger2 = p2statetype = A
+trigger2 = abs(P2BodyDist X)=3
+statetype = S
+physics = S
+
+[State 150, 3]
+type = ForceFeedback
+trigger1 = time = 0
+waveform = square
+time = 3
+
+;---------------------------------------------------------------------------
+; Stand guard hit (knocked back)
+[Statedef 151]
+type    = S
+movetype= H
+physics = S
+anim = 150
+
+[State 151, 1]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+
+[State 151, 2]
+type = VelSet
+trigger1 = Time = GetHitVar(slidetime)
+trigger2 = HitOver
+x = 0
+
+[State 151, 3]
+type = CtrlSet
+trigger1 = Time = GetHitVar(ctrltime)
+trigger1 = var(59)=0
+value = 1
+
+[State 120, Hi to Lo]
+type = StateTypeSet
+triggerall = statetype = S
+trigger1 = var(59)=0
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = (abs(P2Dist X)>120) || (P2MoveType=H) || (P2StateType=C)
+trigger2 = P2StateType!=A
+trigger2 = AILevel>=3
+statetype = C
+physics = C
+
+[State 120, Lo to Hi]
+type = StateTypeSet
+triggerall = statetype = C
+trigger1 = var(59)=0
+trigger1 = command!= "holddown"
+trigger2 = Var(59) > 0
+trigger2 = p2statetype = A
+trigger2 = abs(P2BodyDist X)=3
+statetype = S
+physics = S
+
+[State 151, 4]
+type = ChangeState
+trigger1 = HitOver
+value = 130
+ctrl =!var(59)
+
+;---------------------------------------------------------------------------
+; Crouch guard hit (shaking)
+[Statedef 152]
+type    = C
+movetype= H
+physics = N
+velset = 0,0
+
+[State 152, 1]
+type = ChangeAnim
+trigger1 = 1
+value = 151
+
+[State 152, 3]
+type = ChangeState
+trigger1 = HitShakeOver
+value = 151 + 2*(StateType=C)
+
+[State 120, Hi to Lo]
+type = StateTypeSet
+triggerall = statetype = S
+trigger1 = var(59)=0
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = (abs(P2Dist X)>120) || (P2MoveType=H) || (P2StateType=C)
+trigger2 = P2StateType!=A
+trigger2 = AILevel>=3
+statetype = C
+physics = C
+
+[State 120, Lo to Hi]
+type = StateTypeSet
+triggerall = statetype = C
+trigger1 = var(59)=0
+trigger1 = command!= "holddown"
+trigger2 = Var(59) > 0
+trigger2 = p2statetype = A
+trigger2 = abs(P2BodyDist X)=3
+statetype = S
+physics = S
+
+[State 152, 4]
+type = ForceFeedback
+trigger1 = time = 0
+waveform = square
+time = 4
+
+;---------------------------------------------------------------------------
+; Crouch guard hit (knocked back)
+[Statedef 153]
+type    = C
+movetype= H
+physics = C
+anim = 151
+
+[State 153, 1]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+
+[State 153, 2]
+type = VelSet
+trigger1 = Time = GetHitVar(slidetime)
+trigger2 = HitOver
+x = 0
+
+[State 151, 3]
+type = CtrlSet
+trigger1 = Time = GetHitVar(ctrltime)
+trigger1 = var(59)=0
+value = 1
+
+[State 120, Hi to Lo]
+type = StateTypeSet
+triggerall = statetype = S
+trigger1 = var(59)=0
+trigger1 = command = "holddown"
+trigger2 = var(59)>0
+trigger2 = (abs(P2Dist X)>120) || (P2MoveType=H) || (P2StateType=C)
+trigger2 = P2StateType!=A
+trigger2 = AILevel>=3
+statetype = C
+physics = C
+
+[State 120, Lo to Hi]
+type = StateTypeSet
+triggerall = statetype = C
+trigger1 = var(59)=0
+trigger1 = command!= "holddown"
+trigger2 = Var(59) > 0
+trigger2 = p2statetype = A
+trigger2 = abs(P2BodyDist X)=3
+statetype = S
+physics = S
+
+[State 153, 4]
+type = ChangeState
+trigger1 = HitOver
+value = 131
+ctrl =!var(59)
+
+;---------------------------------------------------------------------------
+; Air guard hit (shaking)
+[Statedef 154]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 154, 1]
+type = ChangeAnim
+trigger1 = 1
+value = 152
+
+[State 154, 2]
+type = ChangeState
+trigger1 = HitShakeOver
+value = 155;AGUARDHIT2
+
+[State 154, 3]
+type = ForceFeedback
+trigger1 = time = 0
+waveform = square
+time = 4
+
+;---------------------------------------------------------------------------
+; Air guard hit (knocked away)
+[Statedef 155]
+type    = A
+movetype= H
+physics = N
+anim = 152
+
+[State 155, 1]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+y = 1
+
+[State 155, 2]
+type = VelAdd
+trigger1 = 1
+y = Const(movement.yaccel)
+
+[State 151, 3]
+type = CtrlSet
+trigger1 = Time = GetHitVar(ctrltime)
+trigger1 = var(59)=0
+value = 1
+
+[State 155, 4]
+type = VarSet
+trigger1 = 1
+sysvar(0) = (pos y >= 0) && (vel y > 0)
+
+[State 155, 5]
+type = VelSet
+trigger1 = sysvar(0)
+y = 0
+
+[State 155, 6]
+type = PosSet
+trigger1 = sysvar(0)
+y = 0
+
+[State 155, 6]
+type = ChangeState
+trigger1 = sysvar(0)
+trigger1 = command = "holdback" || var(59)>0
+trigger1 = inguarddist
+value = 130
+
+[State 155, 7]
+type = ChangeState
+trigger1 = sysvar(0)
+value = 52
+
+;-|-AI Activitation-|-------------------------------------------------------------------
+;---------------------------------------------------------------------------
+; States that are executed when in self's state file (use statedef -3)
+;---------------------------------------------------------------------------
+
+[Statedef -3]
+
+[State 3010, Super D]
+type = AfterImage
+trigger1 = stateno = 52
+palcontrast = 100,100,255
+time = 1
+
+[State 3010, Super E]
+type = AfterImageTime
+trigger1 = stateno = 52
+time = 1
+
+;This controller plays a sound everytime KFM lands from a jump, or
+;from his back-dash.
+[State -3, Landing Sound]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = stateno = 52 ;Jump land
+trigger2 = stateno = 106 ;Run-back land
+trigger3 = stateno = 192 && animelem = 2
+value = 40, 0
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = stateno != 191
+channel = 4
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = stateno != 195
+channel = 5
+
+[State 0, StopSnd]
+type = StopSnd
+trigger1 = stateno != 3500
+channel = 1
+;ignorehitpause = 
+;persistent = 
+
+
+[State -3, landdust1]
+type = explod
+triggerall = prevstateno = [971,973]
+trigger1 = time = 0
+trigger1 = stateno = 45
+anim = 973
+postype = p1
+pos = 0,0
+sprpriority = -1
+ownpal = 1
+ID = 973
+
+[State 22, PlaySnd]
+type = PlaySnd
+triggerall = prevstateno = [971,973]
+trigger1 = time = 0
+value = S1100,0
+
+[State -3, landdust1];’…’nƒzƒRƒŠ1
+type = explod
+triggerall = Time = 1
+trigger1 = stateno = 100 ;Jump land
+anim = 101
+postype = p1
+pos = 0,0
+sprpriority = 3
+ownpal = 1
+ID = 101
+
+[State -3, landdust1];’…’nƒzƒRƒŠ1
+type = explod
+triggerall = Time = 1
+trigger1 = stateno = 105 ;Jump land
+trigger2 = animelem = 3
+anim = 101
+postype = p1
+pos = 0,0
+sprpriority = 3
+ownpal = 1
+ID = 101
+facing = -1
+
+[State -3, landdust1];’…’nƒzƒRƒŠ1
+type = explod
+triggerall = Time = 1
+trigger1 = stateno = 52 ;Jump land
+trigger2 = stateno = 106 ;Run-back land
+anim = 7999
+postype = p1
+pos = 0,0
+scale = 0.5,0.5
+sprpriority = -1
+ownpal = 1
+ID = 7999
+
+;AI Time!
+[State -3, AI ON]  ; Turn the AI on when
+Type = VarSet
+TriggerAll = Var(59) < 1 ; it is not on yet and
+TriggerAll = RoundState=2 ; the fight has started and is not over yet and
+Trigger1 = AILevel>0 ; the computer is playing the character
+v = 59
+value= 1 ; value of 1 will mean the AI is on
+Ignorehitpause=1
+
+[State -3, AI OFF] ; Turn the AI off when
+Type=VarSet
+Trigger1=var(59)>0  ; it is on and
+Trigger1=RoundState=3 && (stateno = 195 || lose) ; the player taunted OR lost
+Trigger2=!IsHelper  ; OR if we are a player, but
+Trigger2=AILevel=0  ; the computer is not in control
+v=59
+value=0 ; value of 0 will mean the AI is off. values other than 0 and 1 are not used in this example, we have only one AI mode, the normal one.
+Ignorehitpause=1
+
+[State -3, AI Level 1]
+type = VarSet
+trigger1 = AILevel = 1
+var(50) = (random = [1,8])
+
+[State -3, AI Level 2]
+type = VarSet
+trigger1 = AILevel = 2
+var(50) = (random = [9,16])
+
+[State -3, AI Level 3]
+type = VarSet
+trigger1 = AILevel = 3
+var(50) = (random = [17,32])
+
+[State -3, AI Level 4]
+type = VarSet
+trigger1 = AILevel = 4
+var(50) = (random = [33,63])
+
+[State -3, AI Level 5]
+type = VarSet
+trigger1 = AILevel = 5
+var(50) = (random = [64,125])
+
+[State -3, AI Level 6]
+type = VarSet
+trigger1 = AILevel = 6
+var(50) = (random = [126,250])
+
+[State -3, AI Level 7]
+type = VarSet
+trigger1 = AILevel = 7
+var(50) = (random = [251,500])
+
+[State -3, AI Level 8]
+type = VarSet
+trigger1 = AILevel = 8
+var(50) = (random = [501,1000])
+
+
+[State -3]; The engine will still guard by through pressing the back button, we need to disable that.
+Type=Assertspecial
+Triggerall=StateNo!=[120,160]
+Trigger1=var(59)>0
+flag=noairguard
+flag2=nocrouchguard
+flag3=nostandguard
+
+;-|-AI Setup (Props to Poyochan)-|-------------------------------------------------------------------
+[State -3, Simul/Tag] 
+Type = varset
+triggerall = !ishelper
+trigger1 = numenemy = 1
+var(57) = 0
+ignorehitpause = 1
+
+[State -3, Simul/Tag]
+Type = varset
+triggerall = !ishelper
+trigger1 = numenemy = 2
+trigger1 = enemynear(0),alive
+trigger1 = enemynear(1),alive
+var(57) = IfElse(((Abs(Pos X - EnemyNear(0),Pos X)) < (Abs(Pos X - EnemyNear(1),Pos X))),0,1)
+ignorehitpause = 1
+
+[State -3, Simul/Tag]
+Type = varset
+triggerall = !ishelper
+trigger1 = numenemy = 2
+trigger1 = !enemynear(0),Alive || !enemynear(1),Alive
+var(57) = IfElse(EnemyNear(0),Alive,0,1)
+ignorehitpause = 1
+
+[State -3, P2Bodydist X]
+type = Null
+triggerall = !ishelper
+triggerall = 1||fvar(0):=facing*(enemynear(var(57)),pos x-(pos x+facing*(cond(statetype = A, const(size.air.front),const(size.ground.front)))))
+trigger1 = enemynear(var(57)),facing != facing && fvar(0)>=0 || enemynear(var(57)),facing = facing && fvar(0)<0
+trigger1 = 1||fvar(0):=(fvar(0)-cond(enemynear(var(57)),statetype = A, enemynear(var(57)),const(size.air.front), enemynear(var(57)),const(size.ground.front)))
+trigger2 = 1||fvar(0):=(fvar(0)-cond(enemynear(var(57)),statetype = A, enemynear(var(57)),const(size.air.back), enemynear(var(57)),const(size.ground.back)))
+ignorehitpause = 1
+
+[State -3, P2Bodydist Y]
+type = Null
+triggerall = !ishelper
+trigger1 = 1||fvar(1):=enemynear(var(57)),pos y-pos y
+ignorehitpause = 1
+
+;------------------[AI Commons]---------------------------------------------
+[State -3, AI Normal Throw]
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = (Ctrl) && (p2statetype != L) && (statetype = S) && var(50) && (p2movetype != H) && (p2statetype != A)
+trigger1 = (fvar(0) = [0,45]) && (fvar(1) = [-60,60]) 
+trigger1 = enemynear, time >= 1
+value = 800
+
+[State -3, AI Bomb Throw Light]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,45]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = p2statetype != A
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 5
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1500
+
+[State -3, AI Bomb Throw Medium]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,45]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = p2statetype != A
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 5
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1510
+
+[State -3, AI Bomb Throw Heavy]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,45]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = p2statetype != A
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 5
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1520
+
+[State -3, AI Bomb Throw EX]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,45]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = p2statetype != A
+triggerall = power >= 500
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 28
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1550
+
+[State -3, AI Jump]
+type = ChangeState
+triggerall = roundstate = 2 && (var(59) != 0)
+triggerall = statetype != A && var(50)
+triggerall = (fvar(0) >= 0)
+trigger1 = enemynear, time >= 3
+trigger1 = (p2movetype = H) && (p2statetype = A) || (p2movetype !=H) && (p2statetype = A)
+trigger1 = ctrl
+value = 40
+
+[State -3, AI Taunt: "Wanna bet? T_T "]
+type = ChangeState
+triggerAll=(roundState=3) && (var(59) !=0) 
+triggerall = (win) && (stateno != 195) && (prevstateno != 195)
+trigger1=(statetype = s) && (ctrl)
+value = 195
+
+;-----------------[AI Defense]----------------------------------------------
+[State -3, AI Stand Guard]
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = (Ctrl) && (p2movetype = A) && var(50)
+trigger1 = (statetype = S) && inguarddist
+value = 130
+
+[State -3, AI Crouch Guard]
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = (Ctrl) && (p2movetype = A) && var(50)
+trigger1 = (statetype = C) && inguarddist
+value = 131
+
+[State -3, AI Air Guard]
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = (Ctrl) && (p2movetype = A) && var(50)
+trigger1 = (statetype = A) && inguarddist
+value = 132
+
+[State -3, AI Dodge Forward]
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = (Ctrl) && (p2movetype = A) && var(50) && (statetype != A)
+trigger1 =  inguarddist
+trigger2 = (stateno = [130,131]) && time >= 180
+trigger3 = (fvar(0) >= 200)
+value = 255
+
+[State -3, AI Dodge Backwards]
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = (Ctrl) && (p2movetype = A) && var(50) && (statetype != A)
+trigger1 =  inguarddist && (numproj = 0)
+trigger2 = (stateno = [130,131]) && time >= 180
+value = 256
+
+;-----------------[AI Normals]----------------------------------------------
+[State -3, AI Stand Light Punch]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = S) && var(50)
+triggerall = (fvar(0) = [0,10]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 7
+trigger1 = P2StateNo!=[120,155]
+value = 200
+
+[State -3, AI Stand Medium Attack]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = S) && var(50)
+triggerall = (fvar(0) = [0,20]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 7
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+value = 210
+
+[State -3, AI Strong Attack]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = S) && var(50)
+triggerall = (fvar(0) = [0,70]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 11
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+value = 220
+
+[State -3, AI Stand Special Attack | Remote Control]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = S) && var(50)
+triggerall = abs(enemynear, Pos X - Helper(1305), Pos X) <= 50 ; Check if p2's X distance is between [-50,50] near any bomb
+triggerall = abs(enemynear, Pos Y - Helper(1305), Pos Y) <= 60 ; Check if p2's Y distance is between [-60,60] near any bomb
+triggerall = p2statetype != L
+triggerall = numhelper(1305) != 0
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 20
+trigger1 = P2StateNo!=[120,155]
+value = 230
+
+[State -3, AI Crouch Light Attack]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = C) && var(50)
+triggerall = (fvar(0) = [0,10]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 7
+trigger1 = P2StateNo!= 121 && P2StateNo!= 131 && P2StateNo!= 141 && P2StateNo!= 151 ;Not crouch guarding
+value = 400
+
+[State -3, AI Crouch Medium Attack]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = C) && var(50)
+triggerall = (fvar(0) = [0,20]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 7
+trigger1 = P2StateNo!= 121 && P2StateNo!= 131 && P2StateNo!= 141 && P2StateNo!= 151 ;Not crouch guarding
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 400) && movehit && var(50)
+value = 410
+
+[State -3, AI Crouch Strong Attack]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = C) && var(50)
+triggerall = (fvar(0) = [0,65]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 14
+trigger1 = P2StateNo!= 121 && P2StateNo!= 131 && P2StateNo!= 141 && P2StateNo!= 151 ;Not crouch guarding
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 400) && movehit && var(50)
+trigger4 = (stateno = 210) && movehit && var(50)
+trigger5 = (stateno = 410) && movehit && var(50)
+value = 420
+
+[State -3, AI Crouch Special Attack | Bomb Up!]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = C) && var(50)
+triggerall = (fvar(0) = [-35,35]) && (fvar(1) = [-60,60])
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 9
+trigger1 = P2StateNo!=[120,155]
+value = 430
+
+[State -3, AI Jump Light Punch]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = A) && var(50)
+triggerall = (fvar(0) = [0,15]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 9
+trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
+trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
+value = 600
+
+[State -3, AI Jump Medium Punch]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = A) && var(50)
+triggerall = (fvar(0) = [0,20]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 10
+trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
+trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
+;OPTIONAL
+trigger2 = (stateno = 600) && movehit && var(50)
+value = 610
+
+[State -3, AI Jump Strong Punch]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = A) && var(50)
+triggerall = (fvar(0) = [0,20]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 12
+trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
+trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
+;OPTIONAL
+trigger2 = (stateno = 600) && movehit && var(50)
+trigger3 = (stateno = 610) && movehit && var(50)
+value = 620
+
+[State -3, AI Jump Special Attack | Power Glove!]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype = A) && var(50)
+triggerall = (fvar(0) = [0,25]) && (fvar(1) = [-120,60])
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 18
+trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
+trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
+value = 630
+;-|-AI Special Attempt-|---------------------------------------------
+[State -3, AI Bomb Away Low]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,70]) && (fvar(1) = [-100,60])
+triggerall = p2statetype != L
+triggerall = NumHelper(1305) < 5
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 19
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1000
+
+[State -3, AI Bomb Away Medium]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,160]) && (fvar(1) = [-100,60])
+triggerall = p2statetype != L
+triggerall = NumHelper(1305) < 5
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 19
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1010
+
+[State -3, AI Bomb Away High]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,260]) && (fvar(1) = [-100,60])
+triggerall = p2statetype != L
+triggerall = NumHelper(1305) < 5
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 19
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1020
+
+[State -3, AI Bomb Away EX]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,260]) && (fvar(1) = [-125,60])
+triggerall = p2statetype != L
+triggerall = power >= 500
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 19
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1050
+
+[State -3, AI Bomb Kick Low]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,60]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = NumHelper(1305) < 5
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 20
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1100
+
+[State -3, AI Bomb Kick Medium]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,125]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = NumHelper(1305) < 5
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 20
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1110
+
+[State -3, AI Bomb Kick High]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,260]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = NumHelper(1305) < 5
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 20
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1120
+
+[State -3, AI Bomb Kick EX]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,300]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = (power >= 500)
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 20
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1150
+
+[State -3, AI Bomb Tackle (Weak)]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,115]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = var(11) = 1; Weak indicator
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 18
+trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
+trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1200
+
+[State -3, AI Bomb Tackle (Medium)]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,150]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = var(11) = 2; Medium indicator
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 18
+trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
+trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1200
+
+[State -3, AI Bomb Tackle (Strong)]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,190]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = var(11) = 3; Strong indicator
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 18
+trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
+trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1200
+
+[State -3, AI Bomb Tackle EX]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,250]) && (fvar(1) = [-60,60])
+triggerall = p2statetype != L
+triggerall = (power >= 500)
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 18
+trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
+trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1250
+
+[State -3, AI Remote Bomb]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = NumHelper(1305) = [0,5)
+triggerall = !inguarddist
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 24
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1300
+
+[State -3, AI Bomb Jump (Weak)]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [-5,10]) && (fvar(1) = [-135,60])
+triggerall = var(11) = 1; Weak indicator
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 4
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1400
+
+[State -3, AI Bomb Jump (Medium)]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [-5,18]) && (fvar(1) = [-175,60])
+triggerall = var(11) = 2; Medium indicator
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 4
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1400
+
+[State -3, AI Bomb Jump (Strong)]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [-5,30]) && (fvar(1) = [-255,60])
+triggerall = var(11) = 3; Strong indicator
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 4
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1400
+
+[State -3, AI Bomb Jump EX]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [-5,35]) && (fvar(1) = [-325,60])
+triggerall = power >= 500
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 4
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+value = 1450
+;-|-AI Hyper Attempt|---------------------------------------------
+[State -3, AI Line Bomb | "Speed Up! Side Bomb!"]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [-100,300]) && (fvar(1) = [-125,60])
+triggerall = power >= 1000
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 9
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+trigger8 = (stateno = 1000) && movehit && var(50)
+trigger9 = (stateno = 1010) && movehit && var(50)
+trigger10 = (stateno = 1020) && movehit && var(50)
+trigger11 = (stateno = 1100) && movehit && var(50)
+trigger12 = (stateno = 1110) && movehit && var(50)
+trigger13 = (stateno = 1120) && movehit && var(50)
+value = 3000
+
+[State -3, AI Rocket Jump | "Ready? Jump!!!"]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [-15,15]) && (fvar(1) <= 60)
+triggerall = power >= 1000
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 3
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+trigger8 = (stateno = 1000) && movehit && var(50)
+trigger9 = (stateno = 1010) && movehit && var(50)
+trigger10 = (stateno = 1020) && movehit && var(50)
+trigger11 = (stateno = 1100) && movehit && var(50)
+trigger12 = (stateno = 1110) && movehit && var(50)
+trigger13 = (stateno = 1120) && movehit && var(50)
+value = 3100
+
+[State -3, AI "Bomb Punch!"]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) = [0,145]) && (fvar(1) = [-60,60])
+triggerall = power >= 1000
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 11
+trigger1 = P2StateNo!=[120,155]
+;OPTIONAL
+trigger2 = (stateno = 200) && movehit && var(50)
+trigger3 = (stateno = 210) && movehit && var(50)
+trigger4 = (stateno = 220) && movehit && var(50)
+trigger5 = (stateno = 400) && movehit && var(50)
+trigger6 = (stateno = 410) && movehit && var(50)
+trigger7 = (stateno = 420) && movehit && var(50)
+trigger8 = (stateno = 1000) && movehit && var(50)
+trigger9 = (stateno = 1010) && movehit && var(50)
+trigger10 = (stateno = 1020) && movehit && var(50)
+trigger11 = (stateno = 1100) && movehit && var(50)
+trigger12 = (stateno = 1110) && movehit && var(50)
+trigger13 = (stateno = 1120) && movehit && var(50)
+value = 3200
+
+[State -3, AI "Fire Up! Dangerous Bomb!"]
+;ACTIVATION
+type = ChangeState
+triggerall = (roundstate = 2) && (var(59) != 0)
+triggerall = stateno < 3000
+triggerall = (Statetype != A) && var(50)
+triggerall = (fvar(0) >= 0) && (fvar(1) = [-125,60])
+triggerall = power >= 3000
+triggerall = p2statetype != L
+;REQUIREMENTS
+trigger1 = ctrl
+trigger1 = enemynear, time >= 31
+trigger1 = P2StateNo!=[120,155]
+value = 3500

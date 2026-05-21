@@ -202,7 +202,15 @@ Default Characters/kfm720/kfm720.def, stages/kfm.def, order=0
 AI Patches/Kid Dracula/KidDracula (before AI Patch)/KidDracula.def
 AI Patches/Kid Dracula/KidDracula (after AI Patch)/KidDracula.def
 
-;Edits
+; Bomberman
+AI Patches/Bomberman/bomberman (before AI Patch)/bomberman.def
+AI Patches/Bomberman/bomberman (after AI Patch)/cool_ai_bomberman.def
+
+; Bubblun
+AI Patches/Bubblun/bubblun (before AI Patch)/bubblun.def
+AI Patches/Bubblun/bubblun (after AI Patch)/bubblun.def
+
+;;Edits
 Edits/mordecai1105/mordecai1105.def
 randomselect
 

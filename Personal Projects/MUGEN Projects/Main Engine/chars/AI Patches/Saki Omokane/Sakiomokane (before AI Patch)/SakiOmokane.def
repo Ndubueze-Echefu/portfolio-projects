@@ -1,0 +1,35 @@
+; Player information
+[Info]
+name ="Saki Omokane"
+displayname ="Saki (before AI Patch)"
+versiondate =06,05,2016
+mugenversion =1.0
+author ="Gladiacloud & Beximus"
+pal.defaults =1
+                            ;Numbering starts from 1
+
+; Files for the player
+[Files]
+cmd     =saki.cmd
+cns     =saki.cns
+st      =saki.cns
+stcommon =common1.cns
+sprite  =saki.sff
+anim    =saki.air
+sound   =saki.snd
+pal1=Saki1.act
+pal2=Saki2.act
+pal3=Saki3.act
+pal4=Saki4.act
+pal5=Saki5.act
+pal6=Saki6.act
+pal7=Saki7.act
+pal8=Saki8.act
+pal9=Saki9.act
+pal10=Saki10.act
+pal11=Saki11.act
+pal12=Saki12.act
+st1=VS_engine.cns
+[Arcade]
+intro.storyboard=
+ending.storyboard=

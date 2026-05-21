@@ -1,0 +1,186 @@
+﻿; –vœ´eƒoƒxƒ^[qžè (face)
+[statedef 3311]
+type     = a
+physics  = n
+movetype = i
+velset = 6,-8
+ctrl = 0
+
+[state -2, time2]
+type = changeanim
+trigger1 = time = 0
+value = 3311
+
+[state -2, time2]
+type = assertspecial
+trigger1 = time >= 0
+flag = globalnoshadow
+
+[state 1000, 3]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[state 1000, 3]
+type = velset
+trigger1 = time = 16
+x = 0
+y = 0
+
+[state 1000, 3]
+type = Destroyself
+trigger1 = time = 234
+
+; –vœ´eƒoƒxƒ^[qžè (face)
+[statedef 6010]
+type     = s
+physics  = s
+movetype = i
+;facing = 1
+anim = 1208
+ctrl = 0
+
+[state 1211, exclamation]
+type = explod
+trigger1 = time = 0 && numexplod(8005) = 0 && root, Facing = 1
+anim = 8005
+id = 8005
+pos = 180,230
+postype = back
+velset = -3
+facing = 1
+sprpriority = -20
+bindtime = -1
+supermovetime = -1
+pausemovetime = -1
+persistent = 0
+ignorehitpause = 1
+
+[state 1211, exclamation]
+type = explod
+trigger1 = time = 0 && numexplod(8006) = 0 && root, Facing = 1
+anim = 8006
+id = 8006
+pos = 180,230
+postype = back
+facing = 1
+sprpriority = -20
+bindtime = -1
+supermovetime = -1
+pausemovetime = -1
+persistent = 0
+ignorehitpause = 1
+
+[state 1211, exclamation]
+type = explod
+trigger1 = time = 0 && numexplod(8007) = 0 && root, Facing = 1
+anim = 8007
+id = 8007
+pos = 180,230
+postype = back
+facing = 1
+sprpriority = -20
+bindtime = -1
+supermovetime = -1
+pausemovetime = -1
+persistent = 0
+ignorehitpause = 1
+
+[state 1211, exclamation]
+type = explod
+trigger1 = time = 0 && numexplod(8008) = 0 && root, Facing = 1
+anim = 8008
+id = 8008
+pos = 180,230
+velset = -3
+postype = back
+facing = 1
+sprpriority = -20
+bindtime = -1
+supermovetime = -1
+pausemovetime = -1
+persistent = 0
+ignorehitpause = 1
+
+[state 1211, exclamation]
+type = explod
+trigger1 = time = 0 && numexplod(8005) = 0 && root, Facing = -1
+anim = 8005
+id = 8005
+pos = 140,230 ;220
+postype = back
+facing = -1
+sprpriority = -20
+bindtime = -1
+supermovetime = -1
+pausemovetime = -1
+persistent = 0
+ignorehitpause = 1
+
+[state 1211, exclamation]
+type = explod
+trigger1 = time = 0 && numexplod(8006) = 0 && root, Facing = -1
+anim = 8006
+id = 8006
+pos = 140,230 ;220
+postype = back
+facing = -1
+sprpriority = -20
+bindtime = -1
+supermovetime = -1
+pausemovetime = -1
+persistent = 0
+ignorehitpause = 1
+
+[state 1211, exclamation]
+type = explod
+trigger1 = time = 0 && numexplod(8007) = 0 && root, Facing = -1
+anim = 8007
+id = 8007
+pos = 140,230 ;220
+postype = back
+facing = -1
+sprpriority = -20
+bindtime = -1
+supermovetime = -1
+pausemovetime = -1
+persistent = 0
+ignorehitpause = 1
+
+[state 1211, exclamation]
+type = explod
+trigger1 = time = 0 && numexplod(8008) = 0 && root, Facing = -1
+anim = 8008
+id = 8008
+pos = 140,230 ;220
+postype = back
+facing = -1
+sprpriority = -20
+bindtime = -1
+supermovetime = -1
+pausemovetime = -1
+persistent = 0
+ignorehitpause = 1
+
+[state that starts the inverted effect]
+type           = palfx
+trigger1       = time = 5
+add            = 0,0,0
+sinadd         = 300,300,300,270
+time           = 42
+ignorehitpause = 1
+
+[state whee]
+type = removeexplod
+trigger1 = roundstate = 4
+;id = 8005
+
+;[state whee]
+;type = removeexplod
+;trigger1 = roundstate = 4
+;id = 8005
+
+[state changestate!]
+type = Destroyself
+trigger1 = roundstate = 0 || roundstate = 1
+;animtime = 0 || time >= 50

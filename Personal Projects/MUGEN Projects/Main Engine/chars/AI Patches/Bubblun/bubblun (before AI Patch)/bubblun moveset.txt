@@ -1,0 +1,90 @@
+==========>GAMEPLAY<==========
+
+Bubblun is a 3 button character, he can chain attacks together, can special cancel as well as super cancel
+
+
+>---BUTTON LAYOUT---<
+
+u = Up Key           A = x key          / = press ether of the buttons
+f = Forward Key      B = y key          + = press both of the buttons
+d = Down Key         C = z key
+b = Backwards Key    D = a key
+                     E = b key
+                     F = c key
+                     START = s key
+
+(AIR) = Move must be performed in the air
+
+(TAP) = Quickly press the button then let go
+(HOLD) = Hold the button down
+
+(CHARGE) = hold the button down for a second then release
+
+
+>---SYSTEM MOVES---<
+
+
+Run Forward                    =  (HOLD) f,f - run towards the opponent, usefull if you need to quickly close the gap
+Back Dash                      =  b,b - Quickly jump away from your opponent
+Jump                           =  u - Jump into the air
+Short Jump                     =  (TAP) u - do a shorter jump
+Dodge                          =  A+B/E - makes you dodge forwards, holding back will make you dodge backwards. you are invincible to all attacks but throws while dodging
+Throw                          =  B+C/F - Parasol attack!
+
+
+>---SPECIAL MOVES---<
+
+Bubble Drool                    = D when standing *NEW*
+Bubble Mine                     = D when crouching *NEW*
+Bubble Float                    = (AIR) D (press down to interrupt it)
+Bubble Burp                     =  d, f, A/B/C
+Air Bubble Burp                 =  d, f, A/B/C (AIR)
+Bubble Headbutt                 =  f, d, f, A/B/C
+Bubble Dance                    =  d, b, A/B/C
+Bubble Stomp                    =  d, b, A/B/C (AIR)
+Bubble Crush                    =  b, f, A/B/C *NEW*
+Air Bubble Crush                =  b, f, A/B/C (AIR) *NEW*
+Bubble Summon (water)           =  d,d, A
+Bubble Summon (fire)            =  d,d, B
+Bubble Summon (lightning        =  d,d, C
+Bubble Summon (rainbow)         =  d,d, D
+
+
+>---EX SPECIAL MOVES---< (costs 500 power)
+
+
+EX Bubble Burp                 =  d, f, A+B/B+C/A+C
+EX Air Bubble Burp             =  d, f, A+B/B+C/A+C (AIR)
+EX Bubble Headbutt             =  f, d, f, A+B/B+C/A+C
+EX Bubble Dance                =  d, b, A+B/B+C/A+C
+EX Bubble Stomp                =  d, b, A+B/B+C/A+C (AIR)
+EX Bubble Crush                =  b, f, A+B/B+C/A+C *NEW*
+EX Air Bubble Crush            =  b, f, A+B/B+C/A+C (AIR) *NEW*
+
+
+>---LV1 SUPER MOVES---< (costs 1000 power)
+
+
+Bust A Bubble                  =  d, f, d, f, A/B/C
+Bubble Combo                   =  d, b, d, f, A/B/C
+Puzzle Madness                 =  d, b, d, b, A/B/C
+
+
+>---LV3 SUPER MOVES---< (costs 3000 power) 
+
+
+Bubble Mania                   =  d, d, d, A+B+C 
+
+
+==========>CREDITS<==========
+
+
+-Elecbyte: For Mugen
+
+-Tenshin and Carra: for their incompleted Bubblun chars, never finished
+
+-Alex S: For his great help with some sprites ripped from Bubble Memories
+
+-Veanko: For some codes
+
+-Random Talking Bush: for Bubblun sprites ripped from Puzzle Bobble 2 and Bubble Memories: the story of Bubble Bobble 3

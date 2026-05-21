@@ -1,8 +1,8 @@
-external/script/main.lua:1467: 
-overrideCharData function used before loading player 1, member 1
-
+external/script/main.lua:1499: chars/AI Patches/Bubblun/bubblun (after AI Patch)/bubblun.def:
+bubblun (coolaipatch).cmd
+open bubblun (coolaipatch).cmd: The system cannot find the file specified.
 stack traceback:
-	[G]: in function 'overrideCharData'
-	external/script/main.lua:1467: in function 'f_commandLine'
+	[G]: in function 'game'
+	external/script/main.lua:1499: in function 'f_commandLine'
 	external/script/main.lua:1508: in main chunk
 	[G]: ?
