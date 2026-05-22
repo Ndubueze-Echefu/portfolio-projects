@@ -583,46 +583,20 @@ v=59
 value=0 ; value of 0 will mean the AI is off. values other than 0 and 1 are not used in this example, we have only one AI mode, the normal one.
 Ignorehitpause=1
 
-[State -3, AI Level 1]
-type = VarSet
-trigger1 = AILevel = 1
-var(50) = (random = [1,8])
+[State -1, AI OFF] ; Turn the AI off when
+Type=VarSet
+Trigger1=var(59)>0  ; it is on and
+Trigger1=RoundState=3 && (stateno = 195 || lose) ; the player taunted OR lost
+Trigger2=!IsHelper  ; OR if we are a player, but
+Trigger2=AILevel=0  ; the computer is not in control
+v=59
+value=0 ; value of 0 will mean the AI is off. values other than 0 and 1 are not used in this example, we have only one AI mode, the normal one.
+Ignorehitpause=1
 
-[State -3, AI Level 2]
-type = VarSet
-trigger1 = AILevel = 2
-var(50) = (random = [9,16])
-
-[State -3, AI Level 3]
-type = VarSet
-trigger1 = AILevel = 3
-var(50) = (random = [17,32])
-
-[State -3, AI Level 4]
-type = VarSet
-trigger1 = AILevel = 4
-var(50) = (random = [33,63])
-
-[State -3, AI Level 5]
-type = VarSet
-trigger1 = AILevel = 5
-var(50) = (random = [64,125])
-
-[State -3, AI Level 6]
-type = VarSet
-trigger1 = AILevel = 6
-var(50) = (random = [126,250])
-
-[State -3, AI Level 7]
-type = VarSet
-trigger1 = AILevel = 7
-var(50) = (random = [251,500])
-
-[State -3, AI Level 8]
-type = VarSet
-trigger1 = AILevel = 8
-var(50) = (random = [501,1000])
-
+[State -1]
+Type=VarSet
+Trigger1=1
+var(50)= ifelse(AILevel = 1, 8, ifelse(AILevel = 2, 16, ifelse(AILevel = 3, 32, ifelse(AILevel = 4, 63, ifelse(AILevel = 5, 125, ifelse(AILevel = 6, 250, ifelse(AILevel = 7, 500, 1000)))))))
 
 [State -3]; The engine will still guard by through pressing the back button, we need to disable that.
 Type=Assertspecial
@@ -837,7 +811,7 @@ triggerall = (fvar(0) = [0,10]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 7
+trigger1 = enemynear, time >= 7 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 value = 200
 
@@ -851,7 +825,7 @@ triggerall = (fvar(0) = [0,20]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 7
+trigger1 = enemynear, time >= 7 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -867,7 +841,7 @@ triggerall = (fvar(0) = [0,70]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 11
+trigger1 = enemynear, time >= 11 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -886,7 +860,7 @@ triggerall = p2statetype != L
 triggerall = numhelper(1305) != 0
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 20
+trigger1 = enemynear, time >= 20 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 value = 230
 
@@ -900,7 +874,7 @@ triggerall = (fvar(0) = [0,10]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 7
+trigger1 = enemynear, time >= 7 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 121 && P2StateNo!= 131 && P2StateNo!= 141 && P2StateNo!= 151 ;Not crouch guarding
 value = 400
 
@@ -914,7 +888,7 @@ triggerall = (fvar(0) = [0,20]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 7
+trigger1 = enemynear, time >= 7 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 121 && P2StateNo!= 131 && P2StateNo!= 141 && P2StateNo!= 151 ;Not crouch guarding
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -931,7 +905,7 @@ triggerall = (fvar(0) = [0,65]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 14
+trigger1 = enemynear, time >= 14 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 121 && P2StateNo!= 131 && P2StateNo!= 141 && P2StateNo!= 151 ;Not crouch guarding
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -949,7 +923,7 @@ triggerall = (Statetype = C) && var(50)
 triggerall = (fvar(0) = [-35,35]) && (fvar(1) = [-60,60])
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 9
+trigger1 = enemynear, time >= 9 || enemynear, stateno = [5001,5099] 
 trigger1 = P2StateNo!=[120,155]
 value = 430
 
@@ -963,7 +937,7 @@ triggerall = (fvar(0) = [0,15]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 9
+trigger1 = enemynear, time >= 9 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
 trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
 value = 600
@@ -978,7 +952,7 @@ triggerall = (fvar(0) = [0,20]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 10
+trigger1 = enemynear, time >= 10 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
 trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
 ;OPTIONAL
@@ -995,7 +969,7 @@ triggerall = (fvar(0) = [0,20]) && (fvar(1) = [-60,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 12
+trigger1 = enemynear, time >= 12 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
 trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
 ;OPTIONAL
@@ -1013,7 +987,7 @@ triggerall = (fvar(0) = [0,25]) && (fvar(1) = [-120,60])
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 18
+trigger1 = enemynear, time >= 18 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
 trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
 value = 630
@@ -1029,7 +1003,7 @@ triggerall = p2statetype != L
 triggerall = NumHelper(1305) < 5
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 19
+trigger1 = enemynear, time >= 19 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1051,7 +1025,7 @@ triggerall = p2statetype != L
 triggerall = NumHelper(1305) < 5
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 19
+trigger1 = enemynear, time >= 19 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1073,7 +1047,7 @@ triggerall = p2statetype != L
 triggerall = NumHelper(1305) < 5
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 19
+trigger1 = enemynear, time >= 19 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1095,7 +1069,7 @@ triggerall = p2statetype != L
 triggerall = power >= 500
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 19
+trigger1 = enemynear, time >= 19 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1117,7 +1091,7 @@ triggerall = p2statetype != L
 triggerall = NumHelper(1305) < 5
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 20
+trigger1 = enemynear, time >= 20 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1139,7 +1113,7 @@ triggerall = p2statetype != L
 triggerall = NumHelper(1305) < 5
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 20
+trigger1 = enemynear, time >= 20 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1161,7 +1135,7 @@ triggerall = p2statetype != L
 triggerall = NumHelper(1305) < 5
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 20
+trigger1 = enemynear, time >= 20 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1183,7 +1157,7 @@ triggerall = p2statetype != L
 triggerall = (power >= 500)
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 20
+trigger1 = enemynear, time >= 20 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1205,7 +1179,7 @@ triggerall = p2statetype != L
 triggerall = var(11) = 1; Weak indicator
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 18
+trigger1 = enemynear, time >= 18 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
 trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
 ;OPTIONAL
@@ -1228,7 +1202,7 @@ triggerall = p2statetype != L
 triggerall = var(11) = 2; Medium indicator
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 18
+trigger1 = enemynear, time >= 18 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
 trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
 ;OPTIONAL
@@ -1251,7 +1225,7 @@ triggerall = p2statetype != L
 triggerall = var(11) = 3; Strong indicator
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 18
+trigger1 = enemynear, time >= 18 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
 trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
 ;OPTIONAL
@@ -1274,7 +1248,7 @@ triggerall = p2statetype != L
 triggerall = (power >= 500)
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 18
+trigger1 = enemynear, time >= 18 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!= 120 && P2StateNo!= 130 && P2StateNo!= 140 && P2StateNo!= 150 ; not stand guarding
 trigger1 = P2StateNo!= 122 && P2StateNo!= 132 && P2StateNo!= 142 && P2StateNo!= 152 ;Not air guarding
 ;OPTIONAL
@@ -1316,7 +1290,7 @@ triggerall = (fvar(0) = [-5,10]) && (fvar(1) = [-135,60])
 triggerall = var(11) = 1; Weak indicator
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 4
+trigger1 = enemynear, time >= 4 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1337,7 +1311,7 @@ triggerall = (fvar(0) = [-5,18]) && (fvar(1) = [-175,60])
 triggerall = var(11) = 2; Medium indicator
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 4
+trigger1 = enemynear, time >= 4 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1358,7 +1332,7 @@ triggerall = (fvar(0) = [-5,30]) && (fvar(1) = [-255,60])
 triggerall = var(11) = 3; Strong indicator
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 4
+trigger1 = enemynear, time >= 4 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1379,7 +1353,7 @@ triggerall = (fvar(0) = [-5,35]) && (fvar(1) = [-325,60])
 triggerall = power >= 500
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 4
+trigger1 = enemynear, time >= 4 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1400,7 +1374,7 @@ triggerall = (fvar(0) = [-100,300]) && (fvar(1) = [-125,60])
 triggerall = power >= 1000
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 9
+trigger1 = enemynear, time >= 9 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1428,7 +1402,7 @@ triggerall = power >= 1000
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 3
+trigger1 = enemynear, time >= 3 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1456,7 +1430,7 @@ triggerall = power >= 1000
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 11
+trigger1 = enemynear, time >= 11 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 ;OPTIONAL
 trigger2 = (stateno = 200) && movehit && var(50)
@@ -1484,6 +1458,6 @@ triggerall = power >= 3000
 triggerall = p2statetype != L
 ;REQUIREMENTS
 trigger1 = ctrl
-trigger1 = enemynear, time >= 31
+trigger1 = enemynear, time >= 31 || enemynear, stateno = [5001,5099]
 trigger1 = P2StateNo!=[120,155]
 value = 3500
