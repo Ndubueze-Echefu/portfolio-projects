@@ -14,5 +14,5 @@ What I have here is an IKEMEN engine setup and curated to showcase my projects I
 ## A couple of options to run this engine:
 1.  Run the full engine
 -   Windows: Run_on_Windows.exe
--   MacOS/Linux: Ikemen_GO.command
+-   MacOS/Linux: chmod a+x both Ikemen_GO.command, Ikemen_GO_Linux, and Ikemen_GO_MacOS, then run .command file
 2. Go to the "Showcases" folder to find more about my projects!
