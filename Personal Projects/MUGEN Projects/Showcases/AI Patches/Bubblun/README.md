@@ -1,14 +1,14 @@
-# Kid Dracula AI Patch
+# Bubblun AI Patch
 Credits:
-- Kid Dracula - Konami
-- Original Character - RoySquadRocks and Fist Dracon
+- Bubble Bobble Series - Taito
+- Original Character - Gladiacloud
 - This particular AI Patch - Me
 
 ## Brainstorm Page
-📖 [View on Notion](https://oceanic-vole-f17.notion.site/Kid-Dracula-AI-Patch-200c8ee3fd7b8011ad38d75c50085383)
+📖 [View on Notion](https://oceanic-vole-f17.notion.site/Bubblun-AI-Patch-329c8ee3fd7b80a88ef4c05b1f6d332b?pvs=143)
 
 ## Before Patching
-[![MUGEN Video](https://img.youtube.com/vi/0Dnb6LAQHg0/0.jpg)](https://www.youtube.com/watch?v=0Dnb6LAQHg0)
+[![Random Mugen Battle- Strabimon vs.Bubblun](https://img.youtube.com/vi/ZR3Qpdir8tE/0.jpg)](https://youtu.be/ZR3Qpdir8tE?si=IIT1vrtsvNjyrcQf)
 
 ## After Patching
-[![MUGEN Video](https://img.youtube.com/vi/lok5XwLUPGE/0.jpg)](https://www.youtube.com/watch?v=lok5XwLUPGE)
+[![After AI Patch](https://img.youtube.com/vi/oWJnb_v0cDE/0.jpg)](https://youtu.be/oWJnb_v0cDE?si=786WikUAZydtyAyM)
