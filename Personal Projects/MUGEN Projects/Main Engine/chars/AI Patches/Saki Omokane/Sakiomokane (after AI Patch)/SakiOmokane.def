@@ -10,7 +10,7 @@ pal.defaults =1
 
 ; Files for the player
 [Files]
-cmd     =saki.cmd
+cmd     =saki (ai patch).cmd
 cns     =saki.cns
 st      =saki.cns
 stcommon =common1.cns
