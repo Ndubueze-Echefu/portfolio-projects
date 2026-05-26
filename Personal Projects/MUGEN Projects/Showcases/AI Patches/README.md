@@ -9,9 +9,10 @@ Each one of these folders contain:
 -   .bat (Windows users)
 -   .command (Linux/Mac users)
 
-## If you're a Linux user
-1. Open up terminal within the showcase folders
-2. "chmod +x (character name).command" to compile
-3. "(character name).comman" to run
+## If you're a Mac/Linux user
+1. Make sure Ikemen_GO_MacOS and Ikemen_GO_Linux in the parent folder have proper permissions (chmod a+x if you haven't already)
+2. Open up terminal within the showcase folders
+3. "chmod a+x (character name).command" to compile
+4. "(character name).command" to run
 
 Click on the following folders to learn more about these AI Patches!
