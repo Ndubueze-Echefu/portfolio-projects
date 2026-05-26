@@ -1,14 +1,14 @@
-# Kid Dracula AI Patch
+# Saki Omokane AI Patch
 Credits:
-- Kid Dracula - Konami
-- Original Character - RoySquadRocks and Fist Dracon
+- Quiz Nanairo Dreams - Nijiirochō no Kiseki | Marvel vs. Capcom - Capcom
+- Original Character -  Gladiacloud and Beximus
 - This particular AI Patch - Me
 
 ## Brainstorm Page
-📖 [View on Notion](https://oceanic-vole-f17.notion.site/Kid-Dracula-AI-Patch-200c8ee3fd7b8011ad38d75c50085383)
+📖 [View on Notion](https://oceanic-vole-f17.notion.site/Saki-O-AI-Patch-0c2b923bba5f4fbab73bf31fd0f168a1?pvs=143)
 
 ## Before Patching
-[![MUGEN Video](https://img.youtube.com/vi/0Dnb6LAQHg0/0.jpg)](https://www.youtube.com/watch?v=0Dnb6LAQHg0)
+[![Saki Omokane vs Jin Saotome | M.I.G | Capcom All Star Mugen Battle](https://img.youtube.com/vi/GZIAC8tqYfM/0.jpg)](https://youtu.be/GZIAC8tqYfM?si=vbO5-i3e-69-0F-a)
 
 ## After Patching
-[![MUGEN Video](https://img.youtube.com/vi/lok5XwLUPGE/0.jpg)](https://www.youtube.com/watch?v=lok5XwLUPGE)
+[![](https://img.youtube.com/vi/BoDABLhUgGg/0.jpg)](https://youtu.be/BoDABLhUgGg?si=ICrd6_T_jginPI-b)
