@@ -1,14 +1,14 @@
-# Kid Dracula AI Patch
+# Bomberman AI Patch
 Credits:
-- Kid Dracula - Konami
-- Original Character - RoySquadRocks and Fist Dracon
+- Bomberman - Konami
+- Original Character - Gladiacloud
 - This particular AI Patch - Me
 
 ## Brainstorm Page
-📖 [View on Notion](https://oceanic-vole-f17.notion.site/Kid-Dracula-AI-Patch-200c8ee3fd7b8011ad38d75c50085383)
+📖 [View on Notion](https://oceanic-vole-f17.notion.site/ebd//c4dd25c732bc45b8acb30c137d1dd594?v=f3d24b2744dd4790a33526cb94782d43&pvs=143)
 
 ## Before Patching
-[![MUGEN Video](https://img.youtube.com/vi/0Dnb6LAQHg0/0.jpg)](https://www.youtube.com/watch?v=0Dnb6LAQHg0)
+[![Mugen Battle Milk Chan vs Bomberman](https://img.youtube.com/vi/PEzU_bSmtnw/0.jpg)](https://youtu.be/PEzU_bSmtnw?si=AFGfBcMu47WbooFz)
 
 ## After Patching
-[![MUGEN Video](https://img.youtube.com/vi/lok5XwLUPGE/0.jpg)](https://www.youtube.com/watch?v=lok5XwLUPGE)
+[![IKEMEN (MUGEN): Bomberman AI Patch Rehaul!](https://img.youtube.com/vi/FZYB4fmGCz4/0.jpg)](https://youtu.be/FZYB4fmGCz4?si=WynpB5o--bqM_twg)
