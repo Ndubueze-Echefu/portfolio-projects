@@ -16,3 +16,5 @@ What I have here is an IKEMEN engine setup and curated to showcase my projects I
 -   Windows: Run_on_Windows.exe
 -   MacOS/Linux: chmod a+x both Ikemen_GO.command, Ikemen_GO_Linux, and Ikemen_GO_MacOS, then run .command file
 2. Go to the "Showcases" folder to find more about my projects!
+
+If you REALLY want to dive deep behind the coding around it; check out the "chars" folders!
