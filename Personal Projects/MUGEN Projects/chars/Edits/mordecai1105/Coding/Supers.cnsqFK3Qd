@@ -572,7 +572,7 @@ type = PlaySnd
 trigger1 = Animelem = 40
 value = S10,2
 
-[State 6002, SuperPause!]
+[State 6002, Super Pause!]
 type = SuperPause
 trigger1 = time = 5
 time = 50
