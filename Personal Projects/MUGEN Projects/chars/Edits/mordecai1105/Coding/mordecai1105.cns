@@ -1540,7 +1540,7 @@ priority = 3, Hit
 pausetime = 10, 10
 sparkno = sifelse((enemynear, statetype != A),7010 + (random % 8),7018)
 sparkxy = -10, -110
-hitsound = S5, ifelse((enemynear, statetype != A),5,9)
+hitsound = S5, 14
 guardsound = s6, 0
 ground.type = Low
 ground.slidetime = 5
@@ -1554,6 +1554,13 @@ givepower = 60
 getpower = 80
 fall = 0
 air.fall = 1
+
+[State 650, Spike SFX]
+type = PlaySnd
+triggerall = movehit
+trigger1 = enemynear, statetype = A
+value = S5,9
+persistent = 0
 
 
 [State 650, Regain control]
@@ -1677,6 +1684,51 @@ type = SelfState
 trigger1 = animtime = 0
 value = 5050
 
+
+;---------------------------------------------------------------------------
+;Guard Counter
+[Statedef 900]
+type    = S
+movetype= A
+physics = S
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 6000
+sprpriority = 2
+
+;Psudeocode
+;[State 900, Pause]
+[State 900, Pause]
+type = Pause
+trigger1 = time = 0
+time = 60
+movetime = 60
+
+;[State 900, Background color animation]
+[State 900, BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 900, BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 0, 0, 255
+color = 0
+
+[State 900, BG Pal]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+;[State 900, Do attack!]
 
 ;---------------------------------------------------------------------------
 ; Hyper finish

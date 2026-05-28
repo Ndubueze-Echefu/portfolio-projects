@@ -45,7 +45,7 @@ trigger2 = stateno = [5000,5170]
 value = S10,2
 
 
-[State 6000, Lvl 1 Super Pause]
+[State 6000, SuperPause]
 type = SuperPause
 trigger1 = time = 5
 time = 50
@@ -54,6 +54,7 @@ sound = S10,0
 pos = 0,-120
 movetime = 50
 poweradd = -1000
+darken = 0
 
 [State 6000, Lv1 BG Pal]
 type = bgpalfx
@@ -260,7 +261,7 @@ trigger2 = MoveType = H && StateNo != [120,155]
 value = S10,2
 channel = 3
 
-[State 6001, Level 1 Super Pause]
+[State 6002, SuperPause]
 type = SuperPause
 trigger1 = time = 5
 time = 50
@@ -269,6 +270,7 @@ sound = S10,0
 pos = 0,-120
 movetime = 50
 poweradd = -1000
+darken = 0
 
 [State 6001, Lv1 BG Pal]
 type = bgpalfx
@@ -540,7 +542,7 @@ ctrl = 0
 anim = 6002
 sprpriority = 2
 
-[State 6002, 1]
+[State 6002, Hyper Background]
 type = Explod
 trigger1 = time = 55
 anim = 701
@@ -571,8 +573,9 @@ removeongethit = 1
 type = PlaySnd
 trigger1 = Animelem = 40
 value = S10,2
+channel = 1
 
-[State 6002, SuperPause!]
+[State 6002, SuperPause]
 type = SuperPause
 trigger1 = time = 5
 time = 50
@@ -581,6 +584,7 @@ sound = S10,1
 pos = 0,-120
 movetime = 50
 poweradd = -2000
+darken = 0
 
 [State 6002, Lv2 BG Pal]
 type = bgpalfx
@@ -615,17 +619,18 @@ type = PlaySnd
 trigger1 = time = 5
 value = S6002,0
 volume = 0
+channel = 2
 
 [State 6002, Epic Keyboard Solo]
 type = PlaySnd
 trigger1 = time = 57
 value = S6002,1
-channel = 6
+channel = 3
 
 [State 6002, Aight, stop now...]
 type = StopSnd
 trigger1 = time = 132
-channel = 6
+channel = 3
 
 
 [State 6002, Record Scratch at the end]
@@ -633,13 +638,15 @@ type = PlaySnd
 trigger1 = Animelem = 39
 value = S6002,0
 volume = 0
+channel = 4
 
-[State 6002, 4]
+[State 6002, Laser Burst SFX]
 type = PlaySnd
 trigger1 = animelem = 5
 value = S6000,0
+channel = 5
 
-[State 6002, 5]
+[State 6002, Hitbox]
 type = HitDef
 trigger1 = Timemod = 4,0
 attr = S, HA
@@ -671,26 +678,26 @@ palfx.add = 150,256,0
 palfx.sinadd = 10,10,10,5
 palfx.color = 0
 
-[State 6002, 6]
-type = StopSnd
-trigger1 = time = 0
-trigger2 = animelem = 3
-trigger3 = animtime = 0
-channel = 1
-
 [State 6002, "YEAYUH but reverbed"]
 type = PlaySnd
 trigger1 = time = 0
 value = S2,13
-channel = 1
+channel = 6
 
-[State 6002, 8]
+[State 6002, "OHHHHHHHH"]
 type = PlaySnd
 trigger1 = animelem = 3
 value = S2,14
-channel = 1
+channel = 7
 
-[State 6002, 9]
+[State 6002, Stop screaming "OHHHHH!"]
+type = StopSnd
+trigger1 = time = 0
+trigger2 = animelem = 3
+trigger3 = animtime = 0
+channel = 7
+
+[State 6002, Change back to Idle]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
@@ -737,7 +744,7 @@ vfacing = 1
 bindtime = -1
 postype = back
 scale = 2,2
-sprpriority = -5
+sprpriority = 4
 removetime = -2
 ownpal = 1
 removeongethit = 1
@@ -758,6 +765,7 @@ sound = S10,1
 pos = 0,-120
 movetime = 50
 poweradd = -2000
+darken = 0
 
 [State 6002, Lv2 BG Pal]
 type = bgpalfx
@@ -878,6 +886,7 @@ time = 215
 movetime = 215
 anim = s6150
 pos = 0,-100
+darken = 0
 
 [State 6000, Lv3 BG Pal]
 type = bgpalfx
