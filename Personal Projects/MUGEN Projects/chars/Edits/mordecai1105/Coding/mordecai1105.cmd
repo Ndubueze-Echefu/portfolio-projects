@@ -196,6 +196,21 @@ name = "Cyclone"
 command = B, F, z
 time = 20
 
+;----- Guard Counter -------------------------------------------------------
+[command]
+name = "Guard Counter"
+command = /F, x+a
+time = 20
+
+[command]
+name = "Guard Counter"
+command = /F, y+b
+time = 20
+
+[command]
+name = "Guard Counter"
+command = /F, z+c
+time = 20
 ;-| Double Tap |-----------------------------------------------------------
 [Command]
 name = "Hi Jump"     ;Required (do not remove)
@@ -563,6 +578,15 @@ time = 1
 [Statedef -1]
 
 ;===========================================================================
+
+;---------------------------------------------------------------------------
+; Guard Counter
+[state -1, Guard Counter]
+type = changestate
+value = 900
+triggerall = (command = "Guard Counter")
+triggerall = (power >= 1000)
+trigger1 = stateno = [150,153]
 
 ;---------------------------------------------------------------------------
 ; Assist - Pops

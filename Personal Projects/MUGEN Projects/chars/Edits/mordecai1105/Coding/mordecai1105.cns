@@ -1557,7 +1557,7 @@ air.fall = 1
 
 [State 650, Spike SFX]
 type = PlaySnd
-triggerall = movehit
+triggerall = movehit = 1
 trigger1 = enemynear, statetype = A
 value = S5,9
 persistent = 0
@@ -1694,7 +1694,7 @@ physics = S
 juggle  = 1
 velset = 0,0
 ctrl = 0
-anim = 6000
+anim = 1005
 sprpriority = 2
 
 ;Psudeocode
@@ -1702,8 +1702,7 @@ sprpriority = 2
 [State 900, Pause]
 type = Pause
 trigger1 = time = 0
-time = 60
-movetime = 60
+time = 15
 
 ;[State 900, Background color animation]
 [State 900, BG Pal]
