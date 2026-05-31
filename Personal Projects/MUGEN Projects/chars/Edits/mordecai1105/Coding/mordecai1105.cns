@@ -1540,7 +1540,7 @@ priority = 3, Hit
 pausetime = 10, 10
 sparkno = sifelse((enemynear, statetype != A),7010 + (random % 8),7018)
 sparkxy = -10, -110
-hitsound = S5, 14
+hitsound = S5, ifelse((enemynear, statetype != A), 14, 9)
 guardsound = s6, 0
 ground.type = Low
 ground.slidetime = 5
@@ -1554,14 +1554,6 @@ givepower = 60
 getpower = 80
 fall = 0
 air.fall = 1
-
-[State 650, Spike SFX]
-type = PlaySnd
-triggerall = movehit = 1
-trigger1 = enemynear, statetype = A
-value = S5,9
-persistent = 0
-
 
 [State 650, Regain control]
 type = CtrlSet

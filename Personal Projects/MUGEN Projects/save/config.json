@@ -140,16 +140,16 @@
         "DOWN",
         "LEFT",
         "RIGHT",
-        "z",
-        "x",
-        "c",
         "a",
         "s",
         "d",
+        "z",
+        "x",
+        "c",
         "RETURN",
         "q",
         "w",
-        "Not used"
+        "BACKSPACE"
       ]
     },
     {
