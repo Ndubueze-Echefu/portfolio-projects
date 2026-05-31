@@ -210,6 +210,10 @@ AI Patches/Bomberman/bomberman (after AI Patch)/cool_ai_bomberman.def
 AI Patches/Bubblun/bubblun (before AI Patch)/bubblun.def
 AI Patches/Bubblun/bubblun (after AI Patch)/bubblun.def
 
+; Saki Omokane
+AI Patches/Saki Omokane/Sakiomokane (before AI Patch)/SakiOmokane.def
+AI Patches/Saki Omokane/Sakiomokane (after AI Patch)/SakiOmokane.def
+
 ;;Edits
 ;Edits/mordecai1105/mordecai1105.def
 randomselect
