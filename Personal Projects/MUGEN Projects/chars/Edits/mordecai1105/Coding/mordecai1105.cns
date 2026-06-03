@@ -1690,34 +1690,38 @@ anim = 1005
 sprpriority = 2
 
 ;Psudeocode
-;[State 900, Pause]
-[State 900, Pause]
-type = Pause
-trigger1 = time = 0
+[State 900, Super Pause]
+type = superpause
+trigger1 = !time
 time = 15
+movetime = 6
+p2defmul = 1
+anim = -1
+sound = s6, 100
+darken = 0
+
+[State 900, Thunder! ⚡]
+type = explod
+trigger1 = !time
+anim = 8250
+ID = 8250
+sprpriority = -2
+postype = p1
+pos = 0,-ceil(pos y)
+pausemovetime = -1
+supermovetime = -1
+ownpal = 1
+scale = 2, 2
+
 
 ;[State 900, Background color animation]
-[State 900, BG Pal]
+[State 900, BG PalFX Transition]
 type = bgpalfx
-trigger1 = time <= 5
+trigger1 = time <= 15
 time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
-color = 256 -floor(25.6 * time)
-
-[State 900, BG Pal]
-type = bgpalfx
-trigger1 = (time = [6, 69])
-time = 1
-mul = 0, 0, 255
-color = 0
-
-[State 900, BG Pal]
-type = bgpalfx
-trigger1 = time >= 70
-time = 1
-mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
-color = floor(51.2 * (time -40))
+add = ceil(-200 + 13.5*time), ceil(-150 + 10*time), ceil(-50 + 3.4*time)
+mul = 255 - (3.6*time), 255 - (3.6*time), 256
+color = 12*time
 
 ;[State 900, Do attack!]
 
