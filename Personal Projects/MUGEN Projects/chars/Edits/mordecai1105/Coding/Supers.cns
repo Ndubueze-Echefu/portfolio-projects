@@ -409,7 +409,7 @@ priority = 3, Hit
 pausetime = 12, 14
 sparkno = s7030 + (random % 8)
 sparkxy = -10, -130
-hitsound = s5, 2
+hitsound = -1
 guardsound = s6, 1
 ground.type = High
 ground.slidetime = 5
@@ -427,6 +427,12 @@ palfx.add = 0,256,0
 palfx.mul = 0,256,0
 palfx.sinadd = 0,256,0
 palfx.color = 0
+
+[State 10000, Multiple Hit Sounds]
+type = PlaySnd
+trigger1 = movehit = 1
+value = S5,2
+channel = 0
 
 [State 10000, Land to cancel velocity]
 type = VelSet
@@ -498,7 +504,7 @@ priority = 3, Hit
 pausetime = 12, 14
 sparkno = s7030 + (random % 8)
 sparkxy = -10, -130
-hitsound = s5, 5
+hitsound = -1
 guardsound = s6, 1
 ground.type = High
 ground.slidetime = 5
@@ -516,6 +522,12 @@ palfx.add = 0,256,0
 palfx.mul = 0,256,0
 palfx.sinadd = 0,256,0
 palfx.color = 0
+
+[State 10001, Multiple Hit Sounds]
+type = PlaySnd
+trigger1 = movehit = 1
+value = S5,5
+channel = 0
 
 [State 10001, Release from slingshot]
 type = VelSet
@@ -638,7 +650,6 @@ channel = 3
 type = StopSnd
 trigger1 = time = 132
 channel = 3
-
 
 [State 6002, Record Scratch at the end]
 type = PlaySnd

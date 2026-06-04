@@ -1694,7 +1694,7 @@ sprpriority = 2
 type = superpause
 trigger1 = !time
 time = 15
-movetime = 6
+movetime = 1
 p2defmul = 1
 anim = -1
 sound = s6, 100
@@ -1717,7 +1717,7 @@ scale = 2, 2
 ;[State 900, Background color animation]
 [State 900, BG PalFX Transition]
 type = bgpalfx
-trigger1 = time <= 15
+trigger1 = time <= 10
 time = 1
 add = ceil(-200 + 13.5*time), ceil(-150 + 10*time), ceil(-50 + 3.4*time)
 mul = 255 - (3.6*time), 255 - (3.6*time), 256
@@ -1725,6 +1725,35 @@ color = 12*time
 
 ;[State 900, Do attack!]
 
+[State 900, Beak Poke]
+type = HitDef
+trigger1 = animelem = 4
+attr = S, SA
+damage = 77, 6
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 8, 8
+sparkno = s7020 + (random % 8)
+sparkxy = -10, -130
+hitsound = s5, 14
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -12
+airguard.velocity = -12,0
+air.type = High
+air.velocity = -12,0
+air.hittime = 12
+fall = 1
+
+[State 900, Go back to Idle state]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
 ; Hyper finish
 [Statedef 8000]
