@@ -1689,12 +1689,12 @@ ctrl = 0
 anim = 1005
 sprpriority = 2
 
-;Psudeocode
 [State 900, Super Pause]
 type = superpause
 trigger1 = !time
+poweradd = -1000
 time = 15
-movetime = 1
+movetime = 15
 p2defmul = 1
 anim = -1
 sound = s6, 100
@@ -1714,16 +1714,12 @@ ownpal = 1
 scale = 2, 2
 
 
-;[State 900, Background color animation]
-[State 900, BG PalFX Transition]
+[State 900, BG PalFX]
 type = bgpalfx
-trigger1 = time <= 10
+trigger1 = time < 14
 time = 1
-add = ceil(-200 + 13.5*time), ceil(-150 + 10*time), ceil(-50 + 3.4*time)
-mul = 255 - (3.6*time), 255 - (3.6*time), 256
-color = 12*time
-
-;[State 900, Do attack!]
+add = ceil(-255+17.1*time),ceil(-128+8.5*time),ceil(-32+2.1*time)
+color = 17*time
 
 [State 900, Beak Poke]
 type = HitDef

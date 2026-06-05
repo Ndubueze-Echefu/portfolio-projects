@@ -801,11 +801,10 @@ trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 [State -1, FINISHER]
 type = ChangeState
-value = 20000
+value = 6010
 triggerall = ctrl
 triggerall = statetype = S || statetype = C
-triggerall = power >= 5000
-triggerall = life <= lifemax / 4
+triggerall = power >= 3000
 trigger1 = command = "FINISHER"
 
 ;===========================================================================

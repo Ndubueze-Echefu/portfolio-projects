@@ -889,19 +889,17 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; FINISHER
-[Statedef 20000]
+; Death Punch! (Setup)
+[Statedef 6010]
 type    = S
 movetype = A
 juggle  = 1
 velset = 0,0
 ctrl = 0
 anim = 20001
-poweradd = -5000
+poweradd = -3000
 
-
-
-[State 20000, SuperPause]
+[State 6010, SuperPause]
 type = SuperPause
 trigger1 = time = 0
 time = 215
@@ -910,7 +908,7 @@ anim = s6150
 pos = 0,-100
 darken = 0
 
-[State 6000, Lv3 BG Pal]
+[State 6010, Lv3 BG Pal]
 type = bgpalfx
 trigger1 = time <= 5
 time = 1
@@ -918,36 +916,21 @@ add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
 mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
 color = 256 -floor(25.6 * time)
 
-[State 6000, Lv3 BG Pal]
+[State 6010, Lv3 BG Pal]
 type = bgpalfx
 trigger1 = (time = [6, 69])
 time = 1
 mul = 149, 53, 83
 color = 0
 
-[State 6000, Lv3 BG Pal]
+[State 6010, Lv3 BG Pal]
 type = bgpalfx
 trigger1 = time >= 70
 time = 1
 mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
 color = floor(51.2 * (time -40))
 
-[State 20000, 1]
-type = Explod
-trigger1 = time = 0
-anim = 20000
-ID = 20000
-pos = 0,0
-postype = back
-bindtime = -1
-removetime = -2
-scale = 1,1
-supermove = 1
-ontop = 1
-sprpriority = 100
-pausemovetime = -1
-
-[State 20000, 2]
+[State 6010, Hyper Portrait]
 type = Explod
 trigger1 = time = 0
 anim = 20002
@@ -962,63 +945,26 @@ ontop = 1
 sprpriority = 100
 pausemovetime = -1
 
-[State 0]
+[State 6010, Hyper Portrait: Fade In]
 type = modifyexplod
 trigger1 = time <= 10
 trans = addalpha
 alpha = 25*(time-0),256-(25*(time-0))
 id = 20000
 
-[State 0]
+[State 6010, Hyper Portrait: Fade Out]
 type = modifyexplod
 trigger1 = time >= 31
 trans = addalpha
 alpha = 256-(25*(time-31)),25*(time-31)
 id = 20000
 
-[State 20000, 3]
-type = AllPalFX
-trigger1 = time = 0
-trigger2 = time = 98
-trigger3 = animtime = 0
-time = 5
-add = 256,256,256
-mul = 256,256,256
-sinadd = 0,0,0,1
-invertall = 0
-color = 256
-
-[State 20000, 4]
-type = BGPalFX
-trigger1 = time = 5
-time = 93
-add = 0,0,0
-mul = 120,120,120
-sinadd = 0,0,0,1
-invertall = 0
-color = 0
-
-[State 20000, 4]
-type = BGPalFX
-trigger1 = time = 98
-time = 157
-add = 0,0,0
-mul = 100,50,0
-sinadd = 0,0,0,1
-invertall = 0
-color = 0
-
-[State 20000, 5]
+[State 6010, Lvl 3 Hyper SFX]
 type = PlaySnd
 trigger1 = time = 0
 value = S20000,0
 
-[State 20000, 6]
-type = PlaySnd
-trigger1 = time = 98
-value = S20000,1
-
-[State 20000, 7]
+[State 6010, No bar, music, and unguardable move]
 type = AssertSpecial
 trigger1 = 1
 flag = nobardisplay
@@ -1027,30 +973,16 @@ flag3 = unguardable
 ignorehitpause = 1
 persistent = 1
 
-[State 20000, 8]
-type = PlaySnd
-trigger1 = animelem = 13
-value = S192,0
-
-[State 20000, 8]
+[State 20000, Large Burst SFX]
 type = PlaySnd
 trigger1 = animelem = 13
 value = S20000,2
 
-[State 20000, 9]
-type = AllPalFX
-trigger1 = time = 255
-time = 10
-add = 256,0,0
-mul = 500,0,0
-invertall = 0
-color = 256
-
-[State 20000, 10]
+[State 20000, BIG HIT]
 type = HitDef
 trigger1 = time = 0
 attr = S, NA
-damage = 700, 700
+damage = 500, 500
 animtype = Heavy
 guardflag = MA
 hitflag = MAFD
@@ -1070,12 +1002,12 @@ air.velocity = -4,-40
 air.hittime = 12
 fall = 1
 
-[State 20000, 11]
+[State 20000, Some weird engine SFX]
 type = PlaySnd
 trigger1 = animelem = 13
 value = S20000,4
 
-[State 20000, 12]
+[State 20000, Camera Shake]
 type = EnvShake
 trigger1 = animelem = 13
 time = 20
@@ -1083,23 +1015,18 @@ freq = 60
 ampl = -40
 phase = 90
 
-[State 20000, 13]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 20000, 14]
+[State 20000, Self-inflicted pain SFX]
 type = PlaySnd
 trigger1 = animtime = 0
 value = S11,0
 channel = 1
 
-[State 20000, 15]
+[State 20000, Velocity of ALSO getting hit]
 type = VelSet
 trigger1 = animtime = 0
 y = -40
 
-[State 20000, 16]
+[State 20000, Hit state]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 5050
