@@ -896,15 +896,22 @@ movetype = A
 juggle  = 1
 velset = 0,0
 ctrl = 0
-anim = 20001
+anim = 20000
 poweradd = -3000
+
+[State 6010, Pause]
+type = Pause
+trigger1 = time = 0
+time = 25
+movetime = 25
 
 [State 6010, SuperPause]
 type = SuperPause
-trigger1 = time = 0
+trigger1 = animelem = 3
 time = 215
 movetime = 215
 anim = s6150
+sound = S20000,0
 pos = 0,-100
 darken = 0
 
@@ -947,22 +954,17 @@ pausemovetime = -1
 
 [State 6010, Hyper Portrait: Fade In]
 type = modifyexplod
-trigger1 = time <= 10
+trigger1 = time <= 35
 trans = addalpha
 alpha = 25*(time-0),256-(25*(time-0))
 id = 20000
 
 [State 6010, Hyper Portrait: Fade Out]
 type = modifyexplod
-trigger1 = time >= 31
+trigger1 = time >= 56
 trans = addalpha
 alpha = 256-(25*(time-31)),25*(time-31)
 id = 20000
-
-[State 6010, Lvl 3 Hyper SFX]
-type = PlaySnd
-trigger1 = time = 0
-value = S20000,0
 
 [State 6010, No bar, music, and unguardable move]
 type = AssertSpecial
@@ -973,67 +975,14 @@ flag3 = unguardable
 ignorehitpause = 1
 persistent = 1
 
-[State 20000, Large Burst SFX]
-type = PlaySnd
-trigger1 = animelem = 13
-value = S20000,2
-
-[State 20000, BIG HIT]
-type = HitDef
-trigger1 = time = 0
-attr = S, NA
-damage = 500, 500
-animtype = Heavy
-guardflag = MA
-hitflag = MAFD
-priority = 3, Hit
-pausetime = 8, 8
-sparkno = 3
-sparkxy = -10, -76
-hitsound = s20000, 3
-guardsound = s6, 0
-ground.type = High
-ground.slidetime = 5
-ground.hittime  = 12
-ground.velocity = -4,-40
-airguard.velocity = -1.9,-.8
-air.type = High
-air.velocity = -4,-40
-air.hittime = 12
-fall = 1
-
-[State 20000, Some weird engine SFX]
-type = PlaySnd
-trigger1 = animelem = 13
-value = S20000,4
-
-[State 20000, Camera Shake]
-type = EnvShake
-trigger1 = animelem = 13
-time = 20
-freq = 60
-ampl = -40
-phase = 90
-
-[State 20000, Self-inflicted pain SFX]
-type = PlaySnd
-trigger1 = animtime = 0
-value = S11,0
-channel = 1
-
-[State 20000, Velocity of ALSO getting hit]
-type = VelSet
-trigger1 = animtime = 0
-y = -40
-
-[State 20000, Hit state]
+[State 20000, Transistion to The Action]
 type = ChangeState
-trigger1 = AnimTime = 0
-value = 5050
+trigger1 = time = 999
+value = 6011
 ctrl = 1
 ;---------------------------------------------------------------------------
 ; Death Punch! (The Action)
-[Statedef 6010]
+[Statedef 6011]
 type    = S
 movetype = A
 juggle  = 1
@@ -1176,7 +1125,7 @@ value = 5050
 ctrl = 1
 ;---------------------------------------------------------------------------
 ; Death Punch! (Aftermath)
-[Statedef 6010]
+[Statedef 6012]
 type    = S
 movetype = A
 juggle  = 1

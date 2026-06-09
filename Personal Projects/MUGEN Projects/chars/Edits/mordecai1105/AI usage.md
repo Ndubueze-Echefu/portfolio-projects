@@ -202,6 +202,25 @@ color = 12*time
 
 ---
 
+---
+
+## Session 2: Timing Adjustments (2026-06-08)
+
+### Q1: Update trigger1 time values for State 6010 Lv3 BG Pal effects
+
+**A:** ✅ **COMPLETED**
+
+**Changes Made:**
+- **[State 6010, Lv3 BG Pal: Flash]** - `trigger1 = time <= 5` → `trigger1 = time <= 30`
+- **[State 6010, Lv3 BG Pal: Slowly remove flash]** - `trigger1 = (time = [6, 69])` → `trigger1 = (time = [31, 94])`
+- **[State 6010, Lv3 BG Pal: stay purple]** - `trigger1 = time >= 70` → `trigger1 = time >= 95`
+
+**Applied offset:** +25 frames to all trigger1 time values
+
+**File Modified:** `Coding/Supers.cns`
+
+---
+
 ## To-Do / Ongoing Items
 - [ ] Add scaled Explod sparks to hypers (optional, for MUGEN compatibility)
 - [ ] MVC1-style hitsound implementation in 6002
