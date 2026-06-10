@@ -10,6 +10,7 @@ ctrl = 0
 anim = 6000
 sprpriority = 2
 
+
 [State 6000, Hyper Background]
 type = Explod
 trigger1 = time = 54
@@ -44,39 +45,12 @@ trigger1 = Animelem = 27
 trigger2 = stateno = [5000,5170]
 value = S10,2
 
-
-[State 6000, SuperPause]
-type = SuperPause
+[State 6000, Background Flash]
+type = Helper
 trigger1 = time = 5
-time = 50
-anim = s15000
-sound = S10,0
-pos = 0,-120
-movetime = 50
-poweradd = -1000
-darken = 0
-
-[State 6000, Lv1 BG Pal]
-type = bgpalfx
-trigger1 = time <= 5
-time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
-color = 256 -floor(25.6 * time)
-
-[State 6000, Lv1 BG Pal]
-type = bgpalfx
-trigger1 = (time = [6, 69])
-time = 1
-mul = 0, 0, 255
-color = 0
-
-[State 6000, Lv1 BG Pal]
-type = bgpalfx
-trigger1 = time >= 70
-time = 1
-mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
-color = floor(51.2 * (time -40))
+name = "Level 1 Flash"
+ID = 20000
+stateno = 20000
 
 [State 6000, Laser Burst SFX]
 type = PlaySnd
@@ -372,182 +346,6 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
-
-;---------------------------------------------------------------------------
-; Lantern Big Bird
-[Statedef 10000]
-type    = S
-movetype= A
-physics = N
-juggle  = 1
-velset = 25,0
-ctrl = 0
-anim = 10000
-sprpriority = -1
-
-[State 10000, "WHOOSH" SFX]
-type = PlaySnd
-trigger1 = time = 0
-value = S0,5
-channel = 7
-
-[State 10000, "Here comes... SuperBird!"]
-type = PlaySnd
-trigger1 = Animelem = 1
-value = S6001,14
-channel = 8
-
-[State 10000, Teddy Bear attack! 🐻]
-type = HitDef
-trigger1 = Timemod = 6, 0
-attr = S, SA
-damage = 10, 5
-animtype = Heavy
-guardflag = MA
-hitflag = MAFD
-priority = 3, Hit
-pausetime = 12, 14
-sparkno = s7030 + (random % 8)
-sparkxy = -10, -130
-hitsound = -1
-guardsound = s6, 1
-ground.type = High
-ground.slidetime = 5
-ground.hittime  = 12
-ground.velocity = 0,15
-airguard.velocity = 0,-.8
-air.type = High
-air.velocity = 0,15
-air.hittime = 12
-fall = 1
-envshake.time = 15
-envshake.ampl = 7
-palfx.time = 40
-palfx.add = 0,256,0
-palfx.mul = 0,256,0
-palfx.sinadd = 0,256,0
-palfx.color = 0
-
-[State 10000, Multiple Hit Sounds]
-type = PlaySnd
-trigger1 = movehit = 1
-value = S5,2
-channel = 0
-
-[State 10000, Land to cancel velocity]
-type = VelSet
-trigger1 = animelem = 18
-x = 0
-
-[State 10000, Feet land SFX]
-type = PlaySnd
-trigger1 = animelem = 18
-value = S52,0
-channel = 9
-
-[State 10000, Disappear]
-type = DestroySelf
-trigger1 = animtime = 0
-
-;---------------------------------------------------------------------------
-; Lantern Angry Bird
-[Statedef 10001]
-type    = S
-movetype= A
-physics = N
-juggle  = 1
-velset = 0,0
-ctrl = 0
-anim = 10001
-sprpriority = -1
-
-[State 10001, Special Boost]
-type = PlaySnd
-trigger1 = animelem = 26
-value = S10001,0
-channel = 10
-
-[State 10001, "WAZAAAAAAAHAH!"]
-type = PlaySnd
-trigger1 = Animelem = 26
-value = S6001,(10 + (random % 3))
-channel = 11
-
-[State 10001, Shut Up...]
-type = StopSnd
-trigger1 = Animelem = 32
-channel = 11
-
-
-[State 10001, *menacing laugh*]
-type = PlaySnd
-trigger1 = Animelem = 1
-value = S6001,9
-channel = 12
-
-[State 10001, Slingshot SFX]
-type = PlaySnd
-trigger1 = Animelem = 10
-value = S6001,13
-channel = 13
-
-
-[State 10001, Dash through opponent]
-type = HitDef
-trigger1 = Timemod = 3, 0
-attr = S, SA
-damage = 20, 10
-animtype = Heavy
-guardflag = MA
-hitflag = MAFD
-priority = 3, Hit
-pausetime = 12, 14
-sparkno = s7030 + (random % 8)
-sparkxy = -10, -130
-hitsound = -1
-guardsound = s6, 1
-ground.type = High
-ground.slidetime = 5
-ground.hittime  = 12
-ground.velocity = 0,15
-airguard.velocity = 0,-.8
-air.type = High
-air.velocity = 0,15
-air.hittime = 12
-fall = 1
-envshake.time = 15
-envshake.ampl = 7
-palfx.time = 40
-palfx.add = 0,256,0
-palfx.mul = 0,256,0
-palfx.sinadd = 0,256,0
-palfx.color = 0
-
-[State 10001, Multiple Hit Sounds]
-type = PlaySnd
-trigger1 = movehit = 1
-value = S5,5
-channel = 0
-
-[State 10001, Release from slingshot]
-type = VelSet
-trigger1 = animelem = 26
-x = 20
-
-[State 10001, Land from flying]
-type = VelSet
-trigger1 = animelem = 32
-x = 0
-
-[State 10001, Land SFX]
-type = PlaySnd
-trigger1 = animelem = 32
-value = S52,0
-channel = 14
-
-[State 10001, Disappear]
-type = DestroySelf
-trigger1 = animtime = 0
 
 ;---------------------------------------------------------------------------
 ; The Power

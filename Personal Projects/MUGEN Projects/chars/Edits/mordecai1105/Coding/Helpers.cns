@@ -1,0 +1,504 @@
+;---------------------------------------------------------------------------
+; Assist - Pops
+[Statedef 1001]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 20,20
+ctrl = 0
+anim = 1001
+sprpriority = 2
+
+[State 1001, Falling Whoosh Sound Effect]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,5
+
+[State 1001, Whistle Sound Effect]
+type = PlaySnd
+trigger1 = time = 0
+value = S1000,0
+
+[State 1001, Strong ground shockwave explod after such a hard thud!]
+type = Explod
+trigger1 = animelem = 7
+anim = f62
+pos = 0,0
+postype = p1
+
+[State 1001, Crash on the ground (manual physics coding. Without it, Pops will go through the ground]
+type = VelSet
+trigger1 = pos y > 0 && vel y >= 0
+x = 0
+y = 0
+
+[State 1001, Body Thud Sound Effect]
+type = PlaySnd
+trigger1 = animelem = 7
+value = S7,2
+
+[State 1001, WHAM]
+type = HitDef
+trigger1 = pos y > 0 && vel y >= 0
+attr = S, NA			;Attribute: Standing, Normal Attack
+damage = 100, 25			;Damage that move inflicts, guard damage
+animtype = Back			;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = MA			;Flags on how move is to be guarded against
+hitflag = MAF			;Flags of conditions that move can hit
+priority = 3, Hit			;Attack priority: 0 (least) to 7 (most), 4 default
+pausetime = 7, 2			;Time attacker pauses, time opponent shakes
+sparkno = s7020 + (random % 8)
+guard.sparkno = s14004				;Spark anim no (Def: set above)
+sparkxy = 90, -118		;X-offset for the "hit spark" rel. to p2,
+					;Y-offset for the spark rel. to p1
+hitsound = S1000, 1			;Sound to play on hit
+guardsound = 6, 0			;Sound to play on guard
+ground.type = High		;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 5		;Time that the opponent slides back
+ground.hittime  = 12		;Time opponent is in hit state
+ground.velocity = 0,10
+air.velocity = 0,10		;Velocity at which opponent is pushed
+airguard.velocity = -1.9,-.8	;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+air.type = High			;Type: High, Low, Trip (def: same as ground.type)
+air.velocity = -1.4,-3		;X-velocity at which opponent is pushed,
+					;Y-velocity at which opponent is pushed
+air.hittime = 12			;Time before opponent regains control in air
+down.bounce = 1
+fall.xvelocity = -5
+fall.yvelocity = -10
+fall = 1
+persistent = 0
+getpower = 100
+
+[State 1001, "Oh My!"]
+type = PlaySnd
+trigger1 = Animelem = 7
+value = S1000,2
+
+[State 1001, "Oh My!" x2]
+type = PlaySnd
+trigger1 = Animelem = 7
+value = S1000,2
+
+[State 1001, "Oh My!" x3]
+type = PlaySnd
+trigger1 = Animelem = 7
+value = S1000,2
+
+
+[State 2030, Hit Ground Sound FX]
+type = PlaySnd
+trigger1 = enemyNear, pos y > 0 && vel y >= 0
+value = S5,10
+persistent = 0
+channel = 1
+
+[State 1001, Disappear when done]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+; Assist - Muscle Man
+[Statedef 1003]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 20,0
+ctrl = 0
+anim = 1002
+sprpriority = 2
+
+[State 1003, "EUUUUAGLLEK!!!"]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S1001,1
+
+[State 1003, Small Floor Dust]
+type = Explod
+trigger1 = Timemod = 8,0
+trigger1 = time > 5
+anim = f120
+pos = 0,0
+postype = p1
+
+[State 1003, Medium Punch Swing]
+type = PlaySnd
+trigger1 = animelem = 2 || Animelem = 3 || Animelem = 4 || Animelem = 5
+value = S0,2
+
+[State 1003, Get Dizzy]
+type = ChangeState
+trigger1 = time = 35
+value = 1004
+
+[State 1003, Get countered, loser!]
+type = HitOverride
+trigger1 = 1
+attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+stateno = 1004
+time = 20
+ignorehitpause = 1
+persistent = 1
+
+[State 1003, Attack Player]
+type = HitDef
+trigger1 = Timemod = 5,0
+trigger1 = time > 5
+attr = S, SA
+damage = 15, 5
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 8, 8
+sparkno = s7020 + (random % 8)
+sparkxy = -10, -130
+hitsound = s5, 2
+guardsound = s6, 0
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -4
+airguard.velocity = -1.9,-.8
+air.type = High
+air.velocity = -1.4,-3
+air.hittime = 12
+getpower = 15
+
+;---------------------------------------------------------------------------
+; Assist - Muscle Man (Dizzy)
+[Statedef 1004]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 1003
+sprpriority = 2
+
+[State 1004, Disappear forever...]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+; Assist - Benson
+[Statedef 1006]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 30,0
+ctrl = 0
+anim = 1004
+sprpriority = 2
+
+[State 1006, Hold your horses!]
+type = VelSet
+trigger1 = animelem = 6
+x = 0
+y = 0
+
+[State 1006, SWING sound effect]
+type = PlaySnd
+trigger1 = animelem = 6
+trigger2 = animelem = 10
+value = S0,6
+
+[State 1006, Disappear forever...]
+type = DestroySelf
+trigger1 = time = 100
+
+[State 1006, First Hit!]
+type = HitDef
+trigger1 = animelem = 6
+attr = S, SA
+damage = 45, 10
+animtype = Heavy
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 8, 35
+sparkno = s7018
+sparkxy = -10, -130
+hitsound = s5, 7
+guardsound = s6, 1
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -4
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = -1.4,-3
+air.hittime = 12
+envshake.time = 10
+envshake.freq = 60
+envshake.ampl = -15
+envshake.phase = 90
+getpower = 45
+
+[State 1006, Final Hit!]
+type = HitDef
+trigger1 = animelem = 12
+attr = S, SA
+damage = 45, 10
+animtype = up
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 8, 8
+sparkno = s7018
+sparkxy = -10, -130
+hitsound = s5, 7
+guardsound = s6, 1
+ground.type = Low
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -4,-20
+airguard.velocity = -1.9,-.8
+air.type = Low
+air.velocity = -1.4,-20
+air.hittime = 12
+envshake.time = 10
+envshake.freq = 60
+envshake.ampl = -15
+envshake.phase = 90
+fall = 1
+getpower = 45
+
+[State 1006, Jump into space]
+type = VelSet
+trigger1 = animelem = 13
+x = 4
+y = -20
+
+[State 1006, "ERRAAUUGGHH!"]
+type = PlaySnd
+trigger1 = time = 0
+value = S3,2
+
+[State 1006, "RRRRAAA!"]
+type = PlaySnd
+trigger1 = Animelem = 10
+value = S3,6
+
+;---------------------------------------------------------------------------
+; Assist - Lantern Big Bird
+[Statedef 10000]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 25,0
+ctrl = 0
+anim = 10000
+sprpriority = -1
+
+[State 10000, "WHOOSH" SFX]
+type = PlaySnd
+trigger1 = time = 0
+value = S0,5
+channel = 7
+
+[State 10000, "Here comes... SuperBird!"]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S6001,14
+channel = 8
+
+[State 10000, Teddy Bear attack! 🐻]
+type = HitDef
+trigger1 = Timemod = 6, 0
+attr = S, SA
+damage = 10, 5
+animtype = Heavy
+guardflag = MA
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 12, 14
+sparkno = s7030 + (random % 8)
+sparkxy = -10, -130
+hitsound = -1
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = 0,15
+airguard.velocity = 0,-.8
+air.type = High
+air.velocity = 0,15
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 7
+palfx.time = 40
+palfx.add = 0,256,0
+palfx.mul = 0,256,0
+palfx.sinadd = 0,256,0
+palfx.color = 0
+
+[State 10000, Multiple Hit Sounds]
+type = PlaySnd
+trigger1 = movehit = 1
+value = S5,2
+channel = 0
+
+[State 10000, Land to cancel velocity]
+type = VelSet
+trigger1 = animelem = 18
+x = 0
+
+[State 10000, Feet land SFX]
+type = PlaySnd
+trigger1 = animelem = 18
+value = S52,0
+channel = 9
+
+[State 10000, Disappear]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+; Assist - Lantern Angry Bird
+[Statedef 10001]
+type    = S
+movetype= A
+physics = N
+juggle  = 1
+velset = 0,0
+ctrl = 0
+anim = 10001
+sprpriority = -1
+
+[State 10001, Special Boost]
+type = PlaySnd
+trigger1 = animelem = 26
+value = S10001,0
+channel = 10
+
+[State 10001, "WAZAAAAAAAHAH!"]
+type = PlaySnd
+trigger1 = Animelem = 26
+value = S6001,(10 + (random % 3))
+channel = 11
+
+[State 10001, Shut Up...]
+type = StopSnd
+trigger1 = Animelem = 32
+channel = 11
+
+
+[State 10001, *menacing laugh*]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S6001,9
+channel = 12
+
+[State 10001, Slingshot SFX]
+type = PlaySnd
+trigger1 = Animelem = 10
+value = S6001,13
+channel = 13
+
+
+[State 10001, Dash through opponent]
+type = HitDef
+trigger1 = Timemod = 3, 0
+attr = S, SA
+damage = 20, 10
+animtype = Heavy
+guardflag = MA
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 12, 14
+sparkno = s7030 + (random % 8)
+sparkxy = -10, -130
+hitsound = -1
+guardsound = s6, 1
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = 0,15
+airguard.velocity = 0,-.8
+air.type = High
+air.velocity = 0,15
+air.hittime = 12
+fall = 1
+envshake.time = 15
+envshake.ampl = 7
+palfx.time = 40
+palfx.add = 0,256,0
+palfx.mul = 0,256,0
+palfx.sinadd = 0,256,0
+palfx.color = 0
+
+[State 10001, Multiple Hit Sounds]
+type = PlaySnd
+trigger1 = movehit = 1
+value = S5,5
+channel = 0
+
+[State 10001, Release from slingshot]
+type = VelSet
+trigger1 = animelem = 26
+x = 20
+
+[State 10001, Land from flying]
+type = VelSet
+trigger1 = animelem = 32
+x = 0
+
+[State 10001, Land SFX]
+type = PlaySnd
+trigger1 = animelem = 32
+value = S52,0
+channel = 14
+
+[State 10001, Disappear]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;---------------------------------------------------------------------------
+; VFX - Level 1 Flash
+[Statedef 20000]
+anim = -1
+ctrl = 0
+
+[State 20000, SuperPause]
+type = SuperPause
+trigger1 = time = 5
+time = 50
+anim = s15000
+sound = S10,0
+pos = 0,-120
+movetime = 50
+poweradd = -1000
+darken = 0
+
+[State 20000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 20000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 0, 0, 255
+color = 0
+
+[State 20000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 20000, Disappear]
+type = DestroySelf
+trigger1 = parent, animtime = 0
