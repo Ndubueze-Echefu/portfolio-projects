@@ -466,17 +466,6 @@ trigger1 = animtime = 0
 anim = -1
 ctrl = 0
 
-[State 20000, SuperPause]
-type = SuperPause
-trigger1 = time = 5
-time = 50
-anim = s15000
-sound = S10,0
-pos = 0,-120
-movetime = 50
-poweradd = -1000
-darken = 0
-
 [State 20000, Lv1 BG Pal]
 type = bgpalfx
 trigger1 = time <= 5
@@ -502,3 +491,52 @@ color = floor(51.2 * (time -40))
 [State 20000, Disappear]
 type = DestroySelf
 trigger1 = parent, animtime = 0
+
+;---------------------------------------------------------------------------
+; VFX - Hyper Background
+[Statedef 21000]
+anim = -1
+ctrl = 0
+
+[State 6000, Hyper Background]
+type = Explod
+trigger1 = !time
+anim = 701
+ID = 700
+pos = 0,0
+postype = back
+bindtime = -1
+removetime = -1
+scale = 2,2
+sprpriority = -1
+
+[State 6000, Glass Break]
+type = explod
+trigger1 = animtime = 0
+trigger2 = stateno = [5000,5170]
+anim = 703
+pos = 0,0
+id = 703
+vfacing = 1
+bindtime = -1
+postype = back
+scale = 2,2
+sprpriority = -5
+removetime = -2
+ownpal = 1
+removeongethit = 1
+persistent = 0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = animtime = 0
+id = 700
+
+[State 6000, Glass Break SFX]
+type = PlaySnd
+trigger1 = NumExplod(703) = 1
+value = S10,2
+
+[State 20000, Disappear]
+type = DestroySelf
+trigger1 = time = 300

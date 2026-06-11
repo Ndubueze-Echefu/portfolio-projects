@@ -221,6 +221,41 @@ color = 12*time
 
 ---
 
+---
+
+## Session 3: Glass Break Loop Fix (2026-06-10)
+
+### Q1: Issue with Glass break transition - glass break sprites and sfx repeat endlessly
+
+**A:** ✅ **DIAGNOSED & FIXED**
+
+**Root Cause:** Statedef 21000 (Hyper Background Helper) had conflicting settings:
+- `trigger1 = animtime = 0` (line 526) - triggers every frame when condition met
+- `persistent = 1` (line 539) - allows trigger to re-evaluate continuously
+- Combined: explod gets recreated repeatedly, sound plays repeatedly
+
+**The Fix:**
+```
+[State 6000, Glass Break]
+type = explod
+trigger1 = animtime = 0
+...
+persistent = 0     ;CHANGED FROM: persistent = 1
+```
+
+**Why This Works:**
+- `persistent = 0` (default) = trigger only fires once per condition
+- Glass Break explod spawns once, sfx plays once, done
+- Matches working behavior of Statedef 6000 (Society Laser) which uses `Animelem = 27` trigger
+
+**Comparison:**
+- **Statedef 6000** (working) - Uses `trigger1 = Animelem = 27` (one-time animation event)
+- **Statedef 21000** (fixed) - Now uses `persistent = 0` to prevent loop
+
+**File Modified:** `Coding/Helpers.cns` - Line 539
+
+---
+
 ## To-Do / Ongoing Items
 - [ ] Add scaled Explod sparks to hypers (optional, for MUGEN compatibility)
 - [ ] MVC1-style hitsound implementation in 6002
