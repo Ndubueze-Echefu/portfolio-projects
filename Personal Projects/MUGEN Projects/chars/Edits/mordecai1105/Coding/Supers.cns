@@ -28,8 +28,14 @@ trigger1 = animelem = 2
 stateno = 20000
 ID = 20000
 name="Level 1 Flash"
+supermovetime = 999999
 
-
+[State 6000, Hyper Background Sequence]
+type = helper
+trigger1 = animelem = 4
+stateno = 21000
+ID = 21000
+name="Hyper Background Sequence"
 
 [State 6000, Laser Burst SFX]
 type = PlaySnd
@@ -86,6 +92,7 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
 
 ;---------------------------------------------------------------------------
 ; Lantern Hammer

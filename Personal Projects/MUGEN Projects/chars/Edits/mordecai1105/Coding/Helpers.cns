@@ -463,7 +463,7 @@ trigger1 = animtime = 0
 ;---------------------------------------------------------------------------
 ; VFX - Level 1 Flash
 [Statedef 20000]
-anim = -1
+anim = 999999
 ctrl = 0
 
 [State 20000, Lv1 BG Pal]
@@ -495,7 +495,7 @@ trigger1 = parent, animtime = 0
 ;---------------------------------------------------------------------------
 ; VFX - Hyper Background
 [Statedef 21000]
-anim = -1
+anim = 999999
 ctrl = 0
 
 [State 6000, Hyper Background]
@@ -512,8 +512,8 @@ sprpriority = -1
 
 [State 6000, Glass Break]
 type = explod
-trigger1 = animtime = 0
-trigger2 = stateno = [5000,5170]
+trigger1 = parent, animtime = 0
+trigger2 = parent, stateno = [5000,5170]
 anim = 703
 pos = 0,0
 id = 703
@@ -525,11 +525,11 @@ sprpriority = -5
 removetime = -2
 ownpal = 1
 removeongethit = 1
-persistent = 0
+persistent = 1
 
 [State 0, RemoveExplod]
 type = RemoveExplod
-trigger1 = animtime = 0
+trigger1 = parent, animtime = 0
 id = 700
 
 [State 6000, Glass Break SFX]

@@ -256,6 +256,82 @@ persistent = 0     ;CHANGED FROM: persistent = 1
 
 ---
 
+---
+
+## Session 4: SuperPause Helper & Screen Flash (2026-06-12)
+
+### Q1: How can I make a helper move during a game pause? (Level 1 screen flash effect)
+
+**A:** Use `pausemovetime = 999999` on the helper creation state:
+```
+[State 6000, Level 1 Flash]
+type = helper
+trigger1 = animelem = 2
+stateno = 20000
+ID = 20000
+name = "Level 1 Flash"
+pausemovetime = 999999
+```
+
+---
+
+### Q2: Didn't work. Does pausemovetime work under SuperPause?
+
+**A:** ❌ **No.** `pausemovetime` only works during a regular **Pause**, not a **SuperPause**.
+
+During a SuperPause, everything is frozen except the SuperPause owner (and only for `movetime` ticks). Helpers cannot be made active during SuperPause via `pausemovetime`.
+
+**Alternatives considered:**
+1. Run flash logic directly in the player's own states (bgpalfx in statedef 6000)
+2. Use a regular Pause instead of SuperPause
+3. Sequence the helper after the SuperPause ends
+4. Use owner-side tricks during `movetime`
+
+---
+
+### Q3: Found supermovetime — confirmed fix
+
+**A:** ✅ **RESOLVED**
+
+`supermovetime` is the correct parameter for SuperPause (separate from `pausemovetime`):
+```
+[State 6000, Level 1 Flash]
+type = helper
+trigger1 = animelem = 2
+stateno = 20000
+ID = 20000
+name = "Level 1 Flash"
+supermovetime = 999999
+```
+
+---
+
+### Q4: Can I destroy a helper inline with the main code snippet?
+
+**A:** Yes, using `DestroyHelper` by ID:
+```
+[State 6000, Destroy Level 1 Flash]
+type = DestroyHelper
+trigger1 = someCondition
+ID = 20000
+```
+
+**Note:** In this case the helper is already self-managing via:
+```
+[State 20000, Disappear]
+type = DestroySelf
+trigger1 = parent, animtime = 0
+```
+Manual destruction only needed if you want to kill it early (e.g. on move interrupt). Example safety destroy:
+```
+[State 6000, Destroy Level 1 Flash]
+type = DestroyHelper
+trigger1 = time >= 50
+ID = 20000
+```
+
+---
+
 ## To-Do / Ongoing Items
 - [ ] Add scaled Explod sparks to hypers (optional, for MUGEN compatibility)
 - [ ] MVC1-style hitsound implementation in 6002
