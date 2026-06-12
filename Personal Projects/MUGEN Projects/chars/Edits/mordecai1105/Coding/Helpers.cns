@@ -512,7 +512,7 @@ sprpriority = -1
 
 [State 6000, Glass Break]
 type = explod
-trigger1 = parent, animtime = 0
+trigger1 = (parent, stateno = 6000) && (parent, animelem = 27)
 trigger2 = parent, stateno = [5000,5170]
 anim = 703
 pos = 0,0
@@ -529,13 +529,19 @@ persistent = 1
 
 [State 0, RemoveExplod]
 type = RemoveExplod
-trigger1 = parent, animtime = 0
+trigger1 = (parent, stateno = 6000) && (parent, animelem = 27)
+trigger2 = parent, stateno = [5000,5170]
 id = 700
 
 [State 6000, Glass Break SFX]
 type = PlaySnd
 trigger1 = NumExplod(703) = 1
 value = S10,2
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = animtime = 0
+id = 703
 
 [State 20000, Disappear]
 type = DestroySelf
