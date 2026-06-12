@@ -13,8 +13,8 @@ sprpriority = 2
 [State 6000, SuperPause]
 type = SuperPause
 trigger1 = animelem = 2
-time = 59
-movetime = 45
+time = 55
+movetime = 55
 anim = s15000
 sound = S10,0
 pos = 0,-120
