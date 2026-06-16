@@ -1,0 +1,121 @@
+;---------------------------------------------------------------------------
+; VFX - Level 1 Flash
+[Statedef 20000]
+anim = 999999
+ctrl = 0
+
+[State 20000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 20000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 0, 0, 255
+color = 0
+
+[State 20000, Lv1 BG Pal]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 20000, Disappear]
+type = DestroySelf
+trigger1 = (parent, stateno = 6000) && (parent, animelem = 10); For Hyper: Society Laser
+trigger2 = (parent, stateno = 6001) && (parent, animelem = 4); For Hyper: Society Laser
+trigger3 = parent, stateno = [5000,5170]; If interrupted by getting hit
+
+;---------------------------------------------------------------------------
+; VFX - Level 2 Flash
+[Statedef 20001]
+anim = 999999
+ctrl = 0
+
+[State 20001, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 20001, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 160, 32, 240
+color = 0
+
+[State 20001, Lv2 BG Pal]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 20001, Disappear]
+type = DestroySelf
+trigger1 = (parent, stateno = 6002) && (parent, animelem = 10); For Hyper: The Power
+;trigger2 = (parent, stateno = 6001) && (parent, animelem = 4); For Hyper: Society Laser
+trigger2 = parent, stateno = [5000,5170]; If interrupted by getting hit
+
+;---------------------------------------------------------------------------
+; VFX - Hyper Background
+[Statedef 21000]
+anim = 999999
+ctrl = 0
+
+[State 21000, Hyper Background]
+type = Explod
+trigger1 = !time
+anim = 701
+ID = 700
+pos = 0,0
+postype = back
+bindtime = -1
+removetime = -1
+scale = 2,2
+sprpriority = -1
+
+[State 21000, Glass Break]
+type = explod
+trigger1 = (parent, stateno = 6000) && (parent, animelem = 27); For Hyper: Society Laser
+trigger2 = (parent, stateno = 6001) && (parent, animelem = 23); For Hyper: Lantern Hammer
+trigger3 = parent, stateno = [5000,5170]
+anim = 703
+pos = 0,0
+id = 703
+vfacing = 1
+bindtime = -1
+postype = back
+scale = 2,2
+sprpriority = -5
+removetime = -2
+ownpal = 1
+removeongethit = 1
+persistent = 1
+removetime = -2
+
+[State 21000, "Break" Hyper Background "into pieces"]
+type = RemoveExplod
+trigger1 = (parent, stateno = 6000) && (parent, animelem = 27); For Hyper: Society Laser
+trigger2 = (parent, stateno = 6001) && (parent, animelem = 23); For Hyper: Lantern Hammer
+trigger3 = parent, stateno = [5000,5170]
+id = 700
+
+[State 21000, Glass Break SFX]
+type = PlaySnd
+trigger1 = NumExplod(703) = 1
+value = S10,2
+persistent = 0
+
+[State 20000, Disappear]
+type = DestroySelf
+trigger1 = time = 300

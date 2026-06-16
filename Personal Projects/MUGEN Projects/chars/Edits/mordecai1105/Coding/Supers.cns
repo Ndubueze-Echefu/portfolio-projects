@@ -186,42 +186,6 @@ trigger1 = ProjHit10001 = 1
 value = S6001,(2 + (random % 7))
 channel = 2
 
-[State 6001, Blue Hyper Background]
-type = Explod
-trigger1 = time = 55
-anim = 701
-ID = 700
-pos = 0,0
-postype = back
-bindtime = -1
-removetime = -1
-scale = 2,2
-sprpriority = -1
-persistent = 1
-
-[State 6001, Glass Break]
-type = explod
-trigger1 = Animelem = 23
-trigger2 = MoveType = H && StateNo != [120,155]
-anim = 703
-pos = 0,0
-id = 703
-vfacing = 1
-bindtime = -1
-postype = back
-scale = 2,2
-sprpriority = -5
-removetime = -2
-ownpal = 1
-removeongethit = 1
-
-[State 6001, Glass Break SFX]
-type = PlaySnd
-trigger1 = Animelem = 23
-trigger2 = MoveType = H && StateNo != [120,155]
-value = S10,2
-channel = 3
-
 [State 6002, SuperPause]
 type = SuperPause
 trigger1 = time = 5
@@ -233,27 +197,20 @@ movetime = 50
 poweradd = -1000
 darken = 0
 
-[State 6001, Lv1 BG Pal]
-type = bgpalfx
-trigger1 = time <= 5
-time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
-color = 256 -floor(25.6 * time)
+[State 6001, Level 1 Flash]
+type = helper
+trigger1 = animelem = 1
+stateno = 20000
+ID = 20000
+name="Level 1 Flash"
+supermovetime = 999999
 
-[State 6001, Lv1 BG Pal]
-type = bgpalfx
-trigger1 = (time = [6, 69])
-time = 1
-mul = 0, 0, 255
-color = 0
-
-[State 6001, Lv1 BG Pal]
-type = bgpalfx
-trigger1 = time >= 70
-time = 1
-mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
-color = floor(51.2 * (time -40))
+[State 6001, Hyper Background Sequence]
+type = helper
+trigger1 = time = 55
+stateno = 21000
+ID = 21000
+name="Hyper Background Sequence"
 
 [State 6001, SFX for spawning the green hammer 🔨]
 type = PlaySnd
@@ -388,28 +345,6 @@ pos = 0,-120
 movetime = 50
 poweradd = -2000
 darken = 0
-
-[State 6002, Lv2 BG Pal]
-type = bgpalfx
-trigger1 = time <= 5
-time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
-color = 256 -floor(25.6 * time)
-
-[State 6002, Lv2 BG Pal]
-type = bgpalfx
-trigger1 = (time = [6, 69])
-time = 1
-mul = 160, 32, 240
-color = 0
-
-[State 6002, Lv2 BG Pal]
-type = bgpalfx
-trigger1 = time >= 70
-time = 1
-mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
-color = floor(51.2 * (time -40))
 
 [State 6002, Stop the Music!]
 type = AssertSpecial

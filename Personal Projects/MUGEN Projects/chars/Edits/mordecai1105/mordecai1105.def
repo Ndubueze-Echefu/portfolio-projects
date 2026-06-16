@@ -20,6 +20,7 @@ st = Coding/mordecai1105.cns
 st1 = Coding/Specials.cns
 st2 = Coding/Supers.cns
 st3 = Coding/Helpers.cns
+st4 = Coding/VFX.cns
 stcommon = Coding/mordecommon.cns
 
 ; Pallete Files 🎨
