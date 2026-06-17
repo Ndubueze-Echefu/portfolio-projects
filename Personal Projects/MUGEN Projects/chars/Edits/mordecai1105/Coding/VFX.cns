@@ -63,8 +63,8 @@ color = floor(51.2 * (time -40))
 [State 20001, Disappear]
 type = DestroySelf
 trigger1 = (parent, stateno = 6002) && (parent, animelem = 10); For Hyper: The Power
-;trigger2 = (parent, stateno = 6001) && (parent, animelem = 4); For Hyper: Society Laser
-trigger2 = parent, stateno = [5000,5170]; If interrupted by getting hit
+trigger2 = (parent, stateno = 6003) && (parent, animelem = 5); For Hyper: Skeet Shot
+trigger3 = parent, stateno = [5000,5170]; If interrupted by getting hit
 
 ;---------------------------------------------------------------------------
 ; VFX - Hyper Background
@@ -74,6 +74,7 @@ ctrl = 0
 
 [State 21000, Hyper Background]
 type = Explod
+triggerall = !(parent, stateno = 6003); If Hyper: Skeet Shot is used. That hyper doesn't need a hyper background.
 trigger1 = !time
 anim = 701
 ID = 700
@@ -88,7 +89,9 @@ sprpriority = -1
 type = explod
 trigger1 = (parent, stateno = 6000) && (parent, animelem = 27); For Hyper: Society Laser
 trigger2 = (parent, stateno = 6001) && (parent, animelem = 23); For Hyper: Lantern Hammer
-trigger3 = parent, stateno = [5000,5170]
+trigger3 = (parent, stateno = 6002) && (parent, animelem = 40); For Hyper: The Power
+trigger4 = (parent, stateno = 6003) && (parent, animelem = 6); && (movehit); For Hyper: Skeet Shot
+trigger5 = parent, stateno = [5000,5170]
 anim = 703
 pos = 0,0
 id = 703
@@ -107,7 +110,8 @@ removetime = -2
 type = RemoveExplod
 trigger1 = (parent, stateno = 6000) && (parent, animelem = 27); For Hyper: Society Laser
 trigger2 = (parent, stateno = 6001) && (parent, animelem = 23); For Hyper: Lantern Hammer
-trigger3 = parent, stateno = [5000,5170]
+trigger3 = (parent, stateno = 6002) && (parent, animelem = 40); For Hyper: The Power
+trigger4 = parent, stateno = [5000,5170]
 id = 700
 
 [State 21000, Glass Break SFX]

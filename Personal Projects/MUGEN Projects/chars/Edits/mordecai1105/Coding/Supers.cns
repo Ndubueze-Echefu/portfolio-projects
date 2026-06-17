@@ -302,38 +302,20 @@ ctrl = 0
 anim = 6002
 sprpriority = 2
 
-[State 6002, Hyper Background]
-type = Explod
+[State 6002, Level 2 Flash]
+type = helper
+trigger1 = animelem = 2
+stateno = 20001
+ID = 20001
+name="Level 2 Flash"
+supermovetime = 999999
+
+[State 6002, Hyper Background Sequence]
+type = helper
 trigger1 = time = 55
-anim = 701
-ID = 700
-pos = 0,0
-postype = back
-bindtime = -1
-removetime = -1
-scale = 2,2
-sprpriority = -1
-
-[State 6000, Glass Break]
-type = explod
-trigger1 = Animelem = 40
-anim = 703
-pos = 0,0
-id = 703
-vfacing = 1
-bindtime = -1
-postype = back
-scale = 2,2
-sprpriority = -5
-removetime = -2
-ownpal = 1
-removeongethit = 1
-
-[State 6000, Glass Break SFX]
-type = PlaySnd
-trigger1 = Animelem = 40
-value = S10,2
-channel = 1
+stateno = 21000
+ID = 21000
+name="Hyper Background Sequence"
 
 [State 6002, SuperPause]
 type = SuperPause
@@ -456,7 +438,7 @@ ctrl = 0
 anim = 6003
 sprpriority = 2
 
-[State 6002, Red Background]
+[State 6003, Red Background]
 type = Explod
 trigger1 = (movehit = 1)
 anim = 9994
@@ -469,37 +451,31 @@ scale = 2,2
 sprpriority = -1
 ignorehitpause = 1
 ownpal = 1
+persistent = 0
 
-[State 0, RemoveExplod]
+[State 6003, Remove Red Background]
 type = RemoveExplod
 trigger1 = Animelem = 6
 id = 9994
 
-[State 6000, Glass Break]
-type = explod
-trigger1 = Animelem = 6 && (movehit)
-anim = 703
-pos = 0,0
-id = 703
-vfacing = 1
-bindtime = -1
-postype = back
-scale = 2,2
-sprpriority = 4
-removetime = -2
-ownpal = 1
-removeongethit = 1
-persistent = 0
+[State 6003, Level 2 Flash]
+type = helper
+trigger1 = animelem = 1
+stateno = 20001
+ID = 20001
+name="Level 2 Flash"
+supermovetime = 999999
 
-[State 6000, Glass Break SFX]
-type = PlaySnd
-trigger1 = Animelem = 6 && (movehit)
-value = S10,2
-persistent = 0
+[State 6003, Hyper Background Sequence]
+type = helper
+trigger1 = time = 55
+stateno = 21000
+ID = 21000
+name="Hyper Background Sequence"
 
-[State 6003, 3]
+[State 6003, SuperPause]
 type = SuperPause
-trigger1 = time = 5
+trigger1 = animelem = 1
 time = 50
 anim = s15001
 sound = S10,1
@@ -508,34 +484,12 @@ movetime = 50
 poweradd = -2000
 darken = 0
 
-[State 6002, Lv2 BG Pal]
-type = bgpalfx
-trigger1 = time <= 5
-time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
-color = 256 -floor(25.6 * time)
-
-[State 6002, Lv2 BG Pal]
-type = bgpalfx
-trigger1 = (time = [6, 69])
-time = 1
-mul = 160, 32, 240
-color = 0
-
-[State 6002, Lv2 BG Pal]
-type = bgpalfx
-trigger1 = time = 70
-time = 1
-mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
-color = floor(51.2 * (time -40))
-
-[State 6003, 4]
+[State 6003, Gunshot]
 type = PlaySnd
 trigger1 = animelem = 5
 value = S6003,0
 
-[State 6003, 5]
+[State 6003, Straight Shooter Hitbox]
 type = HitDef
 trigger1 = Animelem = 5
 attr = S, HA
