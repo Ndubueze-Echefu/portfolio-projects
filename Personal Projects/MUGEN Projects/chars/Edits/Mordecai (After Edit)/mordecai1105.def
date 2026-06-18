@@ -1,5 +1,5 @@
 [Info]
-name = "Mordecai1105"
+name = "Mordecai"
 displayname = "Mordecai"
 versiondate =
 mugenversion =
@@ -19,7 +19,7 @@ cns = Coding/mordecai1105.cns
 st = Coding/mordecai1105.cns
 st1 = Coding/Specials.cns
 st2 = Coding/Supers.cns
-st3 = Coding/Helpers.cns
+st3 = Coding/Assists.cns
 st4 = Coding/VFX.cns
 stcommon = Coding/mordecommon.cns
 

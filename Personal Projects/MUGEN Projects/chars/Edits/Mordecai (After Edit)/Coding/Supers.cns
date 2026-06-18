@@ -498,7 +498,7 @@ animtype = Heavy
 guardflag = MA
 hitflag = MAF
 priority = 3, Hit
-pausetime = 60, 15
+pausetime = 60, 60
 sparkno = -1
 sparkxy = -10, -130
 hitsound = s5, 8
@@ -583,56 +583,13 @@ sound = S20000,0
 pos = 0,-100
 darken = 0
 
-[State 6010, Lv3 BG Pal: Flash]
-type = bgpalfx
-trigger1 = time <= 5
-time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
-color = 256 -floor(25.6 * time)
-
-[State 6010, Lv3 BG Pal: Slowly remove flash]
-type = bgpalfx
-trigger1 = (time = [6, 69])
-time = 1
-mul = 149, 53, 83
-color = 0
-
-[State 6010, Lv3 BG Pal: stay purple]
-type = bgpalfx
-trigger1 = time >= 70
-time = 1
-mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
-color = floor(51.2 * (time -40))
-
-[State 6010, Hyper Portrait]
-type = Explod
-trigger1 = time = 0
-anim = 20002
-ID = 20000
-pos = 320,700
-postype = back
-bindtime = -1
-removetime = 98
-scale = 1,1
-supermove = 1
-ontop = 1
-sprpriority = 100
-pausemovetime = -1
-
-[State 6010, Hyper Portrait: Fade In]
-type = modifyexplod
-trigger1 = time <= 35
-trans = addalpha
-alpha = 25*(time-0),256-(25*(time-0))
-id = 20000
-
-[State 6010, Hyper Portrait: Fade Out]
-type = modifyexplod
-trigger1 = time >= 56
-trans = addalpha
-alpha = 256-(25*(time-31)),25*(time-31)
-id = 20000
+[State 6010, Level 3 Flash]
+type = helper
+trigger1 = animelem = 3
+stateno = 20002
+ID = 20002
+name="Level 3 Flash"
+supermovetime = 999999
 
 [State 6010, No bar, music, and unguardable move]
 type = AssertSpecial
@@ -643,10 +600,10 @@ flag3 = unguardable
 ignorehitpause = 1
 persistent = 1
 
-[State 20000, Transistion to The Action]
+[State 20000, Transistion to The Action] ;🚩
 type = ChangeState
-trigger1 = time = 999
-value = 6011
+trigger1 = numhelper(20002) = 0
+value = 0
 ctrl = 1
 ;---------------------------------------------------------------------------
 ; Death Punch! (The Action)

@@ -67,6 +67,72 @@ trigger2 = (parent, stateno = 6003) && (parent, animelem = 5); For Hyper: Skeet 
 trigger3 = parent, stateno = [5000,5170]; If interrupted by getting hit
 
 ;---------------------------------------------------------------------------
+; VFX - Level 3 Flash
+[Statedef 20002]
+anim = 999999
+ctrl = 0
+
+[State 20002, Lv3 BG Pal: Flash]
+type = bgpalfx
+trigger1 = time <= 5
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
+color = 256 -floor(25.6 * time)
+
+[State 20002, Lv3 BG Pal: Slowly remove flash]
+type = bgpalfx
+trigger1 = (time = [6, 69])
+time = 1
+mul = 149, 53, 83
+color = 0
+
+[State 20002, Lv3 BG Pal: stay purple]
+type = bgpalfx
+trigger1 = time >= 70
+time = 1
+mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
+color = floor(51.2 * (time -40))
+
+[State 20002, Hyper Portrait]
+type = Explod
+trigger1 = time = 0
+anim = 20002
+ID = 20000
+pos = 320,700
+postype = back
+bindtime = -1
+removetime = 98
+scale = 1,1
+supermove = 1
+ontop = 1
+sprpriority = 100
+pausemovetime = -1
+
+[State 20002, Hyper Portrait: Fade In]
+type = modifyexplod
+trigger1 = time <= 35
+trans = addalpha
+alpha = 25*(time-0),256-(25*(time-0))
+id = 20000
+
+[State 20002, Hyper Portrait: Fade Out]
+type = modifyexplod
+trigger1 = time >= 56
+trans = addalpha
+alpha = 256-(25*(time-31)),25*(time-31)
+id = 20000
+
+[State 20002, Remove Hyper Portrait]
+type = RemoveExplod
+trigger1 = time > 67
+id = 20000
+
+[State 20002, Disappear]
+type = DestroySelf
+trigger1 = numexplod(20000) = 0
+
+;---------------------------------------------------------------------------
 ; VFX - Hyper Background
 [Statedef 21000]
 anim = 999999
