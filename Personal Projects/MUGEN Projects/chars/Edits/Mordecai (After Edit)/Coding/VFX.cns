@@ -90,7 +90,7 @@ type = explod
 trigger1 = (parent, stateno = 6000) && (parent, animelem = 27); For Hyper: Society Laser
 trigger2 = (parent, stateno = 6001) && (parent, animelem = 23); For Hyper: Lantern Hammer
 trigger3 = (parent, stateno = 6002) && (parent, animelem = 40); For Hyper: The Power
-trigger4 = (parent, stateno = 6003) && (parent, animelem = 6); && (movehit); For Hyper: Skeet Shot
+trigger4 = (parent, stateno = 6003) && (parent, animelem = 6) && (parent, movehit); For Hyper: Skeet Shot
 trigger5 = parent, stateno = [5000,5170]
 anim = 703
 pos = 0,0

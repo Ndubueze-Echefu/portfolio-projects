@@ -498,7 +498,7 @@ animtype = Heavy
 guardflag = MA
 hitflag = MAF
 priority = 3, Hit
-pausetime = 60, 60
+pausetime = 60, 15
 sparkno = -1
 sparkxy = -10, -130
 hitsound = s5, 8
@@ -544,18 +544,13 @@ value = S5,11
 ignorehitpause = 1
 persistent = 0
 
-[State 6003, 6]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 6003, 7]
+[State 6003, "HUGGH!"]
 type = PlaySnd
 trigger1 = animelem = 4
 value = S2,2
 channel = 1
 
-[State 6003, 8]
+[State 6003, Change back to Idle State]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
