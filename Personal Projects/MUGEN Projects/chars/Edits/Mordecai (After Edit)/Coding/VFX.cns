@@ -123,14 +123,14 @@ trans = addalpha
 alpha = 256-(25*(time-31)),25*(time-31)
 id = 20000
 
-[State 20002, Remove Hyper Portrait]
-type = RemoveExplod
-trigger1 = time > 67
-id = 20000
+;[State 20002, Remove Hyper Portrait]
+;type = RemoveExplod
+;trigger1 = time > 100
+;id = 20000
 
-[State 20002, Disappear]
-type = DestroySelf
-trigger1 = numexplod(20000) = 0
+;[State 20002, Disappear]
+;type = DestroySelf
+;trigger1 = numexplod(20000) = 0
 
 ;---------------------------------------------------------------------------
 ; VFX - Hyper Background
