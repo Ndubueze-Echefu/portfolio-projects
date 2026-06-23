@@ -603,8 +603,7 @@ persistent = 1
 
 [State 20000, Transistion to The Action] ;🚩
 type = ChangeState
-triggerall = animelemtime(3) = 60
-trigger1 = numhelper(20002) = 0
+trigger1 = (time > 25) && numhelper(20002) = 0
 value = 0
 ctrl = 1
 ;---------------------------------------------------------------------------
