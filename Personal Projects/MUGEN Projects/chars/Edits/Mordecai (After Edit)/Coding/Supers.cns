@@ -591,7 +591,6 @@ stateno = 20002
 ID = 20002
 name="Level 3 Flash"
 supermovetime = 999999
-persistent = 0
 
 [State 6010, No bar, music, and unguardable move]
 type = AssertSpecial
