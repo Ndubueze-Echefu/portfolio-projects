@@ -438,7 +438,7 @@ ctrl = 0
 anim = 6003
 sprpriority = 2
 
-[State 6003, Red Background]
+[State 6003, Red Background] ;Inspired by Duck Game by DJHannaibalRoyce
 type = Explod
 trigger1 = (movehit = 1)
 anim = 9994
@@ -453,7 +453,7 @@ ignorehitpause = 1
 ownpal = 1
 persistent = 0
 
-[State 6003, Remove Red Background]
+[State 6003, Remove Red Background] ;Inspired by Duck Game by DJHannaibalRoyce
 type = RemoveExplod
 trigger1 = Animelem = 6
 id = 9994
@@ -521,7 +521,7 @@ palfx.mul = 0,0,0
 palfx.sinadd = 56,56,0,10
 palfx.color = 0
 
-[State 6003, Black Siloette]
+[State 6003, Black Siloette] ;Inspired by Duck Game by DJHannaibalRoyce
 type = PalFX
 trigger1 = (movehit = 1)
 time = 50
@@ -532,7 +532,7 @@ invertall = 1
 color = 0
 ignorehitpause = 1
 
-[State 6003, PalFX]
+[State 6003, PalFX] ;Inspired by Duck Game by DJHannaibalRoyce
 type = PalFX
 trigger1 = Animelem = 6
 time = 0
@@ -616,71 +616,6 @@ velset = 0,0
 ctrl = 0
 anim = 20001
 poweradd = -3000
-
-[State 6010, SuperPause]
-type = SuperPause
-trigger1 = time = 0
-time = 215
-movetime = 215
-anim = s6150
-pos = 0,-100
-darken = 0
-
-[State 6010, Lv3 BG Pal]
-type = bgpalfx
-trigger1 = time <= 5
-time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
-color = 256 -floor(25.6 * time)
-
-[State 6010, Lv3 BG Pal]
-type = bgpalfx
-trigger1 = (time = [6, 69])
-time = 1
-mul = 149, 53, 83
-color = 0
-
-[State 6010, Lv3 BG Pal]
-type = bgpalfx
-trigger1 = time >= 70
-time = 1
-mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
-color = floor(51.2 * (time -40))
-
-[State 6010, Hyper Portrait]
-type = Explod
-trigger1 = time = 0
-anim = 20002
-ID = 20000
-pos = 320,700
-postype = back
-bindtime = -1
-removetime = 98
-scale = 1,1
-supermove = 1
-ontop = 1
-sprpriority = 100
-pausemovetime = -1
-
-[State 6010, Hyper Portrait: Fade In]
-type = modifyexplod
-trigger1 = time <= 10
-trans = addalpha
-alpha = 25*(time-0),256-(25*(time-0))
-id = 20000
-
-[State 6010, Hyper Portrait: Fade Out]
-type = modifyexplod
-trigger1 = time >= 31
-trans = addalpha
-alpha = 256-(25*(time-31)),25*(time-31)
-id = 20000
-
-[State 6010, Lvl 3 Hyper SFX]
-type = PlaySnd
-trigger1 = time = 0
-value = S20000,0
 
 [State 6010, No bar, music, and unguardable move]
 type = AssertSpecial

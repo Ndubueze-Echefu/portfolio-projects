@@ -2735,6 +2735,7 @@ LoopStart
 20001,10, 0,0, 2
 20001,11, 0,0, 2
 20001,12, 0,0, 2
+LoopStart
 Clsn1: 1
   Clsn1[0] = -800, -629, 797, 8
 20001,13, 0,0, 2
@@ -2754,6 +2755,10 @@ Clsn1: 1
   Clsn1[0] = -800, -629, 797, 8
 20001,14, 0,0, 2
 
+
+; Regular Show Background
+[Begin Action 20002]
+-1,0, 0,0, 0
 
 ; Midnight Bliss
 [Begin Action 66660]
