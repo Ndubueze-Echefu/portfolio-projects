@@ -2757,8 +2757,8 @@ Clsn1: 1
 
 
 ; Regular Show Background
-[Begin Action 20002]
--1,0, 0,0, 0
+[Begin Action 20003]
+20002,0, 0,0, 10
 
 ; Midnight Bliss
 [Begin Action 66660]
