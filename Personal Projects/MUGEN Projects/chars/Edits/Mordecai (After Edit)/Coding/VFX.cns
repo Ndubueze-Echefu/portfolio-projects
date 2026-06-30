@@ -92,10 +92,10 @@ time = 1
 mul = 149, 53, 83
 color = 0
 
-[State 20002, Lv3 BG Pal: stay purple]
+[State 20002, Lv3 BG Pal: stay red]
 type = bgpalfx
 trigger1 = time >= 70
-time = 1
+time = 30
 mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
 color = floor(51.2 * (time -40))
 ;====================================================================================
@@ -135,6 +135,31 @@ id = 20000
 type = DestroySelf
 trigger1 = numexplod(20000) = 0
 
+;---------------------------------------------------------------------------
+; VFX - White Flash
+[Statedef 20003]
+anim = 999999
+ctrl = 0
+
+[State 20003, White Flash]
+type = bgpalfx
+trigger1 = time <= 10
+time = 1
+add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
+mul = 256, 256, 256
+color = 256
+
+[State 20003, Flash Fadeout]
+type = bgpalfx
+trigger1 = time > 10
+time = 1
+add = 0, 0, 0
+mul = 256, 256, 256
+color = 256
+
+[State 20003, Disappear]
+type = DestroySelf
+trigger1 = time = 60
 ;---------------------------------------------------------------------------
 ; VFX - Hyper Background
 [Statedef 21000]
@@ -189,6 +214,4 @@ trigger1 = NumExplod(703) = 1
 value = S10,2
 persistent = 0
 
-[State 20000, Disappear]
-type = DestroySelf
-trigger1 = time = 300
+[State 20000, Disapp

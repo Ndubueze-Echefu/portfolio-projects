@@ -623,7 +623,16 @@ persistent = 0
 [State 6011, Initial Pause]
 type = Pause
 trigger1 = 1
-time = 120
+time = 60
+persistent = 0
+
+[State 6011, Initial White Flash]
+type = helper
+trigger1 = 1
+stateno = 20003
+ID = 20003
+name="White Flash"
+pausemovetime = 60
 persistent = 0
 ;---------------------------------------------------------------------------
 ; Death Punch! (Aftermath)
