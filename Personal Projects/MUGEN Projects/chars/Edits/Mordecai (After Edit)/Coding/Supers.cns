@@ -620,6 +620,19 @@ trigger1 = 1
 value = S20000,1
 persistent = 0
 
+[State 6011, Park Background] ;🚩
+type = Explod
+trigger1 = 1
+space = screen
+anim = 20003
+ID = 20003
+postype = Left
+pos = 160, floor((1.3333333 * GameHeight / GameWidth) * 120) ;Props to Dawn De Era's Joe character for dynamic positioning
+scale = 0.5, 0.5 * (1.3333333 * GameHeight / GameWidth) ;Props to Dawn De Era's Joe character for dynamic scaling
+pausemovetime = 999999
+sprpriority = 0
+
+
 [State 6011, Initial Pause]
 type = Pause
 trigger1 = 1
