@@ -601,7 +601,7 @@ flag3 = unguardable
 ignorehitpause = 1
 persistent = 1
 
-[State 20000, Transistion to The Action] ;🚩
+[State 20000, Transistion to The Action]
 type = ChangeState
 trigger1 = (time > 25) && numhelper(20002) = 0
 value = 6011
@@ -620,16 +620,15 @@ trigger1 = 1
 value = S20000,1
 persistent = 0
 
-[State 6011, Park Background] ;🚩
+[State 6011, Park Background]
 type = Explod
 trigger1 = 1
 space = screen
 anim = 20003
 ID = 20003
 postype = Left
-pos = 160, floor((1.3333333 * GameHeight / GameWidth) * 120) ;Props to Dawn De Era's Joe character for dynamic positioning
-scale = 0.5, 0.5 * (1.3333333 * GameHeight / GameWidth) ;Props to Dawn De Era's Joe character for dynamic scaling
-pausemovetime = 999999
+pos = 0, 200
+scale = GameWidth/320, GameHeight/240
 sprpriority = 0
 
 
@@ -639,7 +638,7 @@ trigger1 = 1
 time = 60
 persistent = 0
 
-[State 6011, Initial White Flash]
+[State 6011, Initial White Flash] 🚩
 type = helper
 trigger1 = 1
 stateno = 20003

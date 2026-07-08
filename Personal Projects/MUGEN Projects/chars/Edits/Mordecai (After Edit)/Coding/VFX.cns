@@ -136,7 +136,7 @@ type = DestroySelf
 trigger1 = numexplod(20000) = 0
 
 ;---------------------------------------------------------------------------
-; VFX - White Flash
+; VFX - White Flash 🚩
 [Statedef 20003]
 anim = 999999
 ctrl = 0
