@@ -1,10 +1,5 @@
-; Constants and state file.
-; There are comments scattered through this file, so you may like to
-; take a look if would like to learn more about the cns.
+; Main Coding File
 
-; Notes:
-; - Any states with the 🚩 emoji, unfinished and needs attention
-; - Don't forget to revamp the cmd files as well. This character has 3 cmd versions: the main one, the brutal AI one, and the serious AI one. Only focus on the main one. You're gonna revamp the AI anyways. 🤷‍
 ;-------------------------------------------------------------------------------------------------------------
 [Data]
 life = 1000			;Amount of life to start with

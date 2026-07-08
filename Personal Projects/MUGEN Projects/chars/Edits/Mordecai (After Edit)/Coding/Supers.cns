@@ -1,3 +1,5 @@
+;Coding for Super Moves
+
 ;---------------------------------------------------------------------------
 ; Society Laser
 [Statedef 6000]
@@ -638,14 +640,49 @@ trigger1 = 1
 time = 60
 persistent = 0
 
-[State 6011, Initial White Flash] 🚩
-type = helper
+[State 6011, White Flash]
+type = Explod
 trigger1 = 1
-stateno = 20003
-ID = 20003
-name="White Flash"
-pausemovetime = 60
+anim = 20004
+ID = 20004
+postype = Left
+pos = 300, 200
+scale = 300, 300
+removetime = -2
+pausemovetime = 999999
+sprpriority = 1
+ontop = 1
 persistent = 0
+
+[State 20000, Large Burst SFX]
+type = PlaySnd
+trigger1 = animelem = 11
+value = S20000,2
+
+[State 20000, BIG HIT]
+type = HitDef
+trigger1 = time = 0
+attr = S, NA
+damage = 500, 500
+animtype = Heavy
+guardflag = MA
+hitflag = MAFD
+priority = 3, Hit
+pausetime = 8, 8
+sparkno = 3
+sparkxy = -10, -76
+hitsound = s20000, 3
+guardsound = s6, 0
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+ground.velocity = -4,-40
+airguard.velocity = -1.9,-.8
+air.type = High
+air.velocity = -4,-40
+air.hittime = 12
+fall = 1
+
 ;---------------------------------------------------------------------------
 ; Death Punch! (Aftermath)
 [Statedef 6012]
@@ -730,35 +767,6 @@ flag2 = nomusic
 flag3 = unguardable
 ignorehitpause = 1
 persistent = 1
-
-[State 20000, Large Burst SFX]
-type = PlaySnd
-trigger1 = animelem = 13
-value = S20000,2
-
-[State 20000, BIG HIT]
-type = HitDef
-trigger1 = time = 0
-attr = S, NA
-damage = 500, 500
-animtype = Heavy
-guardflag = MA
-hitflag = MAFD
-priority = 3, Hit
-pausetime = 8, 8
-sparkno = 3
-sparkxy = -10, -76
-hitsound = s20000, 3
-guardsound = s6, 0
-ground.type = High
-ground.slidetime = 5
-ground.hittime  = 12
-ground.velocity = -4,-40
-airguard.velocity = -1.9,-.8
-air.type = High
-air.velocity = -4,-40
-air.hittime = 12
-fall = 1
 
 [State 20000, Some weird engine SFX]
 type = PlaySnd

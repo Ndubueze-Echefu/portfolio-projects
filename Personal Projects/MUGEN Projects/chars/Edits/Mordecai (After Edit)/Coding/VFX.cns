@@ -1,3 +1,5 @@
+;Coding for Visual Special Effects
+
 ;---------------------------------------------------------------------------
 ; VFX - Level 1 Flash
 [Statedef 20000]
@@ -134,32 +136,6 @@ id = 20000
 [State 20002, Disappear]
 type = DestroySelf
 trigger1 = numexplod(20000) = 0
-
-;---------------------------------------------------------------------------
-; VFX - White Flash 🚩
-[Statedef 20003]
-anim = 999999
-ctrl = 0
-
-[State 20003, White Flash]
-type = bgpalfx
-trigger1 = time <= 10
-time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256, 256, 256
-color = 256
-
-[State 20003, Flash Fadeout]
-type = bgpalfx
-trigger1 = time > 10
-time = 1
-add = 0, 0, 0
-mul = 256, 256, 256
-color = 256
-
-[State 20003, Disappear]
-type = DestroySelf
-trigger1 = time = 60
 ;---------------------------------------------------------------------------
 ; VFX - Hyper Background
 [Statedef 21000]
