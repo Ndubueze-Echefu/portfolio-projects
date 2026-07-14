@@ -2768,6 +2768,10 @@ Clsn1: 1
 20003,0, 0,0, 1, , AS48D156
 20003,0, 0,0, -1, , AS0D256
 
+; Explosion
+[Begin Action 20005]
+-1,0, 0,0, 0
+
 ; Midnight Bliss
 [Begin Action 66660]
 9020,0, 0,0, 1
