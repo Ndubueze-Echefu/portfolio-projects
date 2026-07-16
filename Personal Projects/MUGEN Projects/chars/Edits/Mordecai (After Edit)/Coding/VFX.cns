@@ -173,7 +173,7 @@ sprpriority = -5
 removetime = -2
 ownpal = 1
 removeongethit = 1
-persistent = 1
+persistent = 0
 removetime = -2
 
 [State 21000, "Break" Hyper Background "into pieces"]

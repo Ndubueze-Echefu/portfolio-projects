@@ -654,12 +654,12 @@ sprpriority = 1
 ontop = 1
 persistent = 0
 
-[State 20000, Large Burst SFX]
+[State 6011, Large Burst SFX]
 type = PlaySnd
 trigger1 = animelem = 11
 value = S20000,2
 
-[State 20000, BIG HIT]
+[State 6011, BIG HIT]
 type = HitDef
 trigger1 = time = 0
 attr = S, NA
@@ -682,6 +682,31 @@ air.type = High
 air.velocity = -4,-40
 air.hittime = 12
 fall = 1
+
+[State 6011, Explosion animation 🚩]
+type = Explod
+trigger1 = movehit
+anim = 20005
+space = screen
+pos = 0,0
+postype = Left
+facing = 1
+vfacing = 1
+bindtime = 1
+accel = 0,0
+random = 0,0
+removetime = -2
+supermovetime = 0
+pausemovetime = 0
+scale = GameWidth/320, GameHeight/240
+sprpriority = 0
+ontop = 1
+shadow = 0,0,0
+ownpal = 0
+removeongethit = 0
+;ignorehitpause = 
+;persistent = 
+
 
 ;---------------------------------------------------------------------------
 ; Death Punch! (Aftermath)
