@@ -633,11 +633,11 @@ pos = 0, 200
 scale = GameWidth/320, GameHeight/240
 sprpriority = 0
 
-
-[State 6011, Initial Pause]
+[State 6011, Pause everything but Mordecai]
 type = Pause
 trigger1 = 1
-time = 60
+time = 500
+movetime = 500
 persistent = 0
 
 [State 6011, White Flash]
@@ -683,12 +683,6 @@ air.velocity = -4,-40
 air.hittime = 12
 fall = 1
 
-[State 6011, Pause game when explosion animation happens 🚩]
-type = Pause
-trigger1 = movehit
-time = 200
-movetime = -1
-
 [State 6011, Explosion Sound]
 type = PlaySnd
 trigger1 = movehit
@@ -708,6 +702,8 @@ scale = GameWidth/320, GameHeight/240
 ontop = 1
 bindtime = -1
 persistent = 0
+removetime = -1
+pausemovetime = 9999999999999
 
 
 ;---------------------------------------------------------------------------
