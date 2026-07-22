@@ -631,13 +631,15 @@ ID = 20003
 postype = Left
 pos = 0, 200
 scale = GameWidth/320, GameHeight/240
+removetime = 1000
 sprpriority = 0
+persistent = 0
 
 [State 6011, Pause everything but Mordecai]
 type = Pause
 trigger1 = 1
-time = 500
-movetime = 500
+time = 360
+movetime = 360
 persistent = 0
 
 [State 6011, White Flash]
@@ -705,6 +707,35 @@ persistent = 0
 removetime = -1
 pausemovetime = 9999999999999
 
+[State 6011, Reverse White Flash 🚩]
+type = Explod
+trigger1 = time > 200
+anim = 20006
+ID = 20006
+postype = Left
+pos = 300, 200
+scale = 300, 300
+removetime = -2
+pausemovetime = 999999
+sprpriority = 5
+ontop = 1
+persistent = 0
+
+[State 6011, "OW!!!"]
+type = PlaySnd
+trigger1 = time > 360
+value = S11,0
+
+[State 6011, Velocity of ALSO getting hit]
+type = VelSet
+trigger1 = time > 360
+y = -40
+
+[State 6011, Change to Hit state]
+type = ChangeState
+trigger1 = time > 360
+value = 5050
+ctrl = 1
 
 ;---------------------------------------------------------------------------
 ; Death Punch! (Aftermath)
@@ -714,108 +745,13 @@ movetype = A
 juggle  = 1
 velset = 0,0
 ctrl = 0
-anim = 20001
-poweradd = -3000
 
-[State 6010, SuperPause]
-type = SuperPause
-trigger1 = time = 0
-time = 215
-movetime = 215
-anim = s6150
-pos = 0,-100
-darken = 0
-
-[State 6010, Lv3 BG Pal]
-type = bgpalfx
-trigger1 = time <= 5
-time = 1
-add = 256 -ceil(25.6 * time), 256 -ceil(25.6 * time), 256 -ceil(25.6 * time)
-mul = 256 -floor(25.6 * time), 256 -floor(25.6 * time), 256
-color = 256 -floor(25.6 * time)
-
-[State 6010, Lv3 BG Pal]
-type = bgpalfx
-trigger1 = (time = [6, 69])
-time = 1
-mul = 149, 53, 83
-color = 0
-
-[State 6010, Lv3 BG Pal]
-type = bgpalfx
-trigger1 = time >= 70
-time = 1
-mul = ceil(51.2 * (time -40)), ceil(51.2 * (time -40)), 256
-color = floor(51.2 * (time -40))
-
-[State 6010, Hyper Portrait]
-type = Explod
-trigger1 = time = 0
-anim = 20002
-ID = 20000
-pos = 320,700
-postype = back
-bindtime = -1
-removetime = 98
-scale = 1,1
-supermove = 1
-ontop = 1
-sprpriority = 100
-pausemovetime = -1
-
-[State 6010, Hyper Portrait: Fade In]
-type = modifyexplod
-trigger1 = time <= 10
-trans = addalpha
-alpha = 25*(time-0),256-(25*(time-0))
-id = 20000
-
-[State 6010, Hyper Portrait: Fade Out]
-type = modifyexplod
-trigger1 = time >= 31
-trans = addalpha
-alpha = 256-(25*(time-31)),25*(time-31)
-id = 20000
-
-[State 6010, Lvl 3 Hyper SFX]
-type = PlaySnd
-trigger1 = time = 0
-value = S20000,0
-
-[State 6010, No bar, music, and unguardable move]
-type = AssertSpecial
-trigger1 = 1
-flag = nobardisplay
-flag2 = nomusic
-flag3 = unguardable
-ignorehitpause = 1
-persistent = 1
-
-[State 20000, Some weird engine SFX]
-type = PlaySnd
-trigger1 = animelem = 13
-value = S20000,4
-
-[State 20000, Camera Shake]
-type = EnvShake
-trigger1 = animelem = 13
-time = 20
-freq = 60
-ampl = -40
-phase = 90
-
-[State 20000, Self-inflicted pain SFX]
-type = PlaySnd
-trigger1 = animtime = 0
-value = S11,0
-channel = 1
-
-[State 20000, Velocity of ALSO getting hit]
+[State 6012, Velocity of ALSO getting hit]
 type = VelSet
 trigger1 = animtime = 0
 y = -40
 
-[State 20000, Hit state]
+[State 6012, Change to Hit state]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 5050
