@@ -631,7 +631,6 @@ ID = 20003
 postype = Left
 pos = 0, 200
 scale = GameWidth/320, GameHeight/240
-removetime = 1000
 sprpriority = 0
 persistent = 0
 
@@ -671,7 +670,7 @@ guardflag = MA
 hitflag = MAFD
 priority = 3, Hit
 pausetime = 8, 8
-sparkno = 3
+sparkno = s7018
 sparkxy = -10, -76
 hitsound = s20000, 3
 guardsound = s6, 0
@@ -694,32 +693,47 @@ persistent = 0
 
 [State 6011, Explosion]
 type = Explod
-triggerall = movehit
-trigger1 = 1
-space = screen
+trigger1 = movehit
 anim = 20005
 postype = Left
 pos = 360, 250
 scale = GameWidth/320, GameHeight/240
-ontop = 1
+ontop = 0
 bindtime = -1
+sprpriority = 5
 persistent = 0
-removetime = -1
+removetime = 200
 pausemovetime = 9999999999999
 
-[State 6011, Reverse White Flash 🚩]
+[State 6011, Reverse White Flash]
 type = Explod
-trigger1 = time > 200
+trigger1 = time > 275
 anim = 20006
 ID = 20006
 postype = Left
+space = screen
 pos = 300, 200
 scale = 300, 300
 removetime = -2
 pausemovetime = 999999
-sprpriority = 5
+sprpriority = 10
 ontop = 1
 persistent = 0
+
+[State 6011, Remove Park Background]
+type = RemoveExplod
+trigger1 = time > 360
+id = 20003
+
+[State 6011, Remove White Flash]
+type = RemoveExplod
+trigger1 = time > 360
+id = 20004
+
+[State 6011, Remove Reverse White Flash]
+type = RemoveExplod
+trigger1 = time > 360
+id = 20006
 
 [State 6011, "OW!!!"]
 type = PlaySnd
@@ -734,25 +748,5 @@ y = -40
 [State 6011, Change to Hit state]
 type = ChangeState
 trigger1 = time > 360
-value = 5050
-ctrl = 1
-
-;---------------------------------------------------------------------------
-; Death Punch! (Aftermath)
-[Statedef 6012]
-type    = S
-movetype = A
-juggle  = 1
-velset = 0,0
-ctrl = 0
-
-[State 6012, Velocity of ALSO getting hit]
-type = VelSet
-trigger1 = animtime = 0
-y = -40
-
-[State 6012, Change to Hit state]
-type = ChangeState
-trigger1 = AnimTime = 0
 value = 5050
 ctrl = 1
