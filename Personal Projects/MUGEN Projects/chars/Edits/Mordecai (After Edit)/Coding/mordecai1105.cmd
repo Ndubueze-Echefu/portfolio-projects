@@ -620,64 +620,64 @@ trigger1 = command = "Benson"
 
 ;---------------------------------------------------------------------------
 ; Zankou (Light)
-[State -1, Zankou Light]
-type = ChangeState
-value = 1010
-triggerall = command = "Zankou (Light)"
-trigger1 = ctrl
-trigger1 = statetype != A
-trigger2 = (stateno = 200) && movecontact
-trigger3 = (stateno = 210) && movecontact
-trigger4 = (stateno = 220) && movecontact
-trigger5 = (stateno = 230) && movecontact
-trigger6 = (stateno = 240) && movecontact
-trigger7 = (stateno = 250) && movecontact
-trigger8 = (stateno = 400) && movecontact
-trigger9 = (stateno = 410) && movecontact
-trigger10 = (stateno = 420) && movecontact
-trigger11 = (stateno = 430) && movecontact
-trigger12 = (stateno = 440) && movecontact
-trigger13 = (stateno = 450) && movecontact
+;[State -1, Zankou Light]
+;type = ChangeState
+;value = 1010
+;triggerall = command = "Zankou (Light)"
+;trigger1 = ctrl
+;trigger1 = statetype != A
+;trigger2 = (stateno = 200) && movecontact
+;trigger3 = (stateno = 210) && movecontact
+;trigger4 = (stateno = 220) && movecontact
+;trigger5 = (stateno = 230) && movecontact
+;trigger6 = (stateno = 240) && movecontact
+;trigger7 = (stateno = 250) && movecontact
+;trigger8 = (stateno = 400) && movecontact
+;trigger9 = (stateno = 410) && movecontact
+;trigger10 = (stateno = 420) && movecontact
+;trigger11 = (stateno = 430) && movecontact
+;trigger12 = (stateno = 440) && movecontact
+;trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 ; Zankou (Medium)
-[State -1, Zankou Medium]
-type = ChangeState
-value = 1011
-triggerall = command = "Zankou (Medium)"
-trigger1 = ctrl
-trigger1 = statetype != A
-trigger2 = (stateno = 200) && movecontact
-trigger3 = (stateno = 210) && movecontact
-trigger4 = (stateno = 220) && movecontact
-trigger5 = (stateno = 230) && movecontact
-trigger6 = (stateno = 240) && movecontact
-trigger7 = (stateno = 250) && movecontact
-trigger8 = (stateno = 400) && movecontact
-trigger9 = (stateno = 410) && movecontact
-trigger10 = (stateno = 420) && movecontact
-trigger11 = (stateno = 430) && movecontact
-trigger12 = (stateno = 440) && movecontact
-trigger13 = (stateno = 450) && movecontact
+;[State -1, Zankou Medium]
+;type = ChangeState
+;value = 1011
+;triggerall = command = "Zankou (Medium)"
+;trigger1 = ctrl
+;trigger1 = statetype != A
+;trigger2 = (stateno = 200) && movecontact
+;trigger3 = (stateno = 210) && movecontact
+;trigger4 = (stateno = 220) && movecontact
+;trigger5 = (stateno = 230) && movecontact
+;trigger6 = (stateno = 240) && movecontact
+;trigger7 = (stateno = 250) && movecontact
+;trigger8 = (stateno = 400) && movecontact
+;trigger9 = (stateno = 410) && movecontact
+;trigger10 = (stateno = 420) && movecontact
+;trigger11 = (stateno = 430) && movecontact
+;trigger12 = (stateno = 440) && movecontact
+;trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 ; Zankou (Strong)
-[State -1, Zankou Strong]
-type = ChangeState
-value = 1012
-triggerall = command = "Zankou (Strong)"
-trigger1 = ctrl
-trigger1 = statetype != A
-trigger2 = (stateno = 200) && movecontact
-trigger3 = (stateno = 210) && movecontact
-trigger4 = (stateno = 220) && movecontact
-trigger5 = (stateno = 230) && movecontact
-trigger6 = (stateno = 240) && movecontact
-trigger7 = (stateno = 250) && movecontact
-trigger8 = (stateno = 400) && movecontact
-trigger9 = (stateno = 410) && movecontact
-trigger10 = (stateno = 420) && movecontact
-trigger11 = (stateno = 430) && movecontact
-trigger12 = (stateno = 440) && movecontact
-trigger13 = (stateno = 450) && movecontact
+;[State -1, Zankou Strong]
+;type = ChangeState
+;value = 1012
+;triggerall = command = "Zankou (Strong)"
+;trigger1 = ctrl
+;trigger1 = statetype != A
+;trigger2 = (stateno = 200) && movecontact
+;trigger3 = (stateno = 210) && movecontact
+;trigger4 = (stateno = 220) && movecontact
+;trigger5 = (stateno = 230) && movecontact
+;trigger6 = (stateno = 240) && movecontact
+;trigger7 = (stateno = 250) && movecontact
+;trigger8 = (stateno = 400) && movecontact
+;trigger9 = (stateno = 410) && movecontact
+;trigger10 = (stateno = 420) && movecontact
+;trigger11 = (stateno = 430) && movecontact
+;trigger12 = (stateno = 440) && movecontact
+;trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 ; Zankou (EX)
 [State -1, Zankou EX]

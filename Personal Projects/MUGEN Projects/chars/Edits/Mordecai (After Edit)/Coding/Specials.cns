@@ -441,16 +441,56 @@ type    = S
 movetype= A
 physics = S
 juggle  = 1
-velset = -5,0; Back up a bit
+velset = -10,0; Back up a bit
 ctrl = 0
 anim = 1020; Startup animation
 poweradd = -500; EX move will cost ya! 👀
 sprpriority = 2
 
+
+;=======================AFTER EFFECTS EX (Coding inspired from RoySquadRocks)===============
+[State 1013, EX Activation SFX]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S10,3
+
+[State 1013, Cool EX Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 15
+palbright = 30,30,30
+palcontrast = 140,140,140
+paladd = -10,-10,-10
+palmul = 0.85,0.85,0.85
+timegap = 1
+framegap = 2
+trans = Add
+time = -1
+
+[State 1013, Flicker character with EX]
+type = PalFX
+trigger1 = Time%3 = 0
+time = 1
+add = 256,256,0
+mul = 128,128,64
+invertall = 0
+
+[State 1013, EX Spark Animation]
+type = Explod
+trigger1 = AnimElem = 1
+id = 3
+anim = 10000
+pos = 1,-41
+scale = 1,1
+sprpriority = 8
+ownpal = 0
+facing = 1
+
 [State 1013, Go to part 2 for this EX]
 type = ChangeState
-trigger1 = time = 35
+trigger1 = time = 10
 value = 1014
+;====================================================================================
 ;---------------------------------------------------------------------------
 ; 🚩Zankou - EX (Attack)
 [StateDef 1014]   
