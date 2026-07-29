@@ -435,7 +435,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; 🚩Zankou - EX (Startup)
+;Zankou - EX (Startup)
 [Statedef 1013]
 type    = S
 movetype= A
@@ -465,7 +465,7 @@ palmul = 0.85,0.85,0.85
 timegap = 1
 framegap = 2
 trans = Add
-time = -1
+time = 30
 
 [State 1013, Flicker character with EX]
 type = PalFX
@@ -479,9 +479,9 @@ invertall = 0
 type = Explod
 trigger1 = AnimElem = 1
 id = 3
-anim = 10000
-pos = 1,-41
-scale = 1,1
+anim = 15002
+pos = -3,-106
+scale = 1.5,1.5
 sprpriority = 8
 ownpal = 0
 facing = 1
@@ -507,12 +507,11 @@ trigger1 = animelem = 2
 value = S0,6
 
 
-[State 1007, 1]
+[State 1007, HUGE slash 🚩]
 type = HitDef
 trigger1 = animelem = 2
-trigger2 = animelem = 4
 attr = S, SA
-damage = 45, 10
+damage = 135, 30
 animtype = Heavy
 guardflag = MA
 hitflag = MAF
@@ -532,19 +531,14 @@ air.velocity = -12,0
 air.hittime = 12
 fall = 1
 
-[State 1007, 2]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 1007, 3]
+[State 1007, "HUH?!"]
 type = PlaySnd
 trigger1 = time = 0
 ;trigger1 = random < 500
 value = S2,0
 channel = 1
 
-[State 1007, 4]
+[State 1007, Change back to idle state]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
