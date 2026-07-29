@@ -23,7 +23,7 @@ st3 = Coding/Assists.cns
 st4 = Coding/VFX.cns
 stcommon = Coding/mordecommon.cns
 
-; Pallete Files 🎨
+;Pallete Files 🎨
 pal1 = Palletes/norm.act
 pal2 = Palletes/cardinal.act
 pal3 = Palletes/sparrow.act

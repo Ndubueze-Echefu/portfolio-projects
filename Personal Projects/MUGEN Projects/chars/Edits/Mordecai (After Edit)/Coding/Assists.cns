@@ -346,6 +346,7 @@ type = PlaySnd
 trigger1 = movehit = 1
 value = S5,2
 channel = 0
+ignorehitpause = 1
 
 [State 10000, Land to cancel velocity]
 type = VelSet
@@ -441,6 +442,7 @@ type = PlaySnd
 trigger1 = movehit = 1
 value = S5,5
 channel = 0
+ignorehitpause = 1
 
 [State 10001, Release from slingshot]
 type = VelSet

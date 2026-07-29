@@ -492,34 +492,34 @@ trigger1 = time = 10
 value = 1014
 ;====================================================================================
 ;---------------------------------------------------------------------------
-; 🚩Zankou - EX (Attack)
+;Zankou - EX (Attack)
 [StateDef 1014]   
 type = S
 movetype = A
 physics = S
-velset = 20,0; CHARGE!
+velset = 30,0; CHARGE!
 anim = 1021; Attack Animation
 sprPriority = 2
 
-[State 1013, Really Big Swing]
+[State 1014, Really Big Swing]
 type = PlaySnd
 trigger1 = animelem = 2
 value = S0,6
 
 
-[State 1007, HUGE slash 🚩]
+[State 1014, HUGE slash]
 type = HitDef
-trigger1 = animelem = 2
+trigger1 = animelem = 3
 attr = S, SA
 damage = 135, 30
 animtype = Heavy
 guardflag = MA
 hitflag = MAF
 priority = 3, Hit
-pausetime = 8, 8
-sparkno = 2
+pausetime = 30, 30
+sparkno = s7020 + (random % 8)
 sparkxy = -10, -130
-hitsound = s5, 2
+hitsound = s5, 14
 guardsound = s6, 1
 ground.type = High
 ground.slidetime = 5
@@ -531,14 +531,24 @@ air.velocity = -12,0
 air.hittime = 12
 fall = 1
 
-[State 1007, "HUH?!"]
+
+[State 1014, Red flash on hit]
+type = EnvColor
+trigger1 = movehit
+value = 255,0,0
+time = 5
+under = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 1014, "HUH?!"]
 type = PlaySnd
 trigger1 = time = 0
 ;trigger1 = random < 500
 value = S2,0
 channel = 1
 
-[State 1007, Change back to idle state]
+[State 1014, Change back to idle state]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
