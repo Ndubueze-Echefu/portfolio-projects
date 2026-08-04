@@ -188,7 +188,7 @@ time = 20
 
 [Command]
 name = "Tumble"
-command = D, DF, F
+command = D, DF, F, a
 time = 20
 
 [Command]
@@ -580,181 +580,6 @@ time = 1
 ;===========================================================================
 
 ;---------------------------------------------------------------------------
-; Guard Counter
-[state -1, Guard Counter]
-type = changestate
-value = 900
-triggerall = (command = "Guard Counter")
-triggerall = (power >= 1000)
-trigger1 = stateno = [150,153]
-
-;---------------------------------------------------------------------------
-; Assist - Pops
-[State -1, Assist - Pops]
-type = ChangeState
-value = 1000
-triggerall = ctrl
-triggerall = numhelper(1001) = 0
-triggerall = statetype != A
-trigger1 = command = "Pops"
-
-;---------------------------------------------------------------------------
-; Assist - Muscle Man
-[State -1, Assist - Muscle Man]
-type = ChangeState
-value = 1002
-triggerall = ctrl
-triggerall = numhelper(1001) = 0
-triggerall = statetype != A
-trigger1 = command = "Muscle Man"
-
-;---------------------------------------------------------------------------
-; Assist - Benson
-[State -1, Assist - Benson]
-type = ChangeState
-value = 1005
-triggerall = ctrl
-triggerall = numhelper(1001) = 0
-triggerall = statetype != A
-trigger1 = command = "Benson"
-
-;---------------------------------------------------------------------------
-; Zankou (Light)
-;[State -1, Zankou Light]
-;type = ChangeState
-;value = 1010
-;triggerall = command = "Zankou (Light)"
-;trigger1 = ctrl
-;trigger1 = statetype != A
-;trigger2 = (stateno = 200) && movecontact
-;trigger3 = (stateno = 210) && movecontact
-;trigger4 = (stateno = 220) && movecontact
-;trigger5 = (stateno = 230) && movecontact
-;trigger6 = (stateno = 240) && movecontact
-;trigger7 = (stateno = 250) && movecontact
-;trigger8 = (stateno = 400) && movecontact
-;trigger9 = (stateno = 410) && movecontact
-;trigger10 = (stateno = 420) && movecontact
-;trigger11 = (stateno = 430) && movecontact
-;trigger12 = (stateno = 440) && movecontact
-;trigger13 = (stateno = 450) && movecontact
-;---------------------------------------------------------------------------
-; Zankou (Medium)
-;[State -1, Zankou Medium]
-;type = ChangeState
-;value = 1011
-;triggerall = command = "Zankou (Medium)"
-;trigger1 = ctrl
-;trigger1 = statetype != A
-;trigger2 = (stateno = 200) && movecontact
-;trigger3 = (stateno = 210) && movecontact
-;trigger4 = (stateno = 220) && movecontact
-;trigger5 = (stateno = 230) && movecontact
-;trigger6 = (stateno = 240) && movecontact
-;trigger7 = (stateno = 250) && movecontact
-;trigger8 = (stateno = 400) && movecontact
-;trigger9 = (stateno = 410) && movecontact
-;trigger10 = (stateno = 420) && movecontact
-;trigger11 = (stateno = 430) && movecontact
-;trigger12 = (stateno = 440) && movecontact
-;trigger13 = (stateno = 450) && movecontact
-;---------------------------------------------------------------------------
-; Zankou (Strong)
-;[State -1, Zankou Strong]
-;type = ChangeState
-;value = 1012
-;triggerall = command = "Zankou (Strong)"
-;trigger1 = ctrl
-;trigger1 = statetype != A
-;trigger2 = (stateno = 200) && movecontact
-;trigger3 = (stateno = 210) && movecontact
-;trigger4 = (stateno = 220) && movecontact
-;trigger5 = (stateno = 230) && movecontact
-;trigger6 = (stateno = 240) && movecontact
-;trigger7 = (stateno = 250) && movecontact
-;trigger8 = (stateno = 400) && movecontact
-;trigger9 = (stateno = 410) && movecontact
-;trigger10 = (stateno = 420) && movecontact
-;trigger11 = (stateno = 430) && movecontact
-;trigger12 = (stateno = 440) && movecontact
-;trigger13 = (stateno = 450) && movecontact
-;---------------------------------------------------------------------------
-; Zankou (EX)
-[State -1, Zankou EX]
-type = ChangeState
-value = 1013
-triggerall = power >= 500
-triggerall = command = "Zankou (EX)"
-trigger1 = ctrl
-trigger1 = statetype != A
-trigger2 = (stateno = 200) && movecontact
-trigger3 = (stateno = 210) && movecontact
-trigger4 = (stateno = 220) && movecontact
-trigger5 = (stateno = 230) && movecontact
-trigger6 = (stateno = 240) && movecontact
-trigger7 = (stateno = 250) && movecontact
-trigger8 = (stateno = 400) && movecontact
-trigger9 = (stateno = 410) && movecontact
-trigger10 = (stateno = 420) && movecontact
-trigger11 = (stateno = 430) && movecontact
-trigger12 = (stateno = 440) && movecontact
-trigger13 = (stateno = 450) && movecontact
-;---------------------------------------------------------------------------
-; Tumble
-[State -1, Tumble]
-type = ChangeState
-value = 1008
-triggerall = ctrl
-triggerall = statetype = A
-trigger1 = command = "Tumble"
-;---------------------------------------------------------------------------
-; Cyclone
-[State -1, Cyclone]
-type = ChangeState
-value = 1040
-triggerall = command = "Cyclone"
-triggerall = statetype = S
-triggerall = ctrl
-triggerall = stateno != 100
-triggerall = p2bodydist X < 10
-triggerall = (p2statetype = S) || (p2statetype = C)
-triggerall = p2movetype != H
-trigger1 = ctrl
-
-;---------------------------------------------------------------------------
-; Society Laser
-[State -1, Hyper - Society Laser]
-type = ChangeState
-value = 6000
-triggerall = power >= 1000
-triggerall = command = "Society Laser"
-trigger1 = ctrl
-trigger1 = statetype != A
-trigger2 = (stateno = 200) && movecontact
-trigger3 = (stateno = 210) && movecontact
-trigger4 = (stateno = 220) && movecontact
-trigger5 = (stateno = 230) && movecontact
-trigger6 = (stateno = 240) && movecontact
-trigger7 = (stateno = 250) && movecontact
-trigger8 = (stateno = 400) && movecontact
-trigger9 = (stateno = 410) && movecontact
-trigger10 = (stateno = 420) && movecontact
-trigger11 = (stateno = 430) && movecontact
-trigger12 = (stateno = 440) && movecontact
-trigger13 = (stateno = 450) && movecontact
-
-;---------------------------------------------------------------------------
-; Lantern Hammer
-[State -1, Hyper - Lantern Hammer]
-type = ChangeState
-value = 6001
-triggerall = ctrl
-triggerall = statetype != A
-triggerall = power >= 1000
-triggerall = numhelper(10000) = 0
-trigger1 = command = "Lantern Hammer"
-
-;---------------------------------------------------------------------------
 ; The Power
 [State -1, Hyper - The Power]
 type = ChangeState
@@ -806,8 +631,184 @@ triggerall = ctrl
 triggerall = statetype = S || statetype = C
 triggerall = power >= 3000
 trigger1 = command = "FINISHER"
+;---------------------------------------------------------------------------
+; Zankou (EX)
+[State -1, Zankou EX]
+type = ChangeState
+value = 1013
+triggerall = power >= 500
+triggerall = command = "Zankou (EX)"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
+
+;---------------------------------------------------------------------------
+; Assist - Pops
+[State -1, Assist - Pops]
+type = ChangeState
+value = 1000
+triggerall = ctrl
+triggerall = numhelper(1001) = 0
+triggerall = statetype != A
+trigger1 = command = "Pops"
+
+;---------------------------------------------------------------------------
+; Assist - Muscle Man
+[State -1, Assist - Muscle Man]
+type = ChangeState
+value = 1002
+triggerall = ctrl
+triggerall = numhelper(1001) = 0
+triggerall = statetype != A
+trigger1 = command = "Muscle Man"
+
+;---------------------------------------------------------------------------
+; Assist - Benson
+[State -1, Assist - Benson]
+type = ChangeState
+value = 1005
+triggerall = ctrl
+triggerall = numhelper(1001) = 0
+triggerall = statetype != A
+trigger1 = command = "Benson"
+
+;---------------------------------------------------------------------------
+; Zankou (Light)
+[State -1, Zankou Light]
+type = ChangeState
+value = 1010
+triggerall = command = "Zankou (Light)"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
+;---------------------------------------------------------------------------
+; Zankou (Medium)
+[State -1, Zankou Medium]
+type = ChangeState
+value = 1011
+triggerall = command = "Zankou (Medium)"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
+;---------------------------------------------------------------------------
+; Zankou (Strong)
+[State -1, Zankou Strong]
+type = ChangeState
+value = 1012
+triggerall = command = "Zankou (Strong)"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
+;---------------------------------------------------------------------------
+; Tumble
+[State -1, Tumble]
+type = ChangeState
+value = 1020
+triggerall = ctrl
+triggerall = statetype != A
+trigger1 = command = "Tumble"
+;---------------------------------------------------------------------------
+; Cyclone
+[State -1, Cyclone]
+type = ChangeState
+value = 1040
+triggerall = command = "Cyclone"
+triggerall = statetype = S
+triggerall = ctrl
+triggerall = stateno != 100
+triggerall = p2bodydist X < 10
+triggerall = (p2statetype = S) || (p2statetype = C)
+triggerall = p2movetype != H
+trigger1 = ctrl
+
+;---------------------------------------------------------------------------
+; Society Laser
+[State -1, Hyper - Society Laser]
+type = ChangeState
+value = 6000
+triggerall = power >= 1000
+triggerall = command = "Society Laser"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
+
+;---------------------------------------------------------------------------
+; Lantern Hammer
+[State -1, Hyper - Lantern Hammer]
+type = ChangeState
+value = 6001
+triggerall = ctrl
+triggerall = statetype != A
+triggerall = power >= 1000
+triggerall = numhelper(10000) = 0
+trigger1 = command = "Lantern Hammer"
 
 ;===========================================================================
+
+;---------------------------------------------------------------------------
+; Guard Counter
+[state -1, Guard Counter]
+type = changestate
+value = 900
+triggerall = (command = "Guard Counter")
+triggerall = (power >= 1000)
+trigger1 = stateno = [150,153]
+
 ;---------------------------------------------------------------------------
 ; Hi Jump
 [State -1, Hi Jump]

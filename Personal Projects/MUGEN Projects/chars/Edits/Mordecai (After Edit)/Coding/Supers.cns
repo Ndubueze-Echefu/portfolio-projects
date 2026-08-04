@@ -82,6 +82,7 @@ type = PlaySnd
 trigger1 = movehit = 1
 value = S6000,1
 channel = 0
+ignorehitpause = 0
 
 [State 6000, "YES!" Line]
 type = PlaySnd
@@ -233,7 +234,7 @@ priority = 3, Hit
 pausetime = 2, 8
 sparkno = s7018
 sparkxy = -10, -130
-hitsound = -1
+hitsound = 5,7
 guardsound = s6, 1
 ground.type = High
 ground.slidetime = 5

@@ -565,36 +565,32 @@ ctrl = 0
 anim = 1007
 
 
-[State 1009, VelAdd]
+[State 1020, Launch velocity]
 type = VelAdd
 trigger1 = Animelem = 3
 x = 20
 y = -15
 
-[State 1009, 1]
+[State 1020, Gravity velocity]
 type = VelAdd
 triggerall = time >= 16
 trigger1 = 1
 y = 1
 
-[State 1009, AngleDraw]
+[State 1020, Spiiiinnn! 😵‍💫]
 type = AngleDraw
-trigger1 = time >= 16
+triggerall = time >= 16
 trigger1 = 1
+value = time*-10
+ignorehitpause = 1
 
-[State 1009, AngleAdd]
-type = AngleAdd
-trigger1 = time >= 16
-trigger1 = time%1 = 0
-value = -10
-
-[State 1009, 0]
+[State 1020, Whoosh sound effect]
 type = PlaySnd
 trigger1 = time >= 16
 trigger1 = timemod = 4,0
-value = S0,7
+value = S0,5
 
-[State 1009, 1]
+[State 1020, Tumble over opponent]
 type = HitDef
 trigger1 = time >= 16
 trigger1 = timemod = 4,0
@@ -618,12 +614,7 @@ air.type = High
 air.velocity = -1.4,-3
 air.hittime = 12
 
-[State 1008, 3]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 1008, 4]
+[State 1020, 4]
 type = PlaySnd
 trigger1 = time = 0
 trigger1 = random < 500
@@ -631,7 +622,7 @@ value = S2,6
 channel = 1
 
 
-[State 1008, ChangeState]
+[State 1020, Land and change back to idle]
 type = ChangeState
 trigger1 = pos y > 0
 trigger1 = vel y >= 0
