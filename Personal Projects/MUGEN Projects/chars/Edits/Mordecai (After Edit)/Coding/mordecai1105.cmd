@@ -187,8 +187,18 @@ command = ~B, DB, B, z
 time = 20
 
 [Command]
-name = "Tumble"
+name = "Tumble (light)"
 command = D, DF, F, a
+time = 20
+
+[Command]
+name = "Tumble (medium)"
+command = D, DF, F, b
+time = 20
+
+[Command]
+name = "Tumble (strong)"
+command = D, DF, F, c
 time = 20
 
 [Command]
@@ -744,13 +754,29 @@ trigger11 = (stateno = 430) && movecontact
 trigger12 = (stateno = 440) && movecontact
 trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
-; Tumble
-[State -1, Tumble]
+; Tumble (light)
+[State -1, Tumble Light]
 type = ChangeState
 value = 1020
 triggerall = ctrl
 triggerall = statetype != A
-trigger1 = command = "Tumble"
+trigger1 = command = "Tumble (light)"
+;---------------------------------------------------------------------------
+; Tumble (medium)
+[State -1, Tumble Medium]
+type = ChangeState
+value = 1021
+triggerall = ctrl
+triggerall = statetype != A
+trigger1 = command = "Tumble (medium)"
+;---------------------------------------------------------------------------
+; Tumble (strong)
+[State -1, Tumble Strong]
+type = ChangeState
+value = 1022
+triggerall = ctrl
+triggerall = statetype != A
+trigger1 = command = "Tumble (strong)"
 ;---------------------------------------------------------------------------
 ; Cyclone
 [State -1, Cyclone]
