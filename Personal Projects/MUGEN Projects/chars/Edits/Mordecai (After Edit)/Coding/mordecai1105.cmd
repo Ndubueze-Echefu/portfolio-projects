@@ -122,7 +122,7 @@ time = 35
 
 [Command]
 name = "Society Laser"
-command = D, DF, F, x+y
+command = D, DF, F, D, DF, F, x+y
 time = 30
 
 [Command]
@@ -132,7 +132,7 @@ time = 30
 
 [Command]
 name = "The Power"
-command = D, DF, F, a+b
+command = D, DF, F, D, DF, F, a+b
 time = 30
 
 [Command]
@@ -154,6 +154,21 @@ time = 20
 [Command]
 name = "Zankou (EX)"
 command = ~B, DB, B, x+z
+time = 20
+
+[Command]
+name = "Tumble (EX)"
+command = ~D, DF, F, a+b
+time = 20
+
+[Command]
+name = "Tumble (EX)"
+command = ~D, DF, F, b+c
+time = 20
+
+[Command]
+name = "Tumble (EX)"
+command = ~D, DF, F, a+c
 time = 20
 ;-| Special Motions |------------------------------------------------------
 [Command]
@@ -588,7 +603,13 @@ time = 1
 [Statedef -1]
 
 ;===========================================================================
-
+[State -1, FINISHER]
+type = ChangeState
+value = 6010
+triggerall = ctrl
+triggerall = statetype = S || statetype = C
+triggerall = power >= 3000
+trigger1 = command = "FINISHER"
 ;---------------------------------------------------------------------------
 ; The Power
 [State -1, Hyper - The Power]
@@ -632,16 +653,40 @@ trigger10 = (stateno = 420) && movecontact
 trigger11 = (stateno = 430) && movecontact
 trigger12 = (stateno = 440) && movecontact
 trigger13 = (stateno = 450) && movecontact
+;---------------------------------------------------------------------------
+; Society Laser
+[State -1, Hyper - Society Laser]
+type = ChangeState
+value = 6000
+triggerall = power >= 1000
+triggerall = command = "Society Laser"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
 
 ;---------------------------------------------------------------------------
-[State -1, FINISHER]
+; Lantern Hammer
+[State -1, Hyper - Lantern Hammer]
 type = ChangeState
-value = 6010
+value = 6001
 triggerall = ctrl
-triggerall = statetype = S || statetype = C
-triggerall = power >= 3000
-trigger1 = command = "FINISHER"
-;---------------------------------------------------------------------------
+triggerall = statetype != A
+triggerall = power >= 1000
+triggerall = numhelper(10000) = 0
+trigger1 = command = "Lantern Hammer"
+;------------------------------------------------------------------------------
+
 ; Zankou (EX)
 [State -1, Zankou EX]
 type = ChangeState
@@ -662,6 +707,14 @@ trigger10 = (stateno = 420) && movecontact
 trigger11 = (stateno = 430) && movecontact
 trigger12 = (stateno = 440) && movecontact
 trigger13 = (stateno = 450) && movecontact
+;---------------------------------------------------------------------------
+; Tumble (EX)
+[State -1, Tumble EX]
+type = ChangeState
+value = 1023
+triggerall = ctrl
+triggerall = statetype != A
+trigger1 = command = "Tumble (EX)"
 
 ;---------------------------------------------------------------------------
 ; Assist - Pops
@@ -790,39 +843,6 @@ triggerall = p2bodydist X < 10
 triggerall = (p2statetype = S) || (p2statetype = C)
 triggerall = p2movetype != H
 trigger1 = ctrl
-
-;---------------------------------------------------------------------------
-; Society Laser
-[State -1, Hyper - Society Laser]
-type = ChangeState
-value = 6000
-triggerall = power >= 1000
-triggerall = command = "Society Laser"
-trigger1 = ctrl
-trigger1 = statetype != A
-trigger2 = (stateno = 200) && movecontact
-trigger3 = (stateno = 210) && movecontact
-trigger4 = (stateno = 220) && movecontact
-trigger5 = (stateno = 230) && movecontact
-trigger6 = (stateno = 240) && movecontact
-trigger7 = (stateno = 250) && movecontact
-trigger8 = (stateno = 400) && movecontact
-trigger9 = (stateno = 410) && movecontact
-trigger10 = (stateno = 420) && movecontact
-trigger11 = (stateno = 430) && movecontact
-trigger12 = (stateno = 440) && movecontact
-trigger13 = (stateno = 450) && movecontact
-
-;---------------------------------------------------------------------------
-; Lantern Hammer
-[State -1, Hyper - Lantern Hammer]
-type = ChangeState
-value = 6001
-triggerall = ctrl
-triggerall = statetype != A
-triggerall = power >= 1000
-triggerall = numhelper(10000) = 0
-trigger1 = command = "Lantern Hammer"
 
 ;===========================================================================
 

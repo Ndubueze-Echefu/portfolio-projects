@@ -485,6 +485,7 @@ scale = 1.5,1.5
 sprpriority = 8
 ownpal = 0
 facing = 1
+;============================================================================================
 
 [State 1013, Go to part 2 for this EX]
 type = ChangeState
@@ -595,7 +596,7 @@ type = HitDef
 trigger1 = time >= 12
 trigger1 = timemod = 4,0
 attr = A, SA
-damage = 15, 3
+damage = 10, 3
 animtype = Heavy
 guardflag = MA
 hitflag = MAF
@@ -671,7 +672,7 @@ type = HitDef
 trigger1 = time >= 12
 trigger1 = timemod = 4,0
 attr = A, SA
-damage = 15, 3
+damage = 10, 3
 animtype = Heavy
 guardflag = MA
 hitflag = MAF
@@ -707,7 +708,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; 🚩Tumble (ground) - Strong
+;Tumble (ground) - Strong
 [Statedef 1022]
 type    = S
 movetype= A
@@ -736,7 +737,7 @@ trigger1 = 1
 value = time*-10
 ignorehitpause = 1
 
-[State 1020, Whoosh sound effect]
+[State 1022, Whoosh sound effect]
 type = PlaySnd
 trigger1 = time >= 12
 trigger1 = timemod = 4,0
@@ -747,7 +748,7 @@ type = HitDef
 trigger1 = time >= 12
 trigger1 = timemod = 4,0
 attr = A, SA
-damage = 15, 3
+damage = 10, 3
 animtype = Heavy
 guardflag = MA
 hitflag = MAF
@@ -783,59 +784,91 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; 🚩Tumble (ground) - EX
+;🚩Tumble (ground) - EX
 [Statedef 1023]
 type    = S
 movetype= A
 velset = 0,0
-poweradd= 15
+poweradd= -500
 ctrl = 0
 anim = 1007
 
+;=======================AFTER EFFECTS EX (Coding inspired from RoySquadRocks)===============
+[State 1023, EX Activation SFX]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S10,3
 
-[State 1009, VelAdd]
+[State 1023, Cool EX Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 15
+palbright = 30,30,30
+palcontrast = 140,140,140
+paladd = -10,-10,-10
+palmul = 0.85,0.85,0.85
+timegap = 1
+framegap = 2
+trans = Add
+time = 70
+
+[State 1023, Flicker character with EX]
+type = PalFX
+trigger1 = Time%3 = 0
+time = 1
+add = 256,256,0
+mul = 128,128,64
+invertall = 0
+
+[State 1023, EX Spark Animation]
+type = Explod
+trigger1 = AnimElem = 1
+id = 3
+anim = 15002
+pos = -3,-106
+scale = 1.5,1.5
+sprpriority = 8
+ownpal = 0
+facing = 1
+;============================================================================================
+
+[State 1023, Launch velocity]
 type = VelAdd
 trigger1 = Animelem = 3
-x = 20
-y = -15
+x = 5
+y = -30
 
-[State 1009, 1]
+[State 1023, Gravity velocity]
 type = VelAdd
-triggerall = time >= 16
+triggerall = time >= 12
 trigger1 = 1
 y = 1
 
-[State 1009, AngleDraw]
+[State 1023, Spiiiinnn! 😵‍💫]
 type = AngleDraw
-trigger1 = time >= 16
+triggerall = time >= 12
 trigger1 = 1
+value = time*-5
+ignorehitpause = 1
 
-[State 1009, AngleAdd]
-type = AngleAdd
-trigger1 = time >= 16
-trigger1 = time%1 = 0
-value = -10
-
-[State 1009, 0]
+[State 1023, BOING!]
 type = PlaySnd
-trigger1 = time >= 16
-trigger1 = timemod = 4,0
-value = S0,7
+trigger1 = Animelem = 3
+value = S40,3
 
-[State 1009, 1]
+[State 1023, Tumble over opponent]
 type = HitDef
-trigger1 = time >= 16
-trigger1 = timemod = 4,0
+trigger1 = time >= 12
 attr = A, SA
-damage = 15, 3
-animtype = Heavy
-guardflag = MA
+damage = 135, 15
+animtype = Back
+guardflag = MA ;🚩 Bookmark
 hitflag = MAF
 priority = 3, Hit
 pausetime = 8, 8
-sparkno = 2
-sparkxy = -10, -130
-hitsound = s5, 2
+sparkno = s7018
+sparkxy = -10, 0
+hitsound = s5, 15
 guardsound = s6, 1
 ground.type = High
 ground.slidetime = 5
@@ -845,13 +878,9 @@ airguard.velocity = -1.9,-.8
 air.type = High
 air.velocity = -1.4,-3
 air.hittime = 12
+persistent = 0
 
-[State 1008, 3]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 1008, 4]
+[State 1023, "Huh!"]
 type = PlaySnd
 trigger1 = time = 0
 trigger1 = random < 500
@@ -859,8 +888,9 @@ value = S2,6
 channel = 1
 
 
-[State 1008, ChangeState]
+[State 1023, Land and change back to idle]
 type = ChangeState
+triggerall = time > 12
 trigger1 = pos y > 0
 trigger1 = vel y >= 0
 value = 0
