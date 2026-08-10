@@ -862,7 +862,7 @@ trigger1 = time >= 12
 attr = A, SA
 damage = 135, 15
 animtype = Back
-guardflag = MA ;🚩 Bookmark
+guardflag = HA
 hitflag = MAF
 priority = 3, Hit
 pausetime = 8, 8
@@ -873,12 +873,25 @@ guardsound = s6, 1
 ground.type = High
 ground.slidetime = 5
 ground.hittime  = 12
-ground.velocity = -4
+ground.velocity = 0, 10
 airguard.velocity = -1.9,-.8
 air.type = High
-air.velocity = -1.4,-3
+air.velocity = 0, 10
 air.hittime = 12
 persistent = 0
+down.bounce = 1
+fall = 1
+fall.yvelocity = -20
+fall.xvelocity = -5
+fall.recover = 0
+
+[State 1023, Hit Ground Sound FX]
+type = PlaySnd
+triggerall = movehit
+trigger1 = enemyNear, pos y > 0
+value = S5,10
+persistent = 0
+ignorehitpause = 1
 
 [State 1023, "Huh!"]
 type = PlaySnd
