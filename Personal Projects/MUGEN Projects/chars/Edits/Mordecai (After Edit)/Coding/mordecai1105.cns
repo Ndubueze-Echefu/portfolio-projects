@@ -8,7 +8,7 @@ attack = 100		;attack power (more is stronger)
 defence = 100		;defensive power (more is stronger)
 fall.defence_up = 50	;Percentage to increase defense everytime player is knocked down
 liedown.time = 60		;Time which player lies down for, before getting up
-airjuggle = 15		;Number of points for juggling
+airjuggle = 60		;Number of points for juggling
 sparkno = 2			;Default hit spark number for HitDefs
 guard.sparkno = 40	;Default guard spark number
 KO.echo = 0			;1 to enable echo on KO
@@ -1549,6 +1549,7 @@ givepower = 60
 getpower = 80
 fall = 0
 air.fall = 1
+chainID = -1
 
 [State 650, Regain control]
 type = CtrlSet

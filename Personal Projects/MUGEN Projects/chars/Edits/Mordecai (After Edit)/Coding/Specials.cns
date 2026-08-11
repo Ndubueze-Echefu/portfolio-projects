@@ -792,6 +792,7 @@ velset = 0,0
 poweradd= -500
 ctrl = 0
 anim = 1007
+juggle = 5
 
 ;=======================AFTER EFFECTS EX (Coding inspired from RoySquadRocks)===============
 [State 1023, EX Activation SFX]
@@ -881,9 +882,11 @@ air.hittime = 12
 persistent = 0
 down.bounce = 1
 fall = 1
+air.fall = 1
 fall.yvelocity = -20
 fall.xvelocity = -5
 fall.recover = 0
+chainid = -1
 
 [State 1023, Hit Ground Sound FX]
 type = PlaySnd
