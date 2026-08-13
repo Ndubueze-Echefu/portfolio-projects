@@ -1183,10 +1183,10 @@ guardsound = s6, 0
 ground.type = Low
 ground.slidetime = 5
 ground.hittime  = 30
-ground.velocity = 0,-30
+ground.velocity = 0,-28
 airguard.velocity = -1.9,-.8
 air.type = Low
-air.velocity = 0,-30
+air.velocity = 0,-28
 air.hittime = 30
 
 [State 440, Grunt Sounds]
@@ -1293,7 +1293,7 @@ ground.hittime  = 12
 ground.velocity = -4
 airguard.velocity = -1.9,-.8
 air.type = High
-air.velocity = -1.4,-3
+air.velocity = -1.4,-15
 air.hittime = 12
 
 [State 600, Grunt Sounds]
@@ -1344,7 +1344,7 @@ ground.hittime  = 12
 ground.velocity = -4
 airguard.velocity = -1.9,-.8
 air.type = High
-air.velocity = -1.4,-3
+air.velocity = -1.4,-4
 air.hittime = 12
 
 [State 610, Grunt Sounds]
@@ -1397,7 +1397,7 @@ ground.hittime  = 12
 ground.velocity = -4
 airguard.velocity = -1.9,-.8
 air.type = Low
-air.velocity = -1.4,-3
+air.velocity = -1.4,-4
 air.hittime = 12
 givepower = 60
 getpower = 80
@@ -1443,7 +1443,7 @@ ground.hittime  = 12
 ground.velocity = -4
 airguard.velocity = -1.9,-.8
 air.type = Low
-air.velocity = -1.4,-3
+air.velocity = -1.4,-15
 air.hittime = 12
 
 [State 630, Grunt Sounds]
@@ -1493,7 +1493,7 @@ ground.hittime  = 12
 ground.velocity = -4
 airguard.velocity = -1.9,-.8
 air.type = Low
-air.velocity = -1.4,-3
+air.velocity = -1.4,-4
 air.hittime = 12
 
 [State 640, Grunt Sounds]

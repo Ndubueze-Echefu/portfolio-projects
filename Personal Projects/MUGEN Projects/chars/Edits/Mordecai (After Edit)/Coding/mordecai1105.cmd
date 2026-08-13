@@ -715,6 +715,20 @@ value = 1023
 triggerall = ctrl
 triggerall = statetype != A
 trigger1 = command = "Tumble (EX)"
+;---------------------------------------------------------------------------
+; Air Tumble EX
+[State -1, Air Tumble EX]
+type = ChangeState
+value = 1035
+triggerall = statetype = A
+triggerall = command = "Tumble (EX)"
+trigger1 = ctrl
+trigger2 = (stateno = 600) && movecontact
+trigger3 = (stateno = 610) && movecontact
+trigger4 = (stateno = 620) && movecontact
+trigger5 = (stateno = 630) && movecontact
+trigger6 = (stateno = 640) && movecontact
+trigger7 = (stateno = 650) && movecontact
 
 ;---------------------------------------------------------------------------
 ; Assist - Pops
@@ -830,6 +844,21 @@ value = 1022
 triggerall = ctrl
 triggerall = statetype != A
 trigger1 = command = "Tumble (strong)"
+
+;---------------------------------------------------------------------------
+; Air Tumble
+[State -1, Air Tumble]
+type = ChangeState
+value = 1030
+triggerall = statetype = A
+triggerall = (command = "Tumble (light)") || (command = "Tumble (medium)") || (command = "Tumble (strong)")
+trigger1 = ctrl
+trigger2 = (stateno = 600) && movecontact
+trigger3 = (stateno = 610) && movecontact
+trigger4 = (stateno = 620) && movecontact
+trigger5 = (stateno = 630) && movecontact
+trigger6 = (stateno = 640) && movecontact
+trigger7 = (stateno = 650) && movecontact
 ;---------------------------------------------------------------------------
 ; Cyclone
 [State -1, Cyclone]

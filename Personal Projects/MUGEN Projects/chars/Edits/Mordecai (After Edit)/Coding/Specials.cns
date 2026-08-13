@@ -784,7 +784,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;🚩Tumble (ground) - EX
+;Tumble (ground) - EX
 [Statedef 1023]
 type    = S
 movetype= A
@@ -913,42 +913,48 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; 🚩Tumble (air) - Light
+;Tumble (air)
 [Statedef 1030]
 type    = A
 movetype= A
-physics = A
-juggle  = 2
 poweradd= 15
 ctrl = 0
 anim = 1006
 
-[State 3014, AngleDraw]
+[State 1030, Raise Mordecai up a bit to align]
+type = PosAdd
+trigger1 = time = 0
+y = -20
+
+
+[State 1030, Gravity velocity]
+type = VelAdd
+trigger1 = 1
+y = 1
+
+[State 1030, Spiiiinnn! 😵‍💫]
 type = AngleDraw
 trigger1 = 1
+value = time*-10
+ignorehitpause = 1
 
-[State 3016, AngleAdd]
-type = AngleAdd
-trigger1 = time%1 = 0
-value = -10
-
-[State 1008, 0]
+[State 1030, Whoosh sound effect]
 type = PlaySnd
 trigger1 = timemod = 4,0
-value = S0,7
+value = S0,5
 
-[State 1008, 1]
+[State 1030, Tumble over opponent]
 type = HitDef
 trigger1 = timemod = 4,0
 attr = A, SA
-damage = 15, 3
+damage = 10, 3
 animtype = Heavy
 guardflag = MA
 hitflag = MAF
 priority = 3, Hit
 pausetime = 8, 8
-sparkno = 2
-sparkxy = -10, -130
+sparkno = s7020 + (random % 8)
+sparkxy = -10, 0
 hitsound = s5, 2
 guardsound = s6, 1
 ground.type = High
@@ -960,218 +966,120 @@ air.type = High
 air.velocity = -1.4,-3
 air.hittime = 12
 
-[State 1008, 2]
-type = CtrlSet
-trigger1 = animelem = 3
-value = 1
 
-[State 1008, 3]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 1008, 4]
-type = PlaySnd
-trigger1 = time = 0
-trigger1 = random < 500
-value = S2,6
-channel = 1
-
+[State 1030, Land and change back to idle]
+type = ChangeState
+trigger1 = pos y > 0
+trigger1 = vel y >= 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
-; 🚩Tumble (air) - Medium
-[Statedef 1031]
-type    = A
+;🚩Tumble (air) - EX ❗
+[Statedef 1035]
+type    = S
 movetype= A
-physics = A
-juggle  = 2
-poweradd= 15
+poweradd= -500
 ctrl = 0
 anim = 1006
+juggle = 5
 
-[State 3014, AngleDraw]
+;=======================AFTER EFFECTS EX (Coding inspired from RoySquadRocks)===============
+[State 1035, EX Activation SFX]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S10,3
+
+[State 1035, Cool EX Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 15
+palbright = 30,30,30
+palcontrast = 140,140,140
+paladd = -10,-10,-10
+palmul = 0.85,0.85,0.85
+timegap = 1
+framegap = 2
+trans = Add
+time = 70
+
+[State 1035, Flicker character with EX]
+type = PalFX
+trigger1 = Time%3 = 0
+time = 1
+add = 256,256,0
+mul = 128,128,64
+invertall = 0
+
+[State 1035, EX Spark Animation]
+type = Explod
+trigger1 = AnimElem = 1
+id = 3
+anim = 15002
+pos = -3,-106
+scale = 1.5,1.5
+sprpriority = 8
+ownpal = 0
+facing = 1
+;============================================================================================
+
+[State 1035, Gravity velocity]
+type = VelAdd
+trigger1 = 1
+y = 1
+
+[State 1035, Spiiiinnn! 😵‍💫]
 type = AngleDraw
 trigger1 = 1
+value = time*-5
+ignorehitpause = 1
 
-[State 3016, AngleAdd]
-type = AngleAdd
-trigger1 = time%1 = 0
-value = -10
-
-[State 1008, 0]
-type = PlaySnd
-trigger1 = timemod = 4,0
-value = S0,7
-
-[State 1008, 1]
+[State 1035, Tumble over opponent]
 type = HitDef
-trigger1 = timemod = 4,0
+trigger1 = 1
 attr = A, SA
-damage = 15, 3
-animtype = Heavy
-guardflag = MA
+damage = 135, 15
+animtype = Back
+guardflag = HA
 hitflag = MAF
 priority = 3, Hit
 pausetime = 8, 8
-sparkno = 2
-sparkxy = -10, -130
-hitsound = s5, 2
+sparkno = s7018
+sparkxy = -10, 0
+hitsound = s5, 15
 guardsound = s6, 1
 ground.type = High
 ground.slidetime = 5
 ground.hittime  = 12
-ground.velocity = -4
+ground.velocity = 0, 10
 airguard.velocity = -1.9,-.8
 air.type = High
-air.velocity = -1.4,-3
+air.velocity = 0, 10
 air.hittime = 12
+persistent = 0
+down.bounce = 1
+fall = 1
+air.fall = 1
+fall.yvelocity = -20
+fall.xvelocity = -5
+fall.recover = 0
+chainid = -1
 
-[State 1008, 2]
-type = CtrlSet
-trigger1 = animelem = 3
-value = 1
-
-[State 1008, 3]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 1008, 4]
+[State 1035, Hit Ground Sound FX]
 type = PlaySnd
-trigger1 = time = 0
-trigger1 = random < 500
-value = S2,6
-channel = 1
+triggerall = movehit
+trigger1 = enemyNear, pos y > 0
+value = S5,10
+persistent = 0
+ignorehitpause = 1
 
 
-;---------------------------------------------------------------------------
-; 🚩Tumble (air) - Strong
-[Statedef 1032]
-type    = A
-movetype= A
-physics = A
-juggle  = 2
-poweradd= 15
-ctrl = 0
-anim = 1006
-
-[State 3014, AngleDraw]
-type = AngleDraw
-trigger1 = 1
-
-[State 3016, AngleAdd]
-type = AngleAdd
-trigger1 = time%1 = 0
-value = -10
-
-[State 1008, 0]
-type = PlaySnd
-trigger1 = timemod = 4,0
-value = S0,7
-
-[State 1008, 1]
-type = HitDef
-trigger1 = timemod = 4,0
-attr = A, SA
-damage = 15, 3
-animtype = Heavy
-guardflag = MA
-hitflag = MAF
-priority = 3, Hit
-pausetime = 8, 8
-sparkno = 2
-sparkxy = -10, -130
-hitsound = s5, 2
-guardsound = s6, 1
-ground.type = High
-ground.slidetime = 5
-ground.hittime  = 12
-ground.velocity = -4
-airguard.velocity = -1.9,-.8
-air.type = High
-air.velocity = -1.4,-3
-air.hittime = 12
-
-[State 1008, 2]
-type = CtrlSet
-trigger1 = animelem = 3
-value = 1
-
-[State 1008, 3]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 1008, 4]
-type = PlaySnd
-trigger1 = time = 0
-trigger1 = random < 500
-value = S2,6
-channel = 1
-
-;---------------------------------------------------------------------------
-; 🚩Tumble (air) - EX
-[Statedef 1033]
-type    = A
-movetype= A
-physics = A
-juggle  = 2
-poweradd= 15
-ctrl = 0
-anim = 1006
-
-[State 3014, AngleDraw]
-type = AngleDraw
-trigger1 = 1
-
-[State 3016, AngleAdd]
-type = AngleAdd
-trigger1 = time%1 = 0
-value = -10
-
-[State 1008, 0]
-type = PlaySnd
-trigger1 = timemod = 4,0
-value = S0,7
-
-[State 1008, 1]
-type = HitDef
-trigger1 = timemod = 4,0
-attr = A, SA
-damage = 15, 3
-animtype = Heavy
-guardflag = MA
-hitflag = MAF
-priority = 3, Hit
-pausetime = 8, 8
-sparkno = 2
-sparkxy = -10, -130
-hitsound = s5, 2
-guardsound = s6, 1
-ground.type = High
-ground.slidetime = 5
-ground.hittime  = 12
-ground.velocity = -4
-airguard.velocity = -1.9,-.8
-air.type = High
-air.velocity = -1.4,-3
-air.hittime = 12
-
-[State 1008, 2]
-type = CtrlSet
-trigger1 = animelem = 3
-value = 1
-
-[State 1008, 3]
-type = StopSnd
-trigger1 = time = 0
-channel = 1
-
-[State 1008, 4]
-type = PlaySnd
-trigger1 = time = 0
-trigger1 = random < 500
-value = S2,6
-channel = 1
+[State 1035, Land and change back to idle]
+type = ChangeState
+triggerall = time > 12
+trigger1 = pos y > 0
+trigger1 = vel y >= 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
 ; 🚩Cyclone - Attempt
 [Statedef 1040]
