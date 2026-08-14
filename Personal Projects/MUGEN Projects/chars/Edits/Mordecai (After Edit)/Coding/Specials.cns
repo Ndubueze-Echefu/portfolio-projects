@@ -887,6 +887,7 @@ fall.yvelocity = -20
 fall.xvelocity = -5
 fall.recover = 0
 chainid = -1
+ignorehitpause = 1
 
 [State 1023, Hit Ground Sound FX]
 type = PlaySnd
@@ -904,12 +905,12 @@ value = S2,6
 channel = 1
 
 
-[State 1023, Land and change back to idle]
+[State 1023, Crash Land]
 type = ChangeState
 triggerall = time > 12
 trigger1 = pos y > 0
 trigger1 = vel y >= 0
-value = 0
+value = 5100
 ctrl = 1
 
 ;---------------------------------------------------------------------------
@@ -974,7 +975,7 @@ trigger1 = vel y >= 0
 value = 0
 ctrl = 1
 ;---------------------------------------------------------------------------
-;🚩Tumble (air) - EX ❗
+;Tumble (air) - EX
 [Statedef 1035]
 type    = S
 movetype= A
@@ -1033,6 +1034,12 @@ trigger1 = 1
 value = time*-5
 ignorehitpause = 1
 
+[State 1035, Fall sound effect]
+type = PlaySnd
+trigger1 = time = 0
+value = S40,4
+channel = 5
+
 [State 1035, Tumble over opponent]
 type = HitDef
 trigger1 = 1
@@ -1063,6 +1070,7 @@ fall.yvelocity = -20
 fall.xvelocity = -5
 fall.recover = 0
 chainid = -1
+ignorehitpause = 1
 
 [State 1035, Hit Ground Sound FX]
 type = PlaySnd
@@ -1073,12 +1081,11 @@ persistent = 0
 ignorehitpause = 1
 
 
-[State 1035, Land and change back to idle]
+[State 1035, Crash Land]
 type = ChangeState
-triggerall = time > 12
 trigger1 = pos y > 0
 trigger1 = vel y >= 0
-value = 0
+value = 5100
 ctrl = 1
 ;---------------------------------------------------------------------------
 ; 🚩Cyclone - Attempt

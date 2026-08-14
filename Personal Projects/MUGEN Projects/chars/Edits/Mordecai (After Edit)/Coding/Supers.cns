@@ -3,9 +3,9 @@
 ;---------------------------------------------------------------------------
 ; Society Laser
 [Statedef 6000]
-type    = S
+type    = U
 movetype= A
-physics = S
+physics = N
 juggle  = 1
 velset = 0,0
 ctrl = 0
@@ -92,10 +92,17 @@ channel = 1
 
 [State 6000, Change Back to Idle State]
 type = ChangeState
+triggerall = StateType != A
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
+[State 6000, Change Back to Fall State (if air)]
+type = ChangeState
+triggerall = StateType = A
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
 
 ;---------------------------------------------------------------------------
 ; Lantern Hammer
@@ -296,9 +303,9 @@ ctrl = 1
 ;---------------------------------------------------------------------------
 ; The Power
 [Statedef 6002]
-type    = S
+type    = U
 movetype= A
-physics = S
+physics = N
 juggle  = 1
 velset = 0,0
 ctrl = 0
@@ -423,10 +430,18 @@ type = StopSnd
 trigger1 = animelem = 39
 channel = 7
 
-[State 6002, Change back to Idle]
+[State 6002, Change Back to Idle State]
 type = ChangeState
+triggerall = StateType != A
 trigger1 = AnimTime = 0
 value = 0
+ctrl = 1
+
+[State 6002, Change Back to Fall State (if air)]
+type = ChangeState
+triggerall = StateType = A
+trigger1 = AnimTime = 0
+value = 50
 ctrl = 1
 
 ;---------------------------------------------------------------------------
@@ -554,7 +569,7 @@ trigger1 = animelem = 4
 value = S2,2
 channel = 1
 
-[State 6003, Change back to Idle State]
+[State 6003, Change Back to Idle State]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0

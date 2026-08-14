@@ -618,7 +618,6 @@ value = 6002
 triggerall = power >= 2000
 triggerall = command = "The Power"
 trigger1 = ctrl
-trigger1 = statetype != A
 trigger2 = (stateno = 200) && movecontact
 trigger3 = (stateno = 210) && movecontact
 trigger4 = (stateno = 220) && movecontact
@@ -631,6 +630,12 @@ trigger10 = (stateno = 420) && movecontact
 trigger11 = (stateno = 430) && movecontact
 trigger12 = (stateno = 440) && movecontact
 trigger13 = (stateno = 450) && movecontact
+trigger14 = (stateno = 600) && movecontact
+trigger15 = (stateno = 610) && movecontact
+trigger16 = (stateno = 620) && movecontact
+trigger17 = (stateno = 630) && movecontact
+trigger18 = (stateno = 640) && movecontact
+trigger19 = (stateno = 650) && movecontact
 
 ;---------------------------------------------------------------------------
 ; Skeet Shot
@@ -661,7 +666,6 @@ value = 6000
 triggerall = power >= 1000
 triggerall = command = "Society Laser"
 trigger1 = ctrl
-trigger1 = statetype != A
 trigger2 = (stateno = 200) && movecontact
 trigger3 = (stateno = 210) && movecontact
 trigger4 = (stateno = 220) && movecontact
@@ -674,6 +678,12 @@ trigger10 = (stateno = 420) && movecontact
 trigger11 = (stateno = 430) && movecontact
 trigger12 = (stateno = 440) && movecontact
 trigger13 = (stateno = 450) && movecontact
+trigger14 = (stateno = 600) && movecontact
+trigger15 = (stateno = 610) && movecontact
+trigger16 = (stateno = 620) && movecontact
+trigger17 = (stateno = 630) && movecontact
+trigger18 = (stateno = 640) && movecontact
+trigger19 = (stateno = 650) && movecontact
 
 ;---------------------------------------------------------------------------
 ; Lantern Hammer

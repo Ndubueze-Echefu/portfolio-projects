@@ -1808,6 +1808,11 @@ postype = back
 ownpal = 1
 size.shadowoffset = -12
 
+[State -2, Stop fall sound effect]
+type = StopSnd
+trigger1 = PrevStateNo = 1035
+channel = 5
+
 ;---------------------------------------------------------------------------
 ; States that are executed when in self's state file (use statedef -3)
 ;---------------------------------------------------------------------------
