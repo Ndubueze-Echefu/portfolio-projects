@@ -100,107 +100,6 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; Assist - Benson
-[Statedef 1006]
-type    = S
-movetype= A
-physics = N
-juggle  = 1
-velset = 30,0
-ctrl = 0
-anim = 1004
-sprpriority = 2
-
-[State 1006, Hold your horses!]
-type = VelSet
-trigger1 = animelem = 6
-x = 0
-y = 0
-
-[State 1006, SWING sound effect]
-type = PlaySnd
-trigger1 = animelem = 6
-trigger2 = animelem = 10
-value = S0,6
-
-[State 1006, Disappear forever...]
-type = DestroySelf
-trigger1 = time = 100
-
-[State 1006, First Hit!]
-type = HitDef
-trigger1 = animelem = 6
-attr = S, SA
-damage = 45, 10
-animtype = Heavy
-guardflag = MA
-hitflag = MAF
-priority = 3, Hit
-pausetime = 8, 35
-sparkno = s7018
-sparkxy = -10, -130
-hitsound = s5, 7
-guardsound = s6, 1
-ground.type = Low
-ground.slidetime = 5
-ground.hittime  = 12
-ground.velocity = -4
-airguard.velocity = -1.9,-.8
-air.type = Low
-air.velocity = -1.4,-3
-air.hittime = 12
-envshake.time = 10
-envshake.freq = 60
-envshake.ampl = -15
-envshake.phase = 90
-getpower = 45
-
-[State 1006, Final Hit!]
-type = HitDef
-trigger1 = animelem = 12
-attr = S, SA
-damage = 45, 10
-animtype = up
-guardflag = MA
-hitflag = MAF
-priority = 3, Hit
-pausetime = 8, 8
-sparkno = s7018
-sparkxy = -10, -130
-hitsound = s5, 7
-guardsound = s6, 1
-ground.type = Low
-ground.slidetime = 5
-ground.hittime  = 12
-ground.velocity = -4,-20
-airguard.velocity = -1.9,-.8
-air.type = Low
-air.velocity = -1.4,-20
-air.hittime = 12
-envshake.time = 10
-envshake.freq = 60
-envshake.ampl = -15
-envshake.phase = 90
-fall = 1
-getpower = 45
-
-[State 1006, Jump into space]
-type = VelSet
-trigger1 = animelem = 13
-x = 4
-y = -20
-
-[State 1006, "ERRAAUUGGHH!"]
-type = PlaySnd
-trigger1 = time = 0
-value = S3,2
-
-[State 1006, "RRRRAAA!"]
-type = PlaySnd
-trigger1 = Animelem = 10
-value = S3,6
-
-;---------------------------------------------------------------------------
 ;Zankou - Light
 [Statedef 1010]
 type    = S
@@ -856,6 +755,13 @@ ignorehitpause = 1
 type = PlaySnd
 trigger1 = Animelem = 3
 value = S40,3
+
+[State 1023, Fall sound effect]
+type = PlaySnd
+trigger1 = vel y > 0
+value = S40,4
+channel = 5
+persistent = 0
 
 [State 1023, Tumble over opponent]
 type = HitDef

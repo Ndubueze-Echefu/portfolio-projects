@@ -1811,6 +1811,7 @@ size.shadowoffset = -12
 [State -2, Stop fall sound effect]
 type = StopSnd
 trigger1 = PrevStateNo = 1035
+trigger2 = PrevStateNo = 1023
 channel = 5
 
 ;---------------------------------------------------------------------------
