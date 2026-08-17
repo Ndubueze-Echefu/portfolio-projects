@@ -1549,7 +1549,17 @@ givepower = 60
 getpower = 80
 fall = 0
 air.fall = 1
+fall.yvelocity = -20
+fall.xvelocity = -5
 chainID = -1
+
+[State 650, Hit Ground Sound FX]
+type = PlaySnd
+triggerall = movehit
+trigger1 = enemyNear, pos y > 0
+value = S5,10
+persistent = 0
+ignorehitpause = 1
 
 [State 650, Regain control]
 type = CtrlSet

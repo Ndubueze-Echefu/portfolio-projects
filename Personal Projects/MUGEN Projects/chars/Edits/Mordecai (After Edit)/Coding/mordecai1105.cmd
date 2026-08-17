@@ -875,8 +875,7 @@ trigger7 = (stateno = 650) && movecontact
 type = ChangeState
 value = 1040
 triggerall = command = "Cyclone"
-triggerall = statetype = S
-triggerall = ctrl
+triggerall = statetype != A
 triggerall = stateno != 100
 triggerall = p2bodydist X < 10
 triggerall = (p2statetype = S) || (p2statetype = C)

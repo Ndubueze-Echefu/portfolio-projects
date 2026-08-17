@@ -994,7 +994,7 @@ trigger1 = vel y >= 0
 value = 5100
 ctrl = 1
 ;---------------------------------------------------------------------------
-; 🚩Cyclone - Attempt
+; 🚩Cyclone (EX Throw) - Attempt
 [Statedef 1040]
 type    = S
 movetype= A
@@ -1003,14 +1003,48 @@ juggle  = 0
 velset = 0,0
 ctrl = 0
 anim = 1010
+poweradd = -500
 
-; Notes: The '-' symbol in the hitflag field means that it only affects
-;   players who are not in a hit state. This prevents the player from combo-ing
-;   into the throw. The priority should be set to a low number, such as
-;   1 or 2, so that the throw does not take precedence over normal attacks.
-;   The type of priority must always be set to "Miss" or "Dodge" for throws,
-;   otherwise strange behavior can result.
-[State 800, 1]
+;=======================AFTER EFFECTS EX (Coding inspired from RoySquadRocks)===============
+[State 1035, EX Activation SFX]
+type = PlaySnd
+trigger1 = Animelem = 1
+value = S10,3
+
+[State 1035, Cool EX Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 15
+palbright = 30,30,30
+palcontrast = 140,140,140
+paladd = -10,-10,-10
+palmul = 0.85,0.85,0.85
+timegap = 1
+framegap = 2
+trans = Add
+time = 70
+
+[State 1035, Flicker character with EX]
+type = PalFX
+trigger1 = Time%3 = 0
+time = 1
+add = 256,256,0
+mul = 128,128,64
+invertall = 0
+
+[State 1035, EX Spark Animation]
+type = Explod
+trigger1 = AnimElem = 1
+id = 3
+anim = 15002
+pos = -3,-106
+scale = 1.5,1.5
+sprpriority = 8
+ownpal = 0
+facing = 1
+;============================================================================================
+
+[State 800, Grab Hitbox]
 type = HitDef
 Trigger1 = Time = 0
 attr = S, NT          ;Attributes: Standing, Normal Throw
@@ -1020,12 +1054,12 @@ sparkno = -1          ;No spark
 sprpriority = 1       ;Draw in front of p2
 p1facing = ifelse (command = "holdfwd", -1, 1) ;Turn if holding forwards
 p2facing = 1          ;Force p2 to face player
-p1stateno = 1011       ;On success, player changes to state 810
-p2stateno = 1012       ;If hit, p2 changes to state 820 in player's cns
+p1stateno = 1041       ;On success, player changes to state 810
+p2stateno = 1042       ;If hit, p2 changes to state 820 in player's cns
 fall = 1              ;Force p2 into falling down
 hitsound = s8, 0
 
-[State 800, 2]
+[State 800, Change back to idle if failure]
 type = ChangeState
 Trigger1 = AnimTime = 0
 value = 0
@@ -1038,9 +1072,8 @@ type    = S
 movetype= A
 physics = N
 anim = 1011
-poweradd = 60
 
-[State 810, 0]
+[State 1041, Top Left Side Throw Bind]
 type = TargetBind
 trigger1 = time = 0
 trigger2 = animelem = 5
@@ -1051,7 +1084,7 @@ trigger6 = animelem = 21
 time = 2
 pos = 60, 0
 
-[State 810, 1]
+[State 1041, Bottom Right Side Throw Bind]
 type = TargetBind
 trigger1 = animelem = 3
 trigger2 = animelem = 7
@@ -1062,27 +1095,27 @@ trigger6 = animelem = 23
 time = 2
 pos = -60, 0
 
-[State 810, 2]
+[State 1041, Little collison for a bit]
 type = Width
 trigger1 = AnimElem = 2
 edge = 60,0
 
-[State 810, 3]
+[State 1041, Chip damage after hitting wall]
 type = TargetLifeAdd
 trigger1 = Animtime = 0
-value = -90
+value = -140
 
-[State 810, 4]
+[State 1041, Turn the other way around while spinning]
 type = Turn
 trigger1 = AnimElem = 9
 
-[State 810, 5]
+[State 1041, Change back to idle state]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-[State 810, 6]
+[State 1041, Whoosh SFX]
 type = PlaySnd
 trigger1 = animelem = 3
 trigger2 = animelem = 7
@@ -1090,7 +1123,12 @@ trigger3 = animelem = 11
 trigger4 = animelem = 15
 trigger5 = animelem = 19
 trigger6 = animelem = 23
-value = S0,7
+value = S0,5
+
+[State 1041, Final Whoosh SFX]
+type = PlaySnd
+trigger1 = AnimElem = 25
+value = S0,6
 
 ;---------------------------------------------------------------------------
 ; 🚩Cyclone: Opponent Thrown
@@ -1100,141 +1138,23 @@ movetype= H
 physics = N
 velset = 0,0
 
-[State 820, 1]
+[State 1042, 1]
 type = ChangeAnim2
 Trigger1 = Time = 0
 value = 1012
 
-[State 820, 2]
+[State 1042, 2]
 type = VelSet
 trigger1 = animtime = 0
 x = 30
-y = -5
 
-[State 820, 3]
+[State 1042, Hit wall]
 type = SelfState
-trigger1 = animtime = 0
-value = 5050
+trigger1 = BackEdgeBodyDist <= 20
+trigger2 = FrontEdgeBodyDist <= 20
+value = 227
 
-;---------------------------------------------------------------------------
-; 🚩Cyclone EX - Attempt
-[Statedef 1045]
-type    = S
-movetype= A
-physics = N
-juggle  = 0
-velset = 0,0
-ctrl = 0
-anim = 1010
-
-; Notes: The '-' symbol in the hitflag field means that it only affects
-;   players who are not in a hit state. This prevents the player from combo-ing
-;   into the throw. The priority should be set to a low number, such as
-;   1 or 2, so that the throw does not take precedence over normal attacks.
-;   The type of priority must always be set to "Miss" or "Dodge" for throws,
-;   otherwise strange behavior can result.
-[State 800, 1]
-type = HitDef
-Trigger1 = Time = 0
-attr = S, NT          ;Attributes: Standing, Normal Throw
-hitflag = M-          ;Affect only ground people who are not being hit
-priority = 1, Miss    ;Throw has low priority, must be miss or dodge type.
-sparkno = -1          ;No spark
-sprpriority = 1       ;Draw in front of p2
-p1facing = ifelse (command = "holdfwd", -1, 1) ;Turn if holding forwards
-p2facing = 1          ;Force p2 to face player
-p1stateno = 1011       ;On success, player changes to state 810
-p2stateno = 1012       ;If hit, p2 changes to state 820 in player's cns
-fall = 1              ;Force p2 into falling down
-hitsound = s8, 0
-
-[State 800, 2]
-type = ChangeState
-Trigger1 = AnimTime = 0
-value = 0
-ctrl = 1
-
-;---------------------------------------------------------------------------
-; 🚩Cyclone EX: Throwing the opponent
-[Statedef 1046]
-type    = S
-movetype= A
-physics = N
-anim = 1011
-poweradd = 60
-
-[State 810, 0]
-type = TargetBind
-trigger1 = time = 0
-trigger2 = animelem = 5
-trigger3 = animelem = 9
-trigger4 = animelem = 13
-trigger5 = animelem = 17
-trigger6 = animelem = 21
-time = 2
-pos = 60, 0
-
-[State 810, 1]
-type = TargetBind
-trigger1 = animelem = 3
-trigger2 = animelem = 7
-trigger3 = animelem = 11
-trigger4 = animelem = 15
-trigger5 = animelem = 19
-trigger6 = animelem = 23
-time = 2
-pos = -60, 0
-
-[State 810, 2]
-type = Width
-trigger1 = AnimElem = 2
-edge = 60,0
-
-[State 810, 3]
-type = TargetLifeAdd
-trigger1 = Animtime = 0
-value = -90
-
-[State 810, 4]
-type = Turn
-trigger1 = AnimElem = 9
-
-[State 810, 5]
-type = ChangeState
-trigger1 = AnimTime = 0
-value = 0
-ctrl = 1
-
-[State 810, 6]
-type = PlaySnd
-trigger1 = animelem = 3
-trigger2 = animelem = 7
-trigger3 = animelem = 11
-trigger4 = animelem = 15
-trigger5 = animelem = 19
-trigger6 = animelem = 23
-value = S0,7
-
-;---------------------------------------------------------------------------
-; 🚩Cyclone EX: Opponent Thrown
-[Statedef 1047]
-type    = A
-movetype= H
-physics = N
-velset = 0,0
-
-[State 820, 1]
-type = ChangeAnim2
-Trigger1 = Time = 0
-value = 1012
-
-[State 820, 2]
-type = VelSet
-trigger1 = animtime = 0
-x = 30
-y = -5
-
-[State 820, 3]
-type = SelfState
-trigger1 = animtime = 0
-value = 5050
+;[State 820, 3]
+;type = SelfState
+;trigger1 = animtime = 0
+;value = 5050
