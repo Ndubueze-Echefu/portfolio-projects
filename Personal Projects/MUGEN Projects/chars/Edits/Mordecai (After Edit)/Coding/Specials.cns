@@ -1131,29 +1131,129 @@ trigger1 = AnimElem = 25
 value = S0,6
 
 ;---------------------------------------------------------------------------
-; 🚩Cyclone: Opponent Thrown
+; 🚩Cyclone: Opponent Thrown (spun around)
 [Statedef 1042]
 type    = A
 movetype= H
 physics = N
 velset = 0,0
 
-[State 1042, 1]
+[State 1042, Change animation to spun around]
 type = ChangeAnim2
 Trigger1 = Time = 0
 value = 1012
 
-[State 1042, 2]
-type = VelSet
+[State 1042, Get launched!]
+type = ChangeState
 trigger1 = animtime = 0
-x = 30
+value = 1043
 
-[State 1042, Hit wall]
-type = SelfState
+;---------------------------------------------------------------------------
+; 🚩Cyclone: Opponent Thrown (thrown off)
+[Statedef 1043]
+type    = A
+movetype= H
+physics = N
+velset = 30,0
+
+[State 1043, Lower character down a bit]
+type = PosSet
+trigger1 = time = 0
+y = 45
+
+[State 1043, Turn around]
+type = Turn
+trigger1 = time = 0 
+
+[State 1043, Change animation thrown off]
+type = ChangeAnim2
+Trigger1 = Time = 0
+value = 5030
+
+;=================(inspired by KFM's Fast Kung Fu Palm hit state)======================
+[State 1043, No scroll]
+type = ScreenBound
+trigger1 = BackEdgeBodyDist < 65
+trigger2 = FrontEdgeBodyDist < 65
+value = 1
+movecamera = 0,1
+
+[State 1043, Hit wall]
+type = ChangeState
 trigger1 = BackEdgeBodyDist <= 20
 trigger2 = FrontEdgeBodyDist <= 20
-value = 227
+value = 1044
+;=======================================================================================
+;-------------------------------------------------------------------------------------------
+[Statedef 1044]
+type    = A
+movetype= H
+physics = N
 
+[State 1044, Hit Ground Sound FX]
+type = PlaySnd
+trigger1 = time = 0
+value = S5,10
+persistent = 0
+ignorehitpause = 1
+
+
+[State 1044, 1]
+type = NotHitBy
+trigger1 = 1
+value = , NA, NP
+
+[State 1044, Vel Y]
+type = VelSet
+trigger1 = Time = 0
+y = -6
+
+[State 1044, Vel X]
+type = VelSet
+trigger1 = Time = 0
+x = 1.6
+
+[State 1028, Turn]
+type = Turn
+trigger1 = (Time = 0) && (BackEdgeDist < 30)
+
+[State 1028, Gravity]
+type = VelAdd
+trigger1 = 1
+y = .35
+
+[State 1028, Anim 5050] ;Self falling animation
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = !SelfAnimExist(5052)
+value = 5050
+
+[State 1028, Anim 5052] ;Self falling animation (diagup type)
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = SelfAnimExist(5052)
+value = 5052
+
+[State 1028, Anim 5060] ;Coming down - normal
+type = ChangeAnim
+trigger1 = Vel Y > -2
+trigger1 = Anim = 5050
+trigger1 = SelfAnimExist(5060)
+persistent = 0
+value = 5060
+
+[State 1028, Anim 5062] ;Coming down - diagup type
+type = ChangeAnim
+trigger1 = Vel Y > -2
+trigger1 = Anim = 5052
+trigger1 = SelfAnimExist(5062)
+persistent = 0
+value = 5062
+
+[State 1028, Hit ground]
+type = SelfState
+trigger1 = (Vel y > 0) && (Pos y >= 0)
+value = 5100
 ;[State 820, 3]
 ;type = SelfState
 ;trigger1 = animtime = 0
