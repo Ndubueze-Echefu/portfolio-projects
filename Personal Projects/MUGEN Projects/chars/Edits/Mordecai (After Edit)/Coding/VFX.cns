@@ -190,4 +190,12 @@ trigger1 = NumExplod(703) = 1
 value = S10,2
 persistent = 0
 
-[State 20000, Disapp
+[State 21000, Disappear]
+type = DestroySelf
+trigger1 = (parent, Animtime = 0)
+;---------------------------------------------------------------------------
+; VFX - Hyper Combo Finish!
+[Statedef 21000]
+anim = 999999
+ctrl = 0
+

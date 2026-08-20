@@ -994,7 +994,7 @@ trigger1 = vel y >= 0
 value = 5100
 ctrl = 1
 ;---------------------------------------------------------------------------
-; 🚩Cyclone (EX Throw) - Attempt
+;Cyclone (EX Throw) - Attempt
 [Statedef 1040]
 type    = S
 movetype= A
@@ -1006,12 +1006,12 @@ anim = 1010
 poweradd = -500
 
 ;=======================AFTER EFFECTS EX (Coding inspired from RoySquadRocks)===============
-[State 1035, EX Activation SFX]
+[State 1040, EX Activation SFX]
 type = PlaySnd
 trigger1 = Animelem = 1
 value = S10,3
 
-[State 1035, Cool EX Afterimage]
+[State 1040, Cool EX Afterimage]
 type = AfterImage
 trigger1 = Time = 0
 length = 15
@@ -1024,7 +1024,7 @@ framegap = 2
 trans = Add
 time = 70
 
-[State 1035, Flicker character with EX]
+[State 1040, Flicker character with EX]
 type = PalFX
 trigger1 = Time%3 = 0
 time = 1
@@ -1032,7 +1032,7 @@ add = 256,256,0
 mul = 128,128,64
 invertall = 0
 
-[State 1035, EX Spark Animation]
+[State 1040, EX Spark Animation]
 type = Explod
 trigger1 = AnimElem = 1
 id = 3
@@ -1044,7 +1044,7 @@ ownpal = 0
 facing = 1
 ;============================================================================================
 
-[State 800, Grab Hitbox]
+[State 1040, Grab Hitbox]
 type = HitDef
 Trigger1 = Time = 0
 attr = S, NT          ;Attributes: Standing, Normal Throw
@@ -1059,14 +1059,14 @@ p2stateno = 1042       ;If hit, p2 changes to state 820 in player's cns
 fall = 1              ;Force p2 into falling down
 hitsound = s8, 0
 
-[State 800, Change back to idle if failure]
+[State 1040, Change back to idle if failure]
 type = ChangeState
 Trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; 🚩Cyclone: Throwing the opponent
+;Cyclone: Throwing the opponent
 [Statedef 1041]
 type    = S
 movetype= A
@@ -1102,8 +1102,9 @@ edge = 60,0
 
 [State 1041, Chip damage after hitting wall]
 type = TargetLifeAdd
-trigger1 = Animtime = 0
+trigger1 = p2stateno = 1044
 value = -140
+persistent = 0
 
 [State 1041, Turn the other way around while spinning]
 type = Turn
@@ -1130,8 +1131,22 @@ type = PlaySnd
 trigger1 = AnimElem = 25
 value = S0,6
 
+[State 1041, Hit Ground Sound FX]
+type = PlaySnd
+trigger1 = p2stateno = 1044
+value = S5,10
+persistent = 0
+ignorehitpause = 1
+
+[State 1041, Velocity sound effect]
+type = PlaySnd
+trigger1 = p2stateno = 1043
+value = S40,5
+persistent = 0
+ignorehitpause = 1
+
 ;---------------------------------------------------------------------------
-; 🚩Cyclone: Opponent Thrown (spun around)
+;Cyclone: Opponent Thrown (spun around)
 [Statedef 1042]
 type    = A
 movetype= H
@@ -1149,7 +1164,7 @@ trigger1 = animtime = 0
 value = 1043
 
 ;---------------------------------------------------------------------------
-; 🚩Cyclone: Opponent Thrown (thrown off)
+;Cyclone: Opponent Thrown (thrown off)
 [Statedef 1043]
 type    = A
 movetype= H
@@ -1159,7 +1174,7 @@ velset = 30,0
 [State 1043, Lower character down a bit]
 type = PosSet
 trigger1 = time = 0
-y = 45
+y = 15
 
 [State 1043, Turn around]
 type = Turn
@@ -1185,56 +1200,53 @@ trigger2 = FrontEdgeBodyDist <= 20
 value = 1044
 ;=======================================================================================
 ;-------------------------------------------------------------------------------------------
+;Hit Wall
 [Statedef 1044]
 type    = A
 movetype= H
 physics = N
 
-[State 1044, Hit Ground Sound FX]
-type = PlaySnd
-trigger1 = time = 0
-value = S5,10
-persistent = 0
-ignorehitpause = 1
 
+[State 1044, Spark]
+type = Explod
+trigger1 = Time = 0
+anim = F72
+pos = 0, floor (screenpos y) - 115
+postype = back
+sprpriority = 3
 
-[State 1044, 1]
-type = NotHitBy
-trigger1 = 1
-value = , NA, NP
-
-[State 1044, Vel Y]
+[State 1044, Vel Y after hitting wall]
 type = VelSet
 trigger1 = Time = 0
-y = -6
+y = -20
 
-[State 1044, Vel X]
+[State 1044, Vel X after hitting wall]
 type = VelSet
 trigger1 = Time = 0
-x = 1.6
+x = 5
 
-[State 1028, Turn]
+[State 1028, Turn around after hitting wall]
 type = Turn
 trigger1 = (Time = 0) && (BackEdgeDist < 30)
 
 [State 1028, Gravity]
 type = VelAdd
 trigger1 = 1
-y = .35
+y = 1
 
-[State 1028, Anim 5050] ;Self falling animation
+[State 1028, Self falling animation]
 type = ChangeAnim
 trigger1 = Time = 0
 trigger1 = !SelfAnimExist(5052)
 value = 5050
 
-[State 1028, Anim 5052] ;Self falling animation (diagup type)
+[State 1028, Self falling animation (diagup type)]
 type = ChangeAnim
 trigger1 = Time = 0
 trigger1 = SelfAnimExist(5052)
 value = 5052
 
-[State 1028, Anim 5060] ;Coming down - normal
+[State 1028, Coming down - normal]
 type = ChangeAnim
 trigger1 = Vel Y > -2
 trigger1 = Anim = 5050
@@ -1242,7 +1254,7 @@ trigger1 = SelfAnimExist(5060)
 persistent = 0
 value = 5060
 
-[State 1028, Anim 5062] ;Coming down - diagup type
+[State 1028, Coming down - diagup type]
 type = ChangeAnim
 trigger1 = Vel Y > -2
 trigger1 = Anim = 5052
@@ -1254,7 +1266,3 @@ value = 5062
 type = SelfState
 trigger1 = (Vel y > 0) && (Pos y >= 0)
 value = 5100
-;[State 820, 3]
-;type = SelfState
-;trigger1 = animtime = 0
-;value = 5050
