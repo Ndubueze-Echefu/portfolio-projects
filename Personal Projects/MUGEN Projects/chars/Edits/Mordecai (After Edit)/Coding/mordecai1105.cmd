@@ -722,6 +722,7 @@ trigger13 = (stateno = 450) && movecontact
 [State -1, Tumble EX]
 type = ChangeState
 value = 1023
+triggerall = power >= 500
 triggerall = ctrl
 triggerall = statetype != A
 trigger1 = command = "Tumble (EX)"
@@ -731,6 +732,7 @@ trigger1 = command = "Tumble (EX)"
 type = ChangeState
 value = 1035
 triggerall = statetype = A
+triggerall = power >= 500
 triggerall = command = "Tumble (EX)"
 trigger1 = ctrl
 trigger2 = (stateno = 600) && movecontact
@@ -870,10 +872,11 @@ trigger5 = (stateno = 630) && movecontact
 trigger6 = (stateno = 640) && movecontact
 trigger7 = (stateno = 650) && movecontact
 ;---------------------------------------------------------------------------
-; Cyclone
-[State -1, Cyclone]
+; Cyclone (EX Throw)
+[State -1, Cyclone (EX Throw)]
 type = ChangeState
 value = 1040
+triggerall = power >= 500
 triggerall = command = "Cyclone"
 triggerall = statetype != A
 triggerall = stateno != 100
