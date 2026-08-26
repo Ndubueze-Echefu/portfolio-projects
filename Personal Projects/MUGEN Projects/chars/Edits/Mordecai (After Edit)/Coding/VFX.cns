@@ -1,28 +1,37 @@
 ;Coding for Visual Special Effects
 ;-----------------------------------------------------------------------------------
-; Hyper finish
+; Special/Hyper Finish
 [Statedef 8000]
 type    = S
 movetype = I
 physics = N
 anim = 8000
 
-[State 8000, 0]
-type = Pause
-trigger1 = time = 1
-time = 15
-movetime = 15
+[State 8000, Regular Show Title Screen Background]
+type = Explod
+trigger1 = root, stateno = [6000,6020];	Finished enemy off with any hyper!
+anim = 40000
+ID = 40000
+bindtime = -1
+space = screen
+postype = Left
+pos = 0, 200
+scale = GameWidth/320, GameHeight/240
+sprpriority = 0
+persistent = 0
 
-[State 8000, 1]
-type = BGPalFX
-trigger1 = time = 1
-time = 15
-add = 0,0,0
-mul = 256,256,256
-sinadd = 0,0,0,1
-invertall = 1
-color = 256
-ignorehitpause = 1
+[State 8000, Text: "Society Laser"]
+type = Explod
+trigger1 = root, stateno = 6000;	Finished enemy off with Society Laser!
+anim = 40001
+ID = 40001
+bindtime = -1
+space = screen
+postype = Left
+pos = 0, 200
+sprpriority = 0
+persistent = 0
+
 
 ;---------------------------------------------------------------------------
 ; VFX - Level 1 Flash
