@@ -1,0 +1,25 @@
+;---------------------------------------------------------------------------
+; States that are always executed (use statedef -2)
+;---------------------------------------------------------------------------
+
+[Statedef -2]
+
+[State -2, Hyper Combo Finish!]
+type = Helper
+trigger1 = roundstate = 3
+trigger1 = numhelper(8000) = 0
+helpertype = normal
+ID = 8000
+stateno = 8000
+pos = 0,-20
+postype = back
+ownpal = 1
+size.shadowoffset = -12
+
+[State -2, Stop fall sound effect]
+type = StopSnd
+trigger1 = PrevStateNo = 1035
+trigger2 = PrevStateNo = 1023
+channel = 5
+
+

@@ -1756,30 +1756,6 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
-;---------------------------------------------------------------------------
-; Hyper finish
-[Statedef 8000]
-type    = S
-movetype = I
-physics = N
-anim = 8000
-
-[State 8000, 0]
-type = Pause
-trigger1 = time = 1
-time = 15
-movetime = 15
-
-[State 8000, 1]
-type = BGPalFX
-trigger1 = time = 1
-time = 15
-add = 0,0,0
-mul = 256,256,256
-sinadd = 0,0,0,1
-invertall = 1
-color = 256
-ignorehitpause = 1
 ;-------------------------------------------------------------
 ;bird gets kicked rip
 [StateDef 30000]   
@@ -1799,30 +1775,6 @@ trigger1 = roundstate = 2
 ;---------------------------------------------------------------------------
 ; Override common states (use same number to override) :
 ;---------------------------------------------------------------------------
-
-;---------------------------------------------------------------------------
-; States that are always executed (use statedef -2)
-;---------------------------------------------------------------------------
-
-[Statedef -2]
-
-[State -2]
-type = Helper
-trigger1 = roundstate = 3
-trigger1 = numhelper(8000) = 0
-helpertype = normal
-ID = 8000
-stateno = 8000
-pos = 0,-20
-postype = back
-ownpal = 1
-size.shadowoffset = -12
-
-[State -2, Stop fall sound effect]
-type = StopSnd
-trigger1 = PrevStateNo = 1035
-trigger2 = PrevStateNo = 1023
-channel = 5
 
 ;---------------------------------------------------------------------------
 ; States that are executed when in self's state file (use statedef -3)

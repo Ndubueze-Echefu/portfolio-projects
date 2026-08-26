@@ -21,6 +21,7 @@ st1 = Coding/Specials.cns
 st2 = Coding/Supers.cns
 st3 = Coding/Assists.cns
 st4 = Coding/VFX.cns
+st5 = Coding/Constants.cns
 stcommon = Coding/mordecommon.cns
 
 ;Pallete Files 🎨

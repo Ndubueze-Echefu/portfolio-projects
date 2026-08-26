@@ -1,4 +1,28 @@
 ;Coding for Visual Special Effects
+;-----------------------------------------------------------------------------------
+; Hyper finish
+[Statedef 8000]
+type    = S
+movetype = I
+physics = N
+anim = 8000
+
+[State 8000, 0]
+type = Pause
+trigger1 = time = 1
+time = 15
+movetime = 15
+
+[State 8000, 1]
+type = BGPalFX
+trigger1 = time = 1
+time = 15
+add = 0,0,0
+mul = 256,256,256
+sinadd = 0,0,0,1
+invertall = 1
+color = 256
+ignorehitpause = 1
 
 ;---------------------------------------------------------------------------
 ; VFX - Level 1 Flash
@@ -194,8 +218,5 @@ persistent = 0
 type = DestroySelf
 trigger1 = (parent, Animtime = 0)
 ;---------------------------------------------------------------------------
-; VFX - Hyper Combo Finish!
-[Statedef 21000]
-anim = 999999
-ctrl = 0
+
 
