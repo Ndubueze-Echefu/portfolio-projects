@@ -7,6 +7,14 @@ movetype = I
 physics = N
 anim = 8000
 
+[State 8000, "Hyper Combo KOOOOoooo..."]
+type = PlaySnd
+trigger1 = root, stateno = [6000,6020];	Finished enemy off with any hyper!
+trigger1 = time >= 30
+value = S8000,0
+persistent = 0
+
+
 [State 8000, Regular Show Title Screen Background]
 type = Explod
 trigger1 = root, stateno = [6000,6020];	Finished enemy off with any hyper!
@@ -20,6 +28,7 @@ scale = GameWidth/320, GameHeight/240
 sprpriority = 0
 persistent = 0
 
+
 [State 8000, Text: "Society Laser"]
 type = Explod
 trigger1 = root, stateno = 6000;	Finished enemy off with Society Laser!
@@ -27,10 +36,18 @@ anim = 40001
 ID = 40001
 bindtime = -1
 space = screen
+scale = 0.75, 0.75
 postype = Left
-pos = 0, 200
-sprpriority = 0
+pos = 325, 225
+sprpriority = 1
 persistent = 0
+
+[State 8000, Fade away Background 🚩]
+type = ModifyExplod
+ID = 40000
+trigger1 = time >= 30
+trans = add
+alpha = 256 - (time-30)*8, 256
 
 
 ;---------------------------------------------------------------------------
