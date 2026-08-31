@@ -122,7 +122,17 @@ time = 35
 
 [Command]
 name = "Society Laser"
-command = D, DF, F, D, DF, F, x+y
+command = D, DF, F, D, DF, F, x
+time = 30
+
+[Command]
+name = "Society Laser"
+command = D, DF, F, D, DF, F, y
+time = 30
+
+[Command]
+name = "Society Laser"
+command = D, DF, F, D, DF, F, z
 time = 30
 
 [Command]
@@ -132,7 +142,17 @@ time = 30
 
 [Command]
 name = "The Power"
-command = D, DF, F, D, DF, F, a+b
+command = D, DF, F, D, DF, F, a
+time = 30
+
+[Command]
+name = "The Power"
+command = D, DF, F, D, DF, F, b
+time = 30
+
+[Command]
+name = "The Power"
+command = D, DF, F, D, DF, F, c
 time = 30
 
 [Command]

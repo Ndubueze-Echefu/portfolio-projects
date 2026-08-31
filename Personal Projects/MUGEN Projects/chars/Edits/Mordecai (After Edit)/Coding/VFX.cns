@@ -14,6 +14,12 @@ trigger1 = time >= 30
 value = S8000,0
 persistent = 0
 
+[State 8000, Dramatic Finish SFX]
+type = PlaySnd
+trigger1 = root, stateno = [6000,6020];	Finished enemy off with any hyper!
+value = S8000,1
+persistent = 0
+
 
 [State 8000, Regular Show Title Screen Background]
 type = Explod
@@ -28,12 +34,38 @@ scale = GameWidth/320, GameHeight/240
 sprpriority = 0
 persistent = 0
 
+[State 8000, Super Finish FX]
+type = Explod
+trigger1 = root, stateno = [6000,6020];	Finished enemy off with any hyper!
+anim = 40006
+ID = 40006
+bindtime = -1
+space = screen
+postype = Left
+pos = 0, 200
+scale = GameWidth/320, GameHeight/240
+sprpriority = 10
+persistent = 0
+
 
 [State 8000, Text: "Society Laser"]
 type = Explod
 trigger1 = root, stateno = 6000;	Finished enemy off with Society Laser!
 anim = 40001
 ID = 40001
+bindtime = -1
+space = screen
+scale = 0.75, 0.75 * (1.3333333 * GameHeight / GameWidth)
+postype = Left
+pos = 325, 225
+sprpriority = 1
+persistent = 0
+
+[State 8000, Text: "Society Laser" (Effect version)]
+type = Explod
+trigger1 = root, stateno = 6000;	Finished enemy off with Society Laser!
+anim = 40001
+ID = 40002
 bindtime = -1
 space = screen
 scale = 0.75, 0.75
@@ -45,11 +77,17 @@ persistent = 0
 [State 8000, Fade away Background 🚩]
 type = ModifyExplod
 ID = 40000
-trigger1 = time >= 30
-trans = add
-alpha = 256 - (time-30)*8, 256
+trigger1 = NumExplod(40000) && time >= 30
+trans = addalpha
+alpha = (256 - 2 * ((Time + 30) - 30)), 256
 
-
+[State 8000, Fade "Society Laser" (Effect version)]
+type = ModifyExplod
+trigger1 = NumExplod(40002)
+ID = 40002
+scale = 0.75 + (0.0625 * Time), 0.75 + (0.0625 * Time)
+trans = AddAlpha
+alpha = 256 - (32 * Time), 32 * Time
 ;---------------------------------------------------------------------------
 ; VFX - Level 1 Flash
 [Statedef 20000]
