@@ -10,7 +10,7 @@ anim = 8000
 [State 8000, "Hyper Combo KOOOOoooo..."]
 type = PlaySnd
 trigger1 = root, stateno = [6000,6020];	Finished enemy off with any hyper!
-trigger1 = time >= 30
+triggerall = time >= 30
 value = S8000,0
 persistent = 0
 
@@ -77,9 +77,9 @@ persistent = 0
 [State 8000, Fade away Background 🚩]
 type = ModifyExplod
 ID = 40000
-trigger1 = NumExplod(40000) && time >= 30
+trigger1 = NumExplod(40000)
 trans = addalpha
-alpha = (256 - 2 * ((Time + 30) - 30)), 256
+alpha = 256 - (10 * Time), 10 * Time
 
 [State 8000, Fade "Society Laser" (Effect version)]
 type = ModifyExplod
@@ -245,11 +245,12 @@ sprpriority = -1
 
 [State 21000, Glass Break]
 type = explod
+triggerall = !numhelper(8000); Don't use it if hyper finish cinematic is played
 trigger1 = (parent, stateno = 6000) && (parent, animelem = 27); For Hyper: Society Laser
 trigger2 = (parent, stateno = 6001) && (parent, animelem = 23); For Hyper: Lantern Hammer
 trigger3 = (parent, stateno = 6002) && (parent, animelem = 40); For Hyper: The Power
 trigger4 = (parent, stateno = 6003) && (parent, animelem = 6) && (parent, movehit); For Hyper: Skeet Shot
-trigger5 = parent, stateno = [5000,5170]
+trigger5 = parent, stateno = [5000,5170];	interrupted by hit
 anim = 703
 pos = 0,0
 id = 703
@@ -257,7 +258,7 @@ vfacing = 1
 bindtime = -1
 postype = back
 scale = 2,2
-sprpriority = -5
+sprpriority = 8
 removetime = -2
 ownpal = 1
 removeongethit = 1
@@ -269,7 +270,8 @@ type = RemoveExplod
 trigger1 = (parent, stateno = 6000) && (parent, animelem = 27); For Hyper: Society Laser
 trigger2 = (parent, stateno = 6001) && (parent, animelem = 23); For Hyper: Lantern Hammer
 trigger3 = (parent, stateno = 6002) && (parent, animelem = 40); For Hyper: The Power
-trigger4 = parent, stateno = [5000,5170]
+trigger4 = parent, stateno = [5000,5170];	interrupted by hit
+trigger5 = numhelper(8000) = 1;	If hyper move finishes off opponent
 id = 700
 
 [State 21000, Glass Break SFX]

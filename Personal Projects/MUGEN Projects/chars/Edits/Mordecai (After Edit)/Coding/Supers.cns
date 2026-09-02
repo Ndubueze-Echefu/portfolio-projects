@@ -360,14 +360,18 @@ channel = 3
 [State 6002, Aight, stop now...]
 type = StopSnd
 trigger1 = time = 132
+trigger2 = numhelper(8000) = 1
 channel = 3
+persistent = 0
 
 [State 6002, Record Scratch at the end]
 type = PlaySnd
 trigger1 = Animelem = 39
+trigger2 = numhelper (8000) = 1
 value = S6002,0
 volume = 0
 channel = 4
+persistent = 0
 
 [State 6002, Laser Burst SFX]
 type = PlaySnd

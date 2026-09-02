@@ -797,8 +797,7 @@ ignorehitpause = 1
 
 [State 1023, Hit Ground Sound FX]
 type = PlaySnd
-triggerall = movehit
-trigger1 = enemyNear, pos y > 0
+trigger1 = enemynear, stateno = 5100
 value = S5,10
 persistent = 0
 ignorehitpause = 1
@@ -980,8 +979,7 @@ ignorehitpause = 1
 
 [State 1035, Hit Ground Sound FX]
 type = PlaySnd
-triggerall = movehit
-trigger1 = enemyNear, pos y > 0
+trigger1 = enemynear, stateno = 5100
 value = S5,10
 persistent = 0
 ignorehitpause = 1
