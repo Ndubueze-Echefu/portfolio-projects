@@ -54,7 +54,7 @@ scale = 1.5, 1.5 * (1.3333333 * GameHeight / GameWidth)
 sprpriority = 10
 persistent = 0
 
-
+;=======================Society Laser Hyper Finish=================================================
 [State 8000, Text: "Society Laser"]
 type = Explod
 trigger1 = root, stateno = 6000;	Finished enemy off with Society Laser!
@@ -81,13 +81,6 @@ pos = 325, 225
 sprpriority = 1
 persistent = 0
 
-[State 8000, Fade away Background]
-type = ModifyExplod
-ID = 40000
-trigger1 = NumExplod(40000)
-trans = addalpha
-alpha = ifElse(Time < 16, 256, 256 - 32 * (Time - 16)), ifElse(Time < 16, 0, 32 * (Time - 16))
-
 [State 8000, Fade away "Society Laser"]
 type = ModifyExplod
 ID = 40001
@@ -102,6 +95,58 @@ ID = 40002
 scale = 0.75 + (0.0625 * Time), 0.75 + (0.0625 * Time)
 trans = AddAlpha
 alpha = 256 - (32 * Time), 32 * Time
+;=====================================================================================================
+
+;=======================Lantern Hammer Hyper Finish=================================================
+[State 8000, Text: "Lantern Hammer"]
+type = Explod
+trigger1 = root, stateno = 6001;	Finished enemy off with Lantern Hammer!
+anim = 40002
+ID = 40001
+bindtime = -1
+space = screen
+scale = 0.45, 0.45 * (1.3333333 * GameHeight / GameWidth)
+postype = Left
+pos = 325, 225
+sprpriority = 1
+persistent = 0
+
+[State 8000, Text: "Lantern Hammer" (Effect version)]
+type = Explod
+trigger1 = root, stateno = 6001;	Finished enemy off with Lantern Hammer!
+anim = 40002
+ID = 40002
+bindtime = -1
+space = screen
+scale = 0.45, 0.45
+postype = Left
+pos = 325, 225
+sprpriority = 1
+persistent = 0
+
+[State 8000, Fade away "Lantern Hammer"]
+type = ModifyExplod
+ID = 40001
+trigger1 = NumExplod(40001)
+trans = addalpha
+alpha = ifElse(Time < 16, 256, 256 - 32 * (Time - 16)), ifElse(Time < 16, 0, 32 * (Time - 16))
+
+[State 8000, Fade "Lantern Hammer" (Effect version)]
+type = ModifyExplod
+trigger1 = NumExplod(40002)
+ID = 40002
+scale = 0.75 + (0.0625 * Time), 0.75 + (0.0625 * Time)
+trans = AddAlpha
+alpha = 256 - (32 * Time), 32 * Time
+;=====================================================================================================
+
+[State 8000, Fade away Background]
+type = ModifyExplod
+ID = 40000
+trigger1 = NumExplod(40000)
+trans = addalpha
+alpha = ifElse(Time < 16, 256, 256 - 32 * (Time - 16)), ifElse(Time < 16, 0, 32 * (Time - 16))
+
 ;---------------------------------------------------------------------------
 ; VFX - Level 1 Flash
 [Statedef 20000]

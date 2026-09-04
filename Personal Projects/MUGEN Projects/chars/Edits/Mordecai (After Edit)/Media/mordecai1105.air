@@ -3492,6 +3492,10 @@ LoopStart
 ; Text - Society Laser
 [Begin Action 40001]
 21000,1, 0,0, -1
+; Text - Lantern Hammer
+[Begin Action 40002]
+21000,2, 0,0, -1, , , 0.7,0.7
+
 ; Super Finish FX
 [Begin Action 40006]
 8600,0, 0,0, 1,, A
