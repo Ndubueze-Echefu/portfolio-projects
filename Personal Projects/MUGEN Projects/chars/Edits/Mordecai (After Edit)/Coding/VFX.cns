@@ -7,7 +7,7 @@ movetype = I
 physics = N
 anim = 8000
 
-[State 8000, VarSet]
+[State 8000, Set variable for verifying hyper states]
 type = VarSet
 trigger1 = root, stateno = [6000,6020];	Finished enemy off with any hyper!
 v = 2    ;fv = 10
@@ -135,7 +135,50 @@ alpha = ifElse(Time < 16, 256, 256 - 32 * (Time - 16)), ifElse(Time < 16, 0, 32 
 type = ModifyExplod
 trigger1 = NumExplod(40002)
 ID = 40002
-scale = 0.75 + (0.0625 * Time), 0.75 + (0.0625 * Time)
+scale = 0.45 + (0.0625 * Time), 0.45 + (0.0625 * Time)
+trans = AddAlpha
+alpha = 256 - (32 * Time), 32 * Time
+;=====================================================================================================
+
+;=======================The Power Hyper Finish=================================================
+[State 8000, Text: "The Power"]
+type = Explod
+trigger1 = root, stateno = 6002;	Finished enemy off with The Power!
+anim = 40003
+ID = 40001
+bindtime = -1
+space = screen
+scale = 0.6, 0.6 * (1.3333333 * GameHeight / GameWidth)
+postype = Left
+pos = 325, 225
+sprpriority = 1
+persistent = 0
+
+[State 8000, Text: "The Power" (Effect version)]
+type = Explod
+trigger1 = root, stateno = 6002;	Finished enemy off with The Power!
+anim = 40003
+ID = 40002
+bindtime = -1
+space = screen
+scale = 0.6, 0.6
+postype = Left
+pos = 325, 225
+sprpriority = 1
+persistent = 0
+
+[State 8000, Fade away "The Power"]
+type = ModifyExplod
+ID = 40001
+trigger1 = NumExplod(40001)
+trans = addalpha
+alpha = ifElse(Time < 16, 256, 256 - 32 * (Time - 16)), ifElse(Time < 16, 0, 32 * (Time - 16))
+
+[State 8000, Fade "The Power" (Effect version)]
+type = ModifyExplod
+trigger1 = NumExplod(40002)
+ID = 40002
+scale = 0.6 + (0.0625 * Time), 0.6 + (0.0625 * Time)
 trans = AddAlpha
 alpha = 256 - (32 * Time), 32 * Time
 ;=====================================================================================================
