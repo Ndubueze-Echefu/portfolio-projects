@@ -512,11 +512,12 @@ type = PlaySnd
 trigger1 = animelem = 5
 value = S6003,0
 
+
 [State 6003, Straight Shooter Hitbox]
 type = HitDef
 trigger1 = Animelem = 5
 attr = S, HA
-damage = 300, 125
+damage = 0, 125
 animtype = Heavy
 guardflag = MA
 hitflag = MAF
@@ -542,6 +543,15 @@ palfx.add = 0,0,0
 palfx.mul = 0,0,0
 palfx.sinadd = 56,56,0,10
 palfx.color = 0
+
+[State 6003, Delay Hit]
+type = TargetLifeAdd
+triggerall = movehit
+trigger1 = time >= 60
+value = -300
+ID = -1
+kill = 1
+persistent = 0
 
 [State 6003, Black Siloette] ;Inspired by Duck Game by DJHannaibalRoyce
 type = PalFX
@@ -578,7 +588,6 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
-
 ;---------------------------------------------------------------------------
 ; Death Punch! (Setup)
 [Statedef 6010]

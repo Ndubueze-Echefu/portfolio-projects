@@ -183,6 +183,49 @@ trans = AddAlpha
 alpha = 256 - (32 * Time), 32 * Time
 ;=====================================================================================================
 
+;=======================Skeet Shot Hyper Finish=================================================
+[State 8000, Text: "Skeet Shot"]
+type = Explod
+trigger1 = root, stateno = 6003;	Finished enemy off with Skeet Shot!
+anim = 40004
+ID = 40001
+bindtime = -1
+space = screen
+scale = 0.6, 0.6 * (1.3333333 * GameHeight / GameWidth)
+postype = Left
+pos = 325, 225
+sprpriority = 1
+persistent = 0
+
+[State 8000, Text: "Skeet Shot" (Effect version)]
+type = Explod
+trigger1 = root, stateno = 6003;	Finished enemy off with Skeet Shot!
+anim = 40004
+ID = 40002
+bindtime = -1
+space = screen
+scale = 0.6, 0.6
+postype = Left
+pos = 325, 225
+sprpriority = 1
+persistent = 0
+
+[State 8000, Fade away "Skeet Shot"]
+type = ModifyExplod
+ID = 40001
+trigger1 = NumExplod(40001)
+trans = addalpha
+alpha = ifElse(Time < 16, 256, 256 - 32 * (Time - 16)), ifElse(Time < 16, 0, 32 * (Time - 16))
+
+[State 8000, Fade "Skeet Shot" (Effect version)]
+type = ModifyExplod
+trigger1 = NumExplod(40002)
+ID = 40002
+scale = 0.6 + (0.0625 * Time), 0.6 + (0.0625 * Time)
+trans = AddAlpha
+alpha = 256 - (32 * Time), 32 * Time
+;=====================================================================================================
+
 [State 8000, Fade away Background]
 type = ModifyExplod
 ID = 40000
