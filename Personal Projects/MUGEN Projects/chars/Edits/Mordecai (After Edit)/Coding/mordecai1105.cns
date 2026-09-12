@@ -1555,7 +1555,8 @@ chainID = -1
 
 [State 650, Hit Ground Sound FX]
 type = PlaySnd
-trigger1 = enemynear, stateno = 5100
+trigger1 = movehit
+trigger1 = EnemyNear, stateno = 5100
 value = S5,10
 persistent = 0
 ignorehitpause = 1
@@ -1564,7 +1565,6 @@ ignorehitpause = 1
 type = CtrlSet
 trigger1 = Time = 20
 value = 1
-
 ;---------------------------------------------------------------------------
 ; Throw - Attempt
 [Statedef 800]

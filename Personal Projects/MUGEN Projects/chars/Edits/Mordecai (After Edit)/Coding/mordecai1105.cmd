@@ -623,13 +623,24 @@ time = 1
 [Statedef -1]
 
 ;===========================================================================
-[State -1, FINISHER]
+[State -1, Hyper - Death Punch!]
 type = ChangeState
 value = 6010
-triggerall = ctrl
-triggerall = statetype = S || statetype = C
 triggerall = power >= 3000
-trigger1 = command = "FINISHER"
+triggerall = command = "FINISHER"
+trigger1 = ctrl
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 ; The Power
 [State -1, Hyper - The Power]

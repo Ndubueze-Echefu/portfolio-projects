@@ -623,12 +623,11 @@ ID = 20002
 name="Level 3 Flash"
 supermovetime = 999999
 
-[State 6010, No bar, music, and unguardable move]
+[State 6010, No bar and music]
 type = AssertSpecial
 trigger1 = 1
 flag = nobardisplay
 flag2 = nomusic
-flag3 = unguardable
 ignorehitpause = 1
 persistent = 1
 
@@ -693,7 +692,7 @@ value = S20000,2
 type = HitDef
 trigger1 = time = 0
 attr = S, NA
-damage = 500, 500
+damage = 0, 125
 animtype = Heavy
 guardflag = MA
 hitflag = MAFD
@@ -712,6 +711,15 @@ air.type = High
 air.velocity = -4,-40
 air.hittime = 12
 fall = 1
+
+[State 6003, Delay Hit]
+type = TargetLifeAdd
+triggerall = movehit
+trigger1 = time >= 359
+value = -500
+ID = -1
+kill = 1
+persistent = 0
 
 [State 6011, Explosion Sound]
 type = PlaySnd
