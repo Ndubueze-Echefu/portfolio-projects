@@ -13,6 +13,44 @@ trigger1 = root, stateno = [6000,6020];	Finished enemy off with any hyper!
 v = 2    ;fv = 10
 value = 1
 
+[State 8000, Set variable for verifying special states]
+type = VarSet
+trigger1 = root, stateno = [1000,1100];	Finished enemy off with any special!
+v = 3    ;fv = 10
+value = 1
+ignorehitpause = 1
+
+;==============================Any Special Finish (inspired from RoySquadRocks)==================================
+[State 8000, Special Finish Dash Lines]
+type = Explod
+trigger1 = var(3) = 1;	Finished enemy off with any special!
+ID = 40007
+anim = 40007
+postype = Back
+pos = 0,0
+scale = 1,1
+sprpriority = 10
+ownpal = 0
+ignorehitpause = 1
+bindtime = -1
+removetime = 100
+persistent = 0
+
+
+[State 8000, Fade away Dash Lines]
+type = ModifyExplod
+ID = 40007
+trigger1 = NumExplod(40007)
+trans = addalpha
+alpha = ifElse(Time < 16, 256, 256 - 32 * (Time - 16)), ifElse(Time < 16, 0, 32 * (Time - 16))
+
+[State 8000, Special Dramatic Finish SFX]
+type = PlaySnd
+trigger1 = var(3) = 1;	Finished enemy off with any special!
+value = S8000,2
+persistent = 0
+ignorehitpause = 1
+;=======================================================================================================
 
 [State 8000, "Hyper Combo KOOOOoooo..."]
 type = PlaySnd
@@ -22,7 +60,7 @@ value = S8000,0
 persistent = 0
 
 
-[State 8000, Dramatic Finish SFX]
+[State 8000, Hyper Dramatic Finish SFX]
 type = PlaySnd
 trigger1 = var(2) = 1;	Finished enemy off with any hyper!
 value = S8000,1
