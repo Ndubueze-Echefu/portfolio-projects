@@ -377,14 +377,14 @@ ctrl = 0
 anim = 190
 velset = 0,0
 
-[State -1, Ayo, Rigby's here?! Bet!]
+[State -1, Facing against Rigby?]
 type = ChangeState
 trigger1 = p2name = "Rigby1105" || p4name = "Rigby1105"
 trigger1 = time = 0
 value = 193
 ctrl = 0
 
-[State -1, Rigby is not my friend >:(]
+[State -1, Different Intro if Rigby not here]
 type = ChangeState
 triggerall = p3name != "Rigby1105"
 trigger1 = time = 0
@@ -392,12 +392,20 @@ trigger1 = random > 500
 value = 191
 ctrl = 0
 
-[State -1, He's not mine either >:(]
+[State -1, Different Intro if Rigby not here]
 type = ChangeState
 triggerall = p3name != "Rigby1105"
 trigger1 = time = 0
 trigger1 = random > 500
 value = 192
+ctrl = 0
+
+[State -1, Different Intro if Rigby not here]
+type = ChangeState
+triggerall = p3name != "Rigby1105"
+trigger1 = time = 0
+trigger1 = random > 500
+value = 195
 ctrl = 0
 
 [State 190, Freeze animation until PreIntro is over]
@@ -551,30 +559,30 @@ trigger1 = animtime = 0
 value = 0
 
 ;---------------------------------------------------------------------------
-; Introduction
+; Introduction: VS. Rigby
 [Statedef 193]
 type = S
 ctrl = 0
 anim = 193
 velset = 0,0
 
-[State 193, 1] ;Freeze animation until PreIntro is over
+[State 193, Freeze animation until PreIntro is over]
 type = ChangeAnim
 trigger1 = RoundState = 0
 value = 193
 
-[State 193, 2] ;Assert this until you want "round 1, fight" to begin
+[State 193, Assert this until you want "round 1, fight" to begin]
 type = AssertSpecial
 trigger1 = anim = 192
 flag = Intro
 
-[State 193, 3] ;Assert this until you want "round 1, fight" to begin
+[State 193, Assert this until you want "round 1, fight" to begin]
 type = AssertSpecial
 trigger1 = 1
 flag = nobardisplay
 flag2 = nomusic
 
-[State 193, 4] ;Change to stand state
+[State 193, 4Change to stand state]
 type = ChangeAnim
 trigger1 = animtime = 0
 value = 0
@@ -592,24 +600,58 @@ trigger1 = root, animelem = 4
 value = 30000
 ctrl = 1
 
-;---------------------------------------------------------------------------
-; Taunt
+;------------------------------------------------------------------------
+; Introduction: VS. Twilight Sparkle
 [Statedef 195]
 type = S
 ctrl = 0
 anim = 195
 velset = 0,0
+
+[State 195, Freeze animation until PreIntro is over]
+type = ChangeAnim
+trigger1 = RoundState = 0
+value = 195
+
+[State 196, Intro - Assert this until you want "round 1, fight" to begin]
+type = AssertSpecial
+trigger1 = anim = 195
+flag = Intro
+
+[State 196, Empty GUI - Assert this until you want "round 1, fight" to begin]
+type = AssertSpecial
+trigger1 = 1
+flag = nobardisplay
+
+[State 196, No Music - Assert this until you want "round 1, fight" to begin]
+type = AssertSpecial
+trigger1 = roundno = 1
+flag = nomusic
+
+[State 196, Change to stand state]
+type = ChangeAnim
+trigger1 = animtime = 0
+value = 0
+
+
+;---------------------------------------------------------------------------
+; Taunt
+[Statedef 196]
+type = S
+ctrl = 0
+anim = 196
+velset = 0,0
 movetype = I
 physics = S
 sprpriority = 2
 
-[State 195, "Hmm, Hmm"]
+[State 196, "Hmm, Hmm"]
 type = PlaySnd
 trigger1 = time = 0
 value = S2,3
 channel = 1
 
-[State 195, Go back to Idle State]
+[State 196, Go back to Idle State]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0

@@ -117,7 +117,12 @@ command.buffer.time = 1
 ;-| Super Motions |--------------------------------------------------------
 [Command]
 name = "FINISHER"
-command = D, DF, F, D, DF, F, s
+command = D, DF, F, D, DF, F, x+y+z
+time = 35
+
+[Command]
+name = "FINISHER"
+command = D, DF, F, D, DF, F, a+b+c
 time = 35
 
 [Command]
@@ -985,7 +990,7 @@ trigger2 = p2movetype != H
 ; Taunt
 [State -1, Taunt]
 type = ChangeState
-value = 195
+value = 196
 triggerall = command = "s"
 trigger1 = statetype != A
 trigger1 = ctrl
