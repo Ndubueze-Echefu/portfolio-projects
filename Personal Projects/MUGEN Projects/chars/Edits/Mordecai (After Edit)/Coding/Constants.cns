@@ -26,5 +26,3 @@ channel = 5
 type = PosSet
 trigger1 = PrevStateNo = [1020, 1030]
 y = 0
-
-
