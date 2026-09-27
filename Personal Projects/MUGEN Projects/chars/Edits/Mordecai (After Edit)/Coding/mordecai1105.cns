@@ -71,6 +71,7 @@ victory8 = "Landlocked mammals can't compete with Mad Man Mordo."
 victory9 = "I will give you this: that was a spectacular match."
 victory10 = "I wonder why I didn't fly by myself when I helped rescue those baby ducks."
 victory11 = "For an odd match, that was... odd."
+victory12 = "...so... can I have your number?" ;VS. Twilight Sparkle
 
 ;---------------------------------------------------------------------------
 ; Format:
@@ -613,22 +614,59 @@ type = ChangeAnim
 trigger1 = RoundState = 0
 value = 195
 
-[State 196, Intro - Assert this until you want "round 1, fight" to begin]
+[State 195, Intro - Assert this until you want "round 1, fight" to begin]
 type = AssertSpecial
 trigger1 = anim = 195
 flag = Intro
 
-[State 196, Empty GUI - Assert this until you want "round 1, fight" to begin]
+[State 195, Empty GUI - Assert this until you want "round 1, fight" to begin]
 type = AssertSpecial
 trigger1 = 1
 flag = nobardisplay
 
-[State 196, No Music - Assert this until you want "round 1, fight" to begin]
+[State 195, No Music - Assert this until you want "round 1, fight" to begin]
 type = AssertSpecial
 trigger1 = roundno = 1
 flag = nomusic
 
-[State 196, Change to stand state]
+[State 195, Shocked that Twilight is here?!]
+type = PlaySnd
+trigger1 = Animelem = 4
+value = S2,0
+
+[State 195, Can we pretend that Airplanes in the night sky are like shooting stars? 🥺]
+type = PlaySnd
+trigger1 = Animelem = 7
+value = S9000,0
+channel = 9
+
+[State 195, The beautiful artwork 🎨]
+type = Explod
+trigger1 = Animelem = 7
+anim = 41000
+ID = 195
+pos = 125,-175
+postype = P1  ;P2, Front, Back, Left, Right
+removetime = -2
+bindtime = -1
+scale = 0.1,0.1
+ontop = 0
+;ignorehitpause = 
+;persistent = 
+
+
+[State 195, Zoom and fade in artwork]
+type = ModifyExplod
+trigger1 = numhelper(195)
+ID = 195
+scale = 0.1 + (0.0625 * time),0.1 + (0.0625 * time)
+
+;[State 195, Stop the music]
+;type = StopSnd
+;trigger1 = RoundState = 2
+;channel = 9
+
+[State 195, Change to stand state]
 type = ChangeAnim
 trigger1 = animtime = 0
 value = 0
