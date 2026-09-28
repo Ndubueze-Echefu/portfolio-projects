@@ -649,7 +649,7 @@ pos = 125,-175
 postype = P1  ;P2, Front, Back, Left, Right
 removetime = -1
 bindtime = -1
-scale = 0.1,0.1
+scale = 0.001, 0.001
 ontop = 0
 ;ignorehitpause = 
 ;persistent = 
@@ -658,7 +658,7 @@ ontop = 0
 type = ModifyExplod
 trigger1 = numexplod(41000)
 ID = 41000
-scale = 0.1 + (0.0625 * time),0.1 + (0.0625 * time)
+scale = 0.0625 * (AnimElemTime(7)+1), 0.0625 * (AnimElemTime(7)+1)
 
 ;[State 195, Stop the music]
 ;type = StopSnd
