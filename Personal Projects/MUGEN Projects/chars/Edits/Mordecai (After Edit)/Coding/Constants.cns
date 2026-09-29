@@ -26,3 +26,15 @@ channel = 5
 type = PosSet
 trigger1 = PrevStateNo = [1020, 1030]
 y = 0
+
+
+;===================VICTORY QUOTES CODING============================
+[State -2, Won against Rigby]
+type = VictoryQuote
+trigger1 = p2name = "Rigby1105" || p4name = "Rigby1105"
+value = 12
+
+;[State -2, Won against Twilight Sparkle]
+;type = VictoryQuote
+;trigger1 = 
+;value = 13

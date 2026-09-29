@@ -2,7 +2,7 @@
 name = "Mordecai"
 displayname = "Mordecai"
 versiondate = 7/2026
-mugenversion =
+mugenversion = 1.0
 author = "MOC1105, edited by I Am Cool"
 pal.defaults =
 localcoord = 640,480

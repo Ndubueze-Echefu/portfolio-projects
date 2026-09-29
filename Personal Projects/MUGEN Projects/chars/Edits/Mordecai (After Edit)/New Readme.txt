@@ -9,3 +9,4 @@ Credits:
 - Elecbyte: For MUGEN as a whole, and KFM coding for hitting the wall from Cyclone throw and bouncing from ground
 - B.o.B and Hayley Williams of Paramore: Airplanes song (for the weird Mordecai x Twilight Sparkle ship the internet used to fawn over 🙄)
 - DeviantArt user bluedog444 for that Twilight Sparkle and Mordecai masterpiece of an art.
+- MUGEN Free for ALL for giving me the list of different Twilight Sparkle versions in this community.

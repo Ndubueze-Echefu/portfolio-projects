@@ -71,7 +71,8 @@ victory8 = "Landlocked mammals can't compete with Mad Man Mordo."
 victory9 = "I will give you this: that was a spectacular match."
 victory10 = "I wonder why I didn't fly by myself when I helped rescue those baby ducks."
 victory11 = "For an odd match, that was... odd."
-victory12 = "...so... can I have your number?" ;VS. Twilight Sparkle
+victory12 = "You'll NEVER beat me at punchies..."	;VS Rigby
+victory13 = "Heh, been a while, huh? ...so... how's life?" 		;VS. Twilight Sparkle
 
 ;---------------------------------------------------------------------------
 ; Format:
@@ -371,7 +372,7 @@ value = SCA
 time = 1
 
 ;---------------------------------------------------------------------------
-; Introduction: "OHH!"
+; Introduction: "OHH!" and intro decider
 [Statedef 190]
 type = S
 ctrl = 0
@@ -384,6 +385,18 @@ trigger1 = p2name = "Rigby1105" || p4name = "Rigby1105"
 trigger1 = time = 0
 value = 193
 ctrl = 0
+
+[State -1, Different Intro if Rigby not here BUT Twilight Sparkle is here! 😏]
+type = ChangeState
+triggerall = p3name != "Rigby1105"
+
+;List of Twilight Sparkle versions; credit goes to MUGEN Free For All
+trigger1 = p2name = "Twilight Sparkle By HedgehogMac" || p4name = "Twilight Sparkle By HedgehogMac"
+trigger2 = p2name = "Twilight Sparkle" || p4name = "Twilight Sparkle"
+trigger3 = p2name = "Twilight Sparkle" || p4name = "Twilight Sparkle"
+value = 195
+ctrl = 0
+
 
 [State -1, Different Intro if Rigby not here]
 type = ChangeState
@@ -399,14 +412,6 @@ triggerall = p3name != "Rigby1105"
 trigger1 = time = 0
 trigger1 = random > 500
 value = 192
-ctrl = 0
-
-[State -1, Different Intro if Rigby not here]
-type = ChangeState
-triggerall = p3name != "Rigby1105"
-trigger1 = time = 0
-trigger1 = random > 500
-value = 195
 ctrl = 0
 
 [State 190, Freeze animation until PreIntro is over]
@@ -658,16 +663,31 @@ ontop = 0
 type = ModifyExplod
 trigger1 = numexplod(41000)
 ID = 41000
-scale = 0.0625 * (AnimElemTime(7)+1), 0.0625 * (AnimElemTime(7)+1)
+scale = 0.001 * (AnimElemTime(7)+1), 0.001 * (AnimElemTime(7)+1)
+trans = AddAlpha
+alpha = ifElse(AnimElemTime(7) < 240, 0, 1 * (AnimElemTime(7) - 240)), ifElse(AnimElemTime(7) < 240, 256, 256 - 1 * (AnimElemTime(7) - 240))	;Long equation, isn't it? 😜
 
-;[State 195, Stop the music]
-;type = StopSnd
-;trigger1 = RoundState = 2
-;channel = 9
+[State 195, Stop the music!]
+type = StopSnd
+trigger1 = AnimElemTime(7) >= 660
+channel = 9
+
+[State 195, Record Scratch]
+type = PlaySnd
+trigger1 = AnimElemTime(7) >= 660
+value = S6002,0
+volume = 0
+persistent = 0
+
+[State 195, Remove artwork]
+type = RemoveExplod
+trigger1 = AnimElemTime(7) >= 660
+id = 41000
+
 
 [State 195, Change to stand state]
 type = ChangeAnim
-trigger1 = animtime = 0
+trigger1 = AnimElemTime(7) >= 660
 value = 0
 
 
