@@ -72,7 +72,10 @@ victory9 = "I will give you this: that was a spectacular match."
 victory10 = "I wonder why I didn't fly by myself when I helped rescue those baby ducks."
 victory11 = "For an odd match, that was... odd."
 victory12 = "You'll NEVER beat me at punchies..."	;VS Rigby
-victory13 = "Heh, been a while, huh? ...so... how's life?" 		;VS. Twilight Sparkle
+
+;VS. Twilight Sparkle
+victory13 = "Heh, been a while, huh? ...so... how's life?"
+victory14 = "I could really use a wish right now! I, I, I could really use a wish right now! Like, like, like shootin' stars! I, I, I could, I could really use a wish right now! A wish, a wish right now."
 
 ;---------------------------------------------------------------------------
 ; Format:
@@ -393,7 +396,8 @@ triggerall = p3name != "Rigby1105"
 ;List of Twilight Sparkle versions; credit goes to MUGEN Free For All
 trigger1 = p2name = "Twilight Sparkle By HedgehogMac" || p4name = "Twilight Sparkle By HedgehogMac"
 trigger2 = p2name = "Twilight Sparkle" || p4name = "Twilight Sparkle"
-trigger3 = p2name = "Twilight Sparkle" || p4name = "Twilight Sparkle"
+trigger3 = p2name = "Princess Twilight Sparkle" || p4name = "Princess Twilight Sparkle"
+trigger4 = p2name = "Twilight_Sparkle" || p4name = "Twilight_Sparkle"
 value = 195
 ctrl = 0
 
@@ -1652,18 +1656,53 @@ fall.yvelocity = -20
 fall.xvelocity = -5
 chainID = -1
 
-[State 650, Hit Ground Sound FX]
-type = PlaySnd
+[State 650, TargetState]
+type = TargetState
+trigger1 = EnemyNear, statetype = A
 trigger1 = movehit
-trigger1 = EnemyNear, stateno = 5100
-value = S5,10
-persistent = 0
-ignorehitpause = 1
+value = 651
 
 [State 650, Regain control]
 type = CtrlSet
 trigger1 = Time = 20
 value = 1
+
+;-----------------------------------------------------------------------------
+; Air get-hit (falling from)
+[Statedef 651]
+type    = A
+movetype= H
+physics = N
+
+[State 651, Change anim when done with transition]
+type = ChangeAnim2
+trigger1 = AnimTime = 0
+trigger1 = Anim = 5035
+trigger2 = Time = 0     ;If no transition anim
+trigger2 = Anim != 5035
+trigger2 = (Anim != [5051, 5059]) && (Anim != [5061, 5069])
+trigger2 = Anim != 5090 ;Not if hit off ground anim
+value = 5050
+
+[State 651, Coming down anim]
+type = ChangeAnim2
+trigger1 = anim = [5050,5059]
+trigger1 = Vel Y >= ifelse(anim = 5050, Const720p(4), Const720p(-8))
+trigger1 = SelfAnimExist(anim+10)
+value = anim+10
+persistent = 0
+
+[State 651, Gravity]
+type = VelSet
+trigger1 = 1
+x = -1.5
+y = 25
+
+[State 651, Changed to Downed get-hit]
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= ifelse((anim = [5051,5059]) || (anim = [5061,5069]), 0, Const(movement.air.gethit.groundlevel))
+value = 5100
 ;---------------------------------------------------------------------------
 ; Throw - Attempt
 [Statedef 800]

@@ -27,6 +27,13 @@ type = PosSet
 trigger1 = PrevStateNo = [1020, 1030]
 y = 0
 
+[State -2, Ground hit sound from fall]
+type = PlaySnd
+trigger1 = EnemyNear, StateNo = 5100
+trigger1 = EnemyNear, PrevStateNo = 651
+trigger1 = EnemyNear, Time <= 1
+value = S5,10
+
 
 ;===================VICTORY QUOTES CODING============================
 [State -2, Won against Rigby]
@@ -34,7 +41,10 @@ type = VictoryQuote
 trigger1 = p2name = "Rigby1105" || p4name = "Rigby1105"
 value = 12
 
-;[State -2, Won against Twilight Sparkle]
-;type = VictoryQuote
-;trigger1 = 
-;value = 13
+[State -2, Won against Twilight Sparkle]
+type = VictoryQuote
+trigger1 = p2name = "Twilight Sparkle By HedgehogMac" || p4name = "Twilight Sparkle By HedgehogMac"
+trigger2 = p2name = "Twilight Sparkle" || p4name = "Twilight Sparkle"
+trigger3 = p2name = "Princess Twilight Sparkle" || p4name = "Princess Twilight Sparkle"
+trigger4 = p2name = "Twilight_Sparkle" || p4name = "Twilight_Sparkle"
+value = 13 + (random % 2)
