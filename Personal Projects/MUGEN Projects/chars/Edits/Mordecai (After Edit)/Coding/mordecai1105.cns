@@ -1699,7 +1699,7 @@ x = -1.5
 y = 25
 
 [State 651, Changed to Downed get-hit]
-type = ChangeState
+type = SelfState
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= ifelse((anim = [5051,5059]) || (anim = [5061,5069]), 0, Const(movement.air.gethit.groundlevel))
 value = 5100

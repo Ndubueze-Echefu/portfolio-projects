@@ -138,7 +138,10 @@ alpha = 256 - (32 * Time), 32 * Time
 ;=======================Lantern Hammer Hyper Finish=================================================
 [State 8000, Text: "Lantern Hammer"]
 type = Explod
-trigger1 = root, stateno = 6001;	Finished enemy off with Lantern Hammer!
+trigger1 = root, stateno = 6001;		Finished enemy off with Lantern Hammer!
+trigger2 = helper(10000), movecontact;	Finished enemy off with Big Bird!
+trigger3 = helper(10001), movecontact;	Finished enemy off with Chuck!
+trigger4 = projhittime(10001) = 0;		Finished enemy off with Blu!
 anim = 40002
 ID = 40001
 bindtime = -1
