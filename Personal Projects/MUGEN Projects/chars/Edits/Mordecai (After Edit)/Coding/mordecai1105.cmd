@@ -759,9 +759,21 @@ trigger13 = (stateno = 450) && movecontact
 type = ChangeState
 value = 1023
 triggerall = power >= 500
-triggerall = ctrl
-triggerall = statetype != A
-trigger1 = command = "Tumble (EX)"
+triggerall = command = "Tumble (EX)"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 ; Air Tumble EX
 [State -1, Air Tumble EX]
@@ -873,26 +885,61 @@ trigger13 = (stateno = 450) && movecontact
 [State -1, Tumble Light]
 type = ChangeState
 value = 1020
-triggerall = ctrl
-triggerall = statetype != A
-trigger1 = command = "Tumble (light)"
+triggerall = command = "Tumble (light)"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 ; Tumble (medium)
 [State -1, Tumble Medium]
 type = ChangeState
 value = 1021
-triggerall = ctrl
-triggerall = statetype != A
-trigger1 = command = "Tumble (medium)"
+triggerall = command = "Tumble (medium)"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 ; Tumble (strong)
 [State -1, Tumble Strong]
 type = ChangeState
 value = 1022
-triggerall = ctrl
-triggerall = statetype != A
-trigger1 = command = "Tumble (strong)"
-
+triggerall = command = "Tumble (strong)"
+trigger1 = ctrl
+trigger1 = statetype != A
+trigger2 = (stateno = 200) && movecontact
+trigger3 = (stateno = 210) && movecontact
+trigger4 = (stateno = 220) && movecontact
+trigger5 = (stateno = 230) && movecontact
+trigger6 = (stateno = 240) && movecontact
+trigger7 = (stateno = 250) && movecontact
+trigger8 = (stateno = 400) && movecontact
+trigger9 = (stateno = 410) && movecontact
+trigger10 = (stateno = 420) && movecontact
+trigger11 = (stateno = 430) && movecontact
+trigger12 = (stateno = 440) && movecontact
+trigger13 = (stateno = 450) && movecontact
 ;---------------------------------------------------------------------------
 ; Air Tumble
 [State -1, Air Tumble]
@@ -1212,3 +1259,10 @@ trigger6 = (stateno = 640) && movecontact
 
 ;---------------------------------------------------------------------------
 
+
+
+[State -1, Display Debug]
+type = DisplayToClipboard
+trigger1 = 1
+text = "Body-Distance X=%d,Y=%d \n"
+params = floor(P2BodyDist X),floor(P2BodyDist Y)

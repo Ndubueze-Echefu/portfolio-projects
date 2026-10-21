@@ -461,6 +461,7 @@ type    = S
 movetype= A
 velset = 0,0
 poweradd= 15
+juggle = 15
 ctrl = 0
 anim = 1007
 
@@ -537,6 +538,7 @@ type    = S
 movetype= A
 velset = 0,0
 poweradd= 15
+juggle = 15
 ctrl = 0
 anim = 1007
 
@@ -613,6 +615,7 @@ type    = S
 movetype= A
 velset = 0,0
 poweradd= 15
+juggle = 15
 ctrl = 0
 anim = 1007
 
@@ -691,7 +694,7 @@ velset = 0,0
 poweradd= -500
 ctrl = 0
 anim = 1007
-juggle = 5
+juggle = 15
 
 ;=======================AFTER EFFECTS EX (Coding inspired from RoySquadRocks)===============
 [State 1023, EX Activation SFX]
@@ -825,6 +828,7 @@ movetype= A
 poweradd= 15
 ctrl = 0
 anim = 1006
+juggle = 5
 
 [State 1030, Raise Mordecai up a bit to align]
 type = PosAdd

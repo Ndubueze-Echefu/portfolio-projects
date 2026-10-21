@@ -6,8 +6,8 @@
 type    = U
 movetype= A
 physics = N
-juggle  = 1
 velset = 0,0
+juggle = 1
 ctrl = 0
 anim = 6000
 sprpriority = 2
@@ -67,6 +67,7 @@ air.type = High
 air.velocity = -5,-3
 air.hittime = 12
 fall = 1
+fall.recover = 0
 envshake.time = 15
 envshake.ampl = 7
 fall.envshake.time = 15
@@ -110,7 +111,6 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 1
 velset = 0,0
 ctrl = 0
 anim = 6001
@@ -402,6 +402,7 @@ air.type = High
 air.velocity = -5,-3
 air.hittime = 12
 fall = 1
+fall.recover = 0
 envshake.time = 15
 envshake.ampl = 7
 fall.envshake.time = 15
@@ -494,7 +495,6 @@ trigger1 = time = 55
 stateno = 21000
 ID = 21000
 name="Hyper Background Sequence"
-persistent = 
 
 [State 6003, SuperPause]
 type = SuperPause
